@@ -64,7 +64,7 @@ employeeNumber: 0003
 dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 uid: wolverine
-cn: Logan Howlett
+cn: James "Logan" Howlett
 sn: Howlett
 mail: wolverine@xmen.marvel.com
 telephoneNumber: +1-555-1001
@@ -110,7 +110,7 @@ title: Psíquica / Segunda al Mando
 dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 uid: ironman
-cn: Tony Stark
+cn: Anthony Edward "Tony" Stark
 sn: Stark
 mail: ironman@vengadores.marvel.com
 telephoneNumber: +1-555-3000
@@ -211,8 +211,8 @@ title: Groot
 dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 uid: drax
-cn: Drax The Destroyer
-sn: The Destroyer
+cn: Arthur Sampson Douglas
+sn: Douglas
 mail: drax@guardianes.marvel.com
 telephoneNumber: +1-555-3004
 manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
