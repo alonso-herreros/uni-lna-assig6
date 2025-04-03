@@ -94,6 +94,17 @@ manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 roomNumber: 103
 title: Weather Manipulator
 
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+uid: jeangrey
+cn: Jean Elaine Grey-Summers
+sn: Grey-Summers
+mail: jeangrey@xmen.marvel.com
+telephoneNumber: +1-555-1004
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 104
+title: Psíquica / Segunda al Mando
+
 # ---- Vengadores ----
 
 dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
