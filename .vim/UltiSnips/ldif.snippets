@@ -1,0 +1,23 @@
+snippet mentor
+dn: uid=$1,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+uid: $1
+cn: $2 $3
+sn: $2
+mail: $1@mentores.marvel.com
+telephoneNumber: $4
+employeeNumber: $5
+endsnippet
+
+snippet hero
+dn: uid=$1,ou=$2,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+uid: $1
+cn: $3 $4
+sn: $4
+mail: $1@$5.marvel.com
+telephoneNumber: $6
+manager: $7
+roomNumber: $8
+title: $9
+endsnippet
