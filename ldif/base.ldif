@@ -70,7 +70,7 @@ mail: wolverine@xmen.marvel.com
 telephoneNumber: +1-555-1001
 manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 roomNumber: 101
-title: Combat Specialist
+title: Arma X
 
 dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -81,7 +81,7 @@ mail: ciclope@xmen.marvel.com
 telephoneNumber: +1-555-1002
 manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 roomNumber: 102
-title: Team Leader
+title: Líder
 
 dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -92,7 +92,7 @@ mail: tormenta@xmen.marvel.com
 telephoneNumber: +1-555-1003
 manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 roomNumber: 103
-title: Weather Manipulator
+title: Manipuladora del Clima
 
 dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -116,7 +116,7 @@ mail: ironman@vengadores.marvel.com
 telephoneNumber: +1-555-3000
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 201
-title: Engineer & Leader
+title: Líder e Ingeniero
 
 dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -127,7 +127,7 @@ mail: capitanamerica@vengadores.marvel.com
 telephoneNumber: +1-555-2002
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 202
-title: Field Commander
+title: Capitán
 
 dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -138,7 +138,7 @@ mail: thor@vengadores.marvel.com
 telephoneNumber: +1-555-2003
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 203
-title: God of Thunder
+title: Dios
 
 dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -149,7 +149,7 @@ mail: hulk@vengadores.marvel.com
 telephoneNumber: +1-555-2004
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 204
-title: Scientist
+title: Científico
 
 dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -160,7 +160,7 @@ mail: blackwidow@vengadores.marvel.com
 telephoneNumber: +1-555-2005
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 205
-title: Spy & Assassin
+title: Espía y Asesina
 
 dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -171,7 +171,7 @@ mail: hawkeye@vengadores.marvel.com
 telephoneNumber: +1-555-2006
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 206
-title: Marksman
+title: Francotirador
 
 # ---- Guardianes de la Galaxia ----
 
@@ -184,7 +184,7 @@ mail: gamora@guardianes.marvel.com
 telephoneNumber: +1-555-3001
 manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 roomNumber: 301
-title: Assassin
+title: Asesina
 
 dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -195,7 +195,7 @@ mail: rocket@guardianes.marvel.com
 telephoneNumber: +1-555-89P13
 manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 roomNumber: 302
-title: Tactician
+title: Guardián del Cuadrante Keystone
 
 dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -206,7 +206,7 @@ mail: groot@guardianes.marvel.com
 telephoneNumber: +1-555-3003
 manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 roomNumber: 303
-title: Groot
+title: Árbol
 
 dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -217,5 +217,5 @@ mail: drax@guardianes.marvel.com
 telephoneNumber: +1-555-3004
 manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 roomNumber: 304
-title: Destroyer
+title: El Destructor
 
