@@ -1,3 +1,7 @@
+---
+title: Administración de Redes Linux - Entregable 6: LDAP II
+---
+
 ## Administración de Redes Linux
 
 # Entregable 6: LDAP II
@@ -6,6 +10,13 @@
 [![CC BY-SA 4.0][shield-cc-by-sa]][cc-by-sa]
 [![GITT][shield-gitt]][gitt]
 [![Administración de Redes Linux][shield-lna]][lna]
+
+## Introducción
+
+Este documento contiene el registro del desarrollo de la actividad, incluyendo
+las instrucciones principales, las decisiones, y los resultados.
+
+## Ejercicio 1: creación del árbol
 
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
