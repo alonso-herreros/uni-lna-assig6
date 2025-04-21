@@ -1,0 +1,8 @@
+dn: cn=marvelPerson,cn=schema,cn=config
+objectclass: olcSchemaConfig
+cn: marvelPerson
+olcAttributeTypes: ( 2.999.1.1 NAME 'marvelPerson'
+    DESC 'Person class for the Marvel LDAP assignment for Linux Networks Administration (2024-2025)'
+    SUP inetOrgPerson STRUCTURAL
+    MUST ( mail $ telephoneNumber )
+    )
