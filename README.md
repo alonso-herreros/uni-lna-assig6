@@ -18,6 +18,81 @@ las instrucciones principales, las decisiones, y los resultados.
 
 ## Ejercicio 1: creación del árbol
 
+### Definición de clases
+
+Aunque no se especifica en el enunciado, para profundizar en el ejercicio se
+han creado nuevas clases para los héroes y mentores de Marvel. Las nuevas
+clases se han creado bajo el OID [`2.999`](https://oidref.com/2.999),
+concretamente en bajo el `2.999.0493990` para evitar posibles conflictos con
+otros OIDs, ya que se ha considerado que este ejercicio se puede clasificar
+como ejemplo de uso de OIDs.
+
+El siguiente diagrama ilustra las nuevas clases y sus atributos, así como las
+clases de las que heredan.
+
+> **Nota**: Los atributos en cursiva son opcionales. Los puntos suspensivos
+> indican que la clase incluye más atributos opcionales, omitidos en el
+> diagrama.
+
+```mermaid
+---
+title: Diagrama de clases del árbol
+---
+classDiagram
+direction LR
+
+class organizationalUnit {
+    ou
+    userPassword*
+    ...*
+}
+
+class person {
+    sn
+    cn
+    ou*
+    userPassword*
+    telephoneNumber*
+    ...*
+}
+
+person <|-- organizationalPerson
+class organizationalPerson {
+    title*
+    telephoneNumber*
+    ...*
+}
+
+organizationalPerson <|-- inetOrgPerson
+class inetOrgPerson {
+    employeeNumber*
+    mail*
+    manager*
+    roomNumber*
+    ...*
+}
+
+inetOrgPerson <|-- marvelPerson
+class marvelPerson {
+    mail
+    telephoneNumber
+}
+
+marvelPerson <|-- marvelHero
+class marvelHero {
+    manager
+    roomNumber
+    title
+}
+
+marvelPerson <|-- marvelMentor
+class marvelMentor {
+    employeeNumber
+}
+```
+
+Las clases se han definido en ficheros `.ldif` en el directorio `./schema/`
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
