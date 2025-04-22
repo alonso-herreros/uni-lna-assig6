@@ -69,6 +69,7 @@ class inetOrgPerson {
     mail*
     manager*
     roomNumber*
+    uid*
     ...*
 }
 
