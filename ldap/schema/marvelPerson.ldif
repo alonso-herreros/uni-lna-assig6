@@ -1,7 +1,7 @@
 dn: cn=marvel,cn=schema,cn=config
 changetype: modify
 add: olcObjectClasses
-olcObjectClasses: ( 2.999.1.1 NAME 'marvelPerson'
+olcObjectClasses: ( 2.999.0493990.1 NAME 'marvelPerson'
     DESC 'Person class for the Marvel LDAP assignment for Linux Networks Administration (2024-2025)'
     SUP inetOrgPerson STRUCTURAL
     MUST ( mail $ telephoneNumber )
