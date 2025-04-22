@@ -23,9 +23,9 @@ las instrucciones principales, las decisiones, y los resultados.
 Aunque no se especifica en el enunciado, para profundizar en el ejercicio se
 han creado nuevas clases para los héroes y mentores de Marvel. Las nuevas
 clases se han creado bajo el OID [`2.999`](https://oidref.com/2.999),
-concretamente en bajo el `2.999.0493990` para evitar posibles conflictos con
-otros OIDs, ya que se ha considerado que este ejercicio se puede clasificar
-como ejemplo de uso de OIDs.
+concretamente bajo el `2.999.0493990` para evitar posibles conflictos con otros
+OIDs, ya que se ha considerado que este ejercicio se puede clasificar como
+ejemplo de uso de OIDs.
 
 El siguiente diagrama ilustra las nuevas clases y sus atributos, así como las
 clases de las que heredan.
