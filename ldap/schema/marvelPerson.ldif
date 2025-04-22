@@ -1,4 +1,4 @@
-dn: cn=marvel,cn=schema,cn=config
+dn: cn={4}marvel,cn=schema,cn=config
 changetype: modify
 add: olcObjectClasses
 olcObjectClasses: ( 2.999.0493990.1 NAME 'marvelPerson'
