@@ -92,7 +92,24 @@ class marvelMentor {
 }
 ```
 
-Las clases se han definido en ficheros `.ldif` en el directorio `./schema/`
+Esta extensión clases se ha definido mediante ficheros `.ldif` en el directorio
+`./schema/` bajo la entidad `cn=marvel,cn=schema,cn=config`, con un fichero
+para definir la entidad (`marvel.ldif`) más un fichero de cambios de tipo `add`
+por cada clase.
+
+Para crear la entidad se ha utilizado el comando `ldapadd`:
+
+```sh
+sudo ldapadd -WY EXTERNAL -H ldapi:/// -f ./schema/marvel.ldif
+```
+
+Para aplicar los cambios se ha utilizado el comando `ldapmodify`:
+
+```sh
+sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelPerson.ldif
+sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelHero.ldif
+sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelMentor.ldif
+```
 
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
