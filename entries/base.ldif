@@ -29,6 +29,7 @@ ou: GuardianesDeLaGalaxia
 
 dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelMentor
 uid: profesorx
 cn: Charles Xavier
 sn: Xavier
@@ -38,6 +39,7 @@ employeeNumber: 0001
 
 dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelMentor
 uid: nickfury
 cn: Nick Fury
 sn: Fury
@@ -47,6 +49,7 @@ employeeNumber: 0002
 
 dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelMentor
 uid: starlord
 cn: Peter Quill
 sn: Quill
@@ -63,6 +66,7 @@ employeeNumber: 0003
 
 dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: wolverine
 cn: James "Logan" Howlett
 sn: Howlett
@@ -74,6 +78,7 @@ title: Arma X
 
 dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: ciclope
 cn: Scott Summers
 sn: Summers
@@ -85,6 +90,7 @@ title: Líder
 
 dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: tormenta
 cn: Ororo Munroe
 sn: Munroe
@@ -96,6 +102,7 @@ title: Manipuladora del Clima
 
 dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: jeangrey
 cn: Jean Elaine Grey-Summers
 sn: Grey-Summers
@@ -109,6 +116,7 @@ title: Psíquica / Segunda al Mando
 
 dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: ironman
 cn: Anthony Edward "Tony" Stark
 sn: Stark
@@ -120,6 +128,7 @@ title: Líder e Ingeniero
 
 dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: capitanamerica
 cn: Steve Rogers
 sn: Rogers
@@ -131,6 +140,7 @@ title: Capitán
 
 dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: thor
 cn: Thor Odinson
 sn: Odinson
@@ -142,6 +152,7 @@ title: Dios
 
 dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: hulk
 cn: Bruce Banner
 sn: Banner
@@ -153,6 +164,7 @@ title: Científico
 
 dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: blackwidow
 cn: Natasha Romanoff
 sn: Romanoff
@@ -164,6 +176,7 @@ title: Espía y Asesina
 
 dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: hawkeye
 cn: Clint Barton
 sn: Barton
@@ -177,6 +190,7 @@ title: Francotirador
 
 dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: gamora
 cn: Gamora Zen-Whoberi
 sn: Zen-Whoberi
@@ -188,6 +202,7 @@ title: Asesina
 
 dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: rocket
 cn: Rocket Raccoon
 sn: Raccoon
@@ -199,6 +214,7 @@ title: Guardián del Cuadrante Keystone
 
 dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: groot
 cn: Groot
 sn: Groot
@@ -210,6 +226,7 @@ title: Árbol
 
 dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
+objectClass: marvelHero
 uid: drax
 cn: Arthur Sampson Douglas
 sn: Douglas
@@ -218,4 +235,3 @@ telephoneNumber: +1-555-3004
 manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 roomNumber: 304
 title: El Destructor
-
