@@ -112,7 +112,7 @@ Para crear la entidad se ha utilizado el comando `ldapadd`:
 sudo ldapadd -WY EXTERNAL -H ldapi:/// -f ./schema/marvel.ldif
 ```
 
-Para aplicar los cambios se ha utilizado el comando `ldapmodify`:
+Para añadir cada clase se ha utilizado el comando `ldapmodify`:
 
 ```sh
 sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelPerson.ldif
