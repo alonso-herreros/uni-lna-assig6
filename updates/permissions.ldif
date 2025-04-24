@@ -22,4 +22,12 @@ olcAccess: to
 olcAccess: to
   filter=(objectClass=marvelHero) attrs=mail,telephoneNumber
   by set="user/objectClass & [marvelHero]" read
+# Permisos en un grupo
+olcAccess: to
+  dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$" attrs=cn
+  by dn.children,expand="$0" read
+# Permiso de héroe sobre su mentor
+olcAccess: to
+  dn.regex="(uid=[^,]+,ou=Mentores,dc=marvel,dc=com)$" attrs=cn
+  by set.expand="$0 & user/mentor" read
 olcAccess: to * by self read
