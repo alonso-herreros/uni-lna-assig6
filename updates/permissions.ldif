@@ -2,6 +2,24 @@ dn: olcDatabase={1}mdb,cn=config
 changetype: modify
 # 'replace' required because order matters
 replace: olcAccess
+olcAccess: to * by dn="cn=admin,dc=marvel,dc=com" write
 olcAccess: to attrs=userPassword by self write by anonymous auth by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
-olcAccess: to * by * read
+# Mentores
+olcAccess: to
+  filter=(objectClass=marvelHero)
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+olcAccess: to
+  dn.children="ou=Vengadores,ou=Equipos,dc=marvel,dc=com" attrs=roomNumber
+  by dn="uid=nickfury,ou=Mentores,dc=marvel,dc=com" write
+olcAccess: to
+  dn.children="ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com" attrs=title
+  by dn="uid=starlord,ou=Mentores,dc=marvel,dc=com" write
+olcAccess: to
+  filter=(objectClass=marvelPerson)
+  by filter=(objectClass=marvelMentor) read
+# Héroes
+olcAccess: to
+  filter=(objectClass=marvelHero) attrs=mail,telephoneNumber
+  by filter=(objectClass=marvelHero) read
+olcAccess: to * by self read
