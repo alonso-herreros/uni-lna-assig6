@@ -120,6 +120,95 @@ sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelHero.ldif
 sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelMentor.ldif
 ```
 
+### Definición de entradas en el árbol
+
+Usando un solo fichero, [`entries/base.ldif`](entries/base.ldif), se ha creado
+el siguiente árbol LDAP:
+
+```mermaid
+flowchart TD
+    root(dc=marvel,dc=com)
+    root --> mentores(ou=Mentores)
+    root --> equipos(ou=Equipos)
+    equipos --> xmen(ou=XMen)
+    equipos ----> vengadores(ou=Vengadores)
+    equipos --> guardianes(ou=GuardianesDeLaGalaxia)
+
+    mentores --> profesorx([uid=profesorx])
+    mentores --> nickfury([uid=nickfury])
+    mentores --> starlord([uid=starlord])
+
+    xmen --> wolverine([uid=wolverine])
+    xmen --> ciclope([uid=ciclope])
+    xmen --> tormenta([uid=tormenta])
+    xmen --> jeangrey([uid=jeangrey])
+
+    vengadores --> ironman([uid=ironman])
+    vengadores --> capitanamerica([uid=capitanamerica])
+    vengadores --> thor([uid=thor])
+    vengadores --> hulk([uid=hulk])
+    vengadores --> blackwidow([uid=blackwidow])
+    vengadores --> hawkeye([uid=hawkeye])
+
+    guardianes --> gamora([uid=gamora])
+    guardianes --> rocket([uid=rocket])
+    guardianes --> groot([uid=groot])
+    guardianes --> drax([uid=drax])
+```
+
+#### Unidades organizativas
+
+Las unidades organizativas (en rectángulos redondeados) se han definido usando
+la clase `organizationalUnit`, que hereda de `top` implícitamente. A
+continuación se muestra un ejemplo de definición de una unidad organizativa:
+
+```ldif
+dn: ou=Mentores,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Mentores
+```
+
+#### Héroes y mentores
+
+Para usar las clases personalizadas en las entradas correspondientes a personas
+(en estadios/discorectángulos) se ha especificado la clase relevante como
+`objectClass`. Se ha incluido explícitamente la clase `inetOrgPerson` para
+mayor claridad, aunque no sea técnicamente necesaria.
+
+El fichero `entries/base.ldif` está codificado en UTF-8. Las tildes y
+caracteres no-ASCII en los campos se han dejado tal cual, y son codificados
+automáticamente por `ldapadd`.
+
+A continuación se muestra un ejemplo de definición de un héroe:
+
+```ldif
+dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: rocket
+cn: Rocket Raccoon
+sn: Raccoon
+mail: rocket@guardianes.marvel.com
+telephoneNumber: +1-555-89P13
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 302
+title: Guardián del Cuadrante Keystone
+```
+
+El siguiente es un ejemplo de definición de un mentor:
+
+```ldif
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+uid: starlord
+cn: Peter Quill
+sn: Quill
+mail: starlord@mentores.marvel.com
+telephoneNumber: +1-555-1976
+employeeNumber: 0003
+```
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
