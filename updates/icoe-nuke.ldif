@@ -1,0 +1,88 @@
+# IN CASE OF EMERGENCY.
+# This nukes (clears) the entire marvel tree, except the root
+
+# ==== Mentores ====
+
+# Nota: `inetOrgPerson` hereda de `organizationalPerson`, que hereda de
+# `person`, que hereda de `top`. En la implementación que usamos, no es
+# necesario indicar toda la cadena.
+# Ver `/etc/ldap/schema/core.schema` y `/etc/ldap/schema/inteorgperson.schema`
+
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+changetype: delete
+
+
+# ==== Héroes ====
+
+# Nota: usaré el campo `manager` para referirme al mentor
+
+# ---- XMen ----
+
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+# ---- Vengadores ----
+
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+# ---- Guardianes de la Galaxia ----
+
+dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+# ==== Organizational Units ====
+
+dn: ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: delete
+
+dn: ou=Mentores,dc=marvel,dc=com
+changetype: delete
+
+dn: ou=Equipos,dc=marvel,dc=com
+changetype: delete
