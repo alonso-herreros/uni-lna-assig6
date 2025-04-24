@@ -2,7 +2,6 @@ dn: olcDatabase={1}mdb,cn=config
 changetype: modify
 # 'replace' required because order matters
 replace: olcAccess
-olcAccess: to * by dn="cn=admin,dc=marvel,dc=com" write
 olcAccess: to attrs=userPassword by self write by anonymous auth by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
 # Especialidades de Mentores
@@ -31,4 +30,6 @@ olcAccess: to
 olcAccess: to
   dn.regex="(uid=[^,]+,ou=Mentores,dc=marvel,dc=com)$" attrs=cn
   by set.expand="$0 & user/mentor" read
-olcAccess: to * by self read
+olcAccess: to *
+  by self read
+#  dn="cn=admin,dc=marvel,dc=com" write
