@@ -172,7 +172,7 @@ ou: Mentores
 
 Para usar las clases personalizadas en las entradas correspondientes a personas
 (en estadios/discorectángulos) se ha especificado la clase relevante como
-`objectClass`. Se ha incluído explícitamente la clase `inetOrgPerson` para
+`objectClass`. Se ha incluido explícitamente la clase `inetOrgPerson` para
 mayor claridad, aunque no sea técnicamente necesaria.
 
 El fichero `entries/base.ldif` está codificado en UTF-8. Las tildes y
