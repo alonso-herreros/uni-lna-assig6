@@ -27,6 +27,15 @@ concretamente bajo el `2.999.0493990` para evitar posibles conflictos con otros
 OIDs, ya que se ha considerado que este ejercicio se puede clasificar como
 ejemplo de uso de OIDs.
 
+Se han declarado como obligatorios los atributos pre-definidos que corresponden
+a los datos especificados en las instrucciones. En cuanto a los datos que no
+corresponden claramente a un único atributo, se ha usado el que parecía más
+apropiado:
+
+* Para el número de teléfono se ha usado `telephoneNumber` (no `mobile`).
+* Para el mentor se ha usado `manager`.
+* Para el nombre real/completo se ha usado `cn`
+
 El siguiente diagrama ilustra las nuevas clases y sus atributos, así como las
 clases de las que heredan.
 
