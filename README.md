@@ -156,6 +156,18 @@ flowchart TD
     guardianes --> drax([uid=drax])
 ```
 
+#### Unidades organizativas
+
+Las unidades organizativas (en rectángulos redondeados) se han definido usando
+la clase `organizationalUnit`, que hereda de `top` implícitamente. A
+continuación se muestra un ejemplo de definición de una unidad organizativa:
+
+```ldif
+dn: ou=Mentores,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Mentores
+```
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
