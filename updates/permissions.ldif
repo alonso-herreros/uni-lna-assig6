@@ -17,9 +17,9 @@ olcAccess: to
   by dn="uid=starlord,ou=Mentores,dc=marvel,dc=com" write
 olcAccess: to
   filter=(objectClass=marvelPerson)
-  by filter=(objectClass=marvelMentor) read
+  by set="user/objectClass & [marvelMentor]" read
 # Héroes
 olcAccess: to
   filter=(objectClass=marvelHero) attrs=mail,telephoneNumber
-  by filter=(objectClass=marvelHero) read
+  by set="user/objectClass & [marvelHero]" read
 olcAccess: to * by self read
