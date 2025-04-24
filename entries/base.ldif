@@ -196,7 +196,7 @@ cn: Gamora Zen-Whoberi
 sn: Zen-Whoberi
 mail: gamora@guardianes.marvel.com
 telephoneNumber: +1-555-3001
-manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
 roomNumber: 301
 title: Asesina
 
@@ -208,7 +208,7 @@ cn: Rocket Raccoon
 sn: Raccoon
 mail: rocket@guardianes.marvel.com
 telephoneNumber: +1-555-89P13
-manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
 roomNumber: 302
 title: Guardián del Cuadrante Keystone
 
@@ -220,7 +220,7 @@ cn: Groot
 sn: Groot
 mail: groot@guardianes.marvel.com
 telephoneNumber: +1-555-3003
-manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
 roomNumber: 303
 title: Árbol
 
@@ -232,6 +232,6 @@ cn: Arthur Sampson Douglas
 sn: Douglas
 mail: drax@guardianes.marvel.com
 telephoneNumber: +1-555-3004
-manager: uid=starlord,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
 roomNumber: 304
 title: El Destructor
