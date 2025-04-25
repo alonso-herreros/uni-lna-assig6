@@ -9,4 +9,5 @@ olcAccess: to
   dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$" attrs=entry,objectClass,cn
   by dn.children,expand="$0" read
   by self read
+olcAccess: to dn="dc=marvel,dc=com" by * search
 olcAccess: to * by self read
