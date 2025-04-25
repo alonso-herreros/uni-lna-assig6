@@ -5,4 +5,8 @@ replace: olcAccess
 # Passwords
 olcAccess: to attrs=userPassword by self write by anonymous auth by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
+olcAccess: to
+  dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$" attrs=entry,objectClass,cn
+  by dn.children,expand="$0" read
+  by self read
 olcAccess: to * by self read
