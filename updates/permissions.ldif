@@ -5,4 +5,4 @@ replace: olcAccess
 # Passwords
 olcAccess: to attrs=userPassword by self write by anonymous auth by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
-olcAccess: to * by * read
+olcAccess: to * by self read
