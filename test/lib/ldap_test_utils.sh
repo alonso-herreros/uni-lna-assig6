@@ -25,24 +25,15 @@ function _test_ldap_write() {
 		dn: $to
 		changetype: modify
 		replace: $attr
-		$attr: testval
-	EOF
-
-	# If write fail
-	if [ $? -ne 0  ]; then
-		echo "Failed to write attribute '$attr' of '$to'."
-		return $?
-	fi
-
-	# If write succeed, reset
-	ldapmodify -xD "$as" -y "$passwdfile" "$@" <<-EOF
-		dn: $to
-		changetype: modify
-		replace: $attr
 		$attr_reset
 	EOF
 
-	return 0
+	return $?
+	# If write fail
+	# if [ $? -ne 0 ]; then
+	# 	echo "Failed to write attribute '$attr' of '$to'."
+	# 	return $?
+	# fi
 }
 
 
