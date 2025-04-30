@@ -30,7 +30,7 @@ ADMIN="cn=admin,dc=marvel,dc=com"
 
 function test_admin_write() {
     user_hero="uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com"
-    _test_ldap_modify --as "$ADMIN" --to "$user_hero" --attr roomNumber
+    _test_ldap_write --as "$ADMIN" --to "$user_hero" --attr roomNumber
 }
 
 # ==== Argument parsing ====
