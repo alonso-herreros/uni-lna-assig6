@@ -36,6 +36,22 @@ function _test_ldap_write() {
 	# fi
 }
 
+function _test_ldap_read() {
+	# Args
+	__test_ldap_parse_args "$@"
+	# Discard args up to and including '--'
+	while [ -n "$1" -a "$1" != "--" ]; do shift; done
+
+	# Search for attribute
+	if [ -n "$attr" ]; then
+		ldapsearch -xWD "$as" -y "$passwdfile" -b "$to" $attr >/dev/null
+	else
+		ldapsearch -xWD "$as" -y "$passwdfile" -b "$to" >/dev/null
+	fi
+
+	return $?
+}
+
 
 function __test_ldap_parse_args() {
 	while [ -n "$1" ]; do
