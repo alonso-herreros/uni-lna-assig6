@@ -13,7 +13,7 @@ function _test_ldap_write() {
 
 	# Save attribute
 	attr_reset=$(ldapsearch -xWD "$as" -y "$passwdfile" -b "$to" $attr -LLL \
-		| grep "$attr")
+		| grep "^$attr")
 	# If save failed
 	if [ $? -ne 0 -o -z "$attr_reset" ]; then
 		echo "Can't read attribute '$attr' of '$to'."
