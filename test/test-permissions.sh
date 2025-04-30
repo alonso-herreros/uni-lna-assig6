@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# ==== Usage ====
+USAGE="
+Usage: $0 [-p PASSWORD_DIR]
+       $0 -h
+
+OPTIONS
+
+  -p, --passwords PASSWORD_DIR  Read passwords from files in the specified
+                                directory. The file names are expected to be
+                                the 'cn' of the entities whose password is
+                                stored inside. Defaults to './passwords'.
+
+  -h, --help                    Show this message and exit
+"
+
+OPTSTRING="hp:"
+OPTSTRING_LONG="help,passwords:"
+
+function Help() {
+    echo "$USAGE"
+}
+
+# ==== Specifics ====
+# ---- Constants ----
+ADMIN="cn=admin,dc=marvel,dc=com"
+
+function test_admin_write() {
+}
+
+# ==== Argument parsing ====
+function args() {
+    local options=$(getopt -o "$OPTSTRING" --long "$OPTSTRING_LONG" -- "$@")
+    eval set -- "$options"
+
+    while true; do
+        case "$1" in
+            -h | --help)
+                Help
+                exit 0;;
+            -p | --passwords)
+                PASSWORD_DIR="$2"
+                shift 2;;
+            --)
+                shift
+                break;;
+        esac
+    done
+}
+
+# ==== Main flow ====
+
+# Options and defaults
+PASSWORD_DIR="passwords"
+
+# Parse args, setting options
+args "$@"
+
+test_admin_write
