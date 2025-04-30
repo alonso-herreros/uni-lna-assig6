@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source "${BASH_SOURCE%/*}/lib/ldap_test_utils.sh"
+
 # ==== Usage ====
 USAGE="
 Usage: $0 [-p PASSWORD_DIR]
@@ -27,6 +29,8 @@ function Help() {
 ADMIN="cn=admin,dc=marvel,dc=com"
 
 function test_admin_write() {
+    user_hero="uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com"
+    _test_ldap_modify --as "$ADMIN" --to "$user_hero" --attr roomNumber
 }
 
 # ==== Argument parsing ====
