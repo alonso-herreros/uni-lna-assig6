@@ -21,7 +21,7 @@ function _test_ldap_write() {
 	fi
 
 	# Test write: the new value is the same, but permission is required
-	ldapmodify -xD "$as" -y "$passwdfile" "$@" >/dev/null <<-EOF
+	ldapmodify -xD "$as" -y "$passwdfile" "$@" >/dev/null 2>&1 <<-EOF
 		dn: $to
 		changetype: modify
 		replace: $attr
