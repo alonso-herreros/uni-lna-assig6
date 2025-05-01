@@ -71,9 +71,13 @@ WHAT_ATTRS=( "userPassword" "roomNumber" "title" "mail" "telephoneNumber" \
 
 # ---- Test abstraction ----
 function test_ldap_access_array() {
+    local self=0
     local as=
     local title=
     while [ -n "$1" ]; do case "$1" in
+        -s | --self )
+            self=1
+            shift;;
         -D | --as )
             as="$2"
             shift 2;;
@@ -83,17 +87,20 @@ function test_ldap_access_array() {
         * ) break;; # No arg shift
     esac; done
 
-    # If 'as' wasn't set, assume it's the first arg
-    [ -z "$as" ] && as="$1" && shift
+    # If 'as' wasn't set and not using self, assume it's the first arg
+    [ -z "$as" -a $self -eq 0 ] && as="$1" && shift
     local permissions=("$@")
 
     [ -n "$title" ] && echo "---- Testing $title ----"
+
+    [ "$as" == "self" ] && self=1
 
     local fails=0
     for i in "${!permissions[@]}"; do
         local level="${permissions[$i]}"
         local to="${WHAT_DNS[$i]}"
         local attr="${WHAT_ATTRS[$i]}"
+        [ $self -eq 1 ] && as="$to"
         _test_ldap_access "$level" -D "$as" -b "$to" -a "$attr"
         [ $? -ne 0 ] && ((fails++))
     done
@@ -154,6 +161,11 @@ echo "==== Testing collection: Permissions ===="
 # `Mentor de los Guardianes`: `cn`
 
 # --- Run tests ---
+# By self
+test_ldap_access_array -t "Self Access" \
+    --self W R R R R  R R R  R R R
+fails=$((fails + $?))
+
 # By admin
 test_ldap_access_array -t "Admin Write" \
     "$ADMIN" W W W W W  W W W  W W W
