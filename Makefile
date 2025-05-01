@@ -6,8 +6,9 @@ MARKER_DIR = ${BUILD_DIR}/markers
 HOST = ldapi:///
 
 all: base permissions
+test: test-permissions
 
-.PHONY: all clean base permissions passwords test-permissions
+.PHONY: all test clean base permissions passwords test-permissions
 
 BASE_MARKER = ${MARKER_DIR}/base.marker
 base: ${BASE_MARKER}
