@@ -50,6 +50,12 @@ olcAccess: to
   by dn.subtree,expand="$0" read
   by self read
 # Mentors cn (read by Heroes listing mentor as manager)
+olcAccess: to
+  filter=(objectClass=marvelMentor) attrs=cn
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by set="user/manager & this" read
+  by self read
 # ---- Default permission ----
 olcAccess: to *
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
