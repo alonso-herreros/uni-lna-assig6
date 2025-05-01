@@ -137,6 +137,19 @@ args "$@"
 # Test header
 echo "==== Testing collection: Permissions ===="
 
+# INFO: 'what' order
+# `Random user`: `userPassword`
+# `Vengadores`: `roomNumber`
+# `Guardianes`: `title`
+# `Mentores`: `mail`
+# `Héroes`: `mail`, `telephoneNumber`
+# `Héroe de los X-Men`: `cn`
+# `Héroe de los Vengadores`: `cn`
+# `Héroe de los Guardianes`: `cn`
+# `Mentor de los X-Men`: `cn`
+# `Mentor de los Vengadores`: `cn`
+# `Mentor de los Guardianes`: `cn`
+
 # --- Run tests ---
 # By admin
 test_ldap_access_array -t "Admin Write" \
