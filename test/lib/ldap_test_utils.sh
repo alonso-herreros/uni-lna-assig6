@@ -16,7 +16,7 @@ function _test_ldap_write() {
 		| grep "^$attr")
 	# If save failed
 	if [ $? -ne 0 -o -z "$attr_reset" ]; then
-		echo "Can't read attribute '$attr' of '$to'."
+		echo "!!! ERROR: Can't read attribute '$attr' of '$to'. !!!"
 		return 1
 	fi
 
@@ -28,12 +28,14 @@ function _test_ldap_write() {
 		$attr_reset
 	EOF
 
-	return $?
 	# If write fail
-	# if [ $? -ne 0 ]; then
-	# 	echo "Failed to write attribute '$attr' of '$to'."
-	# 	return $?
-	# fi
+	if [ $? -ne 0 -a "$neg" != 1 ]; then
+		echo "!!! FAIL: '$as' failed to write attribute '$attr' of '$to' !!!"
+		return 1
+	elif [ $? -eq 0 -a "$neg" == 1 ]; then
+		echo "!!! FAIL: '$as' managed to write attribute '$attr' of '$to' !!!"
+		return 1
+	fi
 }
 
 function _test_ldap_read() {
@@ -56,6 +58,9 @@ function _test_ldap_read() {
 function __test_ldap_parse_args() {
 	while [ -n "$1" ]; do
 		case "$1" in
+			-n | --neg )
+				neg=1
+				shift;;
 			-D | --as )
 				as="$2"
 				shift 2;;
