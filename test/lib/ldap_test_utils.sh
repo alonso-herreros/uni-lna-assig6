@@ -12,7 +12,7 @@ function _test_ldap_write() {
 	while [ -n "$1" -a "$1" != "--" ]; do shift; done
 
 	# Save attribute
-	attr_reset=$(ldapsearch -xWD "$as" -y "$passwdfile" -b "$to" $attr -LLL \
+	attr_reset=$(ldapsearch -xD "$as" -y "$passwdfile" -b "$to" $attr -LLL \
 		| grep "^$attr")
 	# If save failed
 	if [ $? -ne 0 -o -z "$attr_reset" ]; then
@@ -46,9 +46,9 @@ function _test_ldap_read() {
 
 	# Search for attribute
 	if [ -n "$attr" ]; then
-		ldapsearch -xWD "$as" -y "$passwdfile" -b "$to" $attr >/dev/null
+		ldapsearch -xD "$as" -y "$passwdfile" -b "$to" $attr >/dev/null
 	else
-		ldapsearch -xWD "$as" -y "$passwdfile" -b "$to" >/dev/null
+		ldapsearch -xD "$as" -y "$passwdfile" -b "$to" >/dev/null
 	fi
 
 	return $?
