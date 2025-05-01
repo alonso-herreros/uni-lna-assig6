@@ -211,6 +211,8 @@ employeeNumber: 0003
 
 ## Ejercicio 2: control de acceso
 
+### Definición de la política de acceso
+
 El control de acceso en LDAP sigue un orden de comprobación muy estricto.
 Siguiendo el orden de las entradas en la configuración:
 
@@ -248,8 +250,60 @@ le concediera acceso, se le denegaría.
 | `Mentores`: `cn`                    | W     | R    | -    | R        | W       | -         | -        | -      | -                 | R                     |
 | `*`                                 | W     | R    | -    | R        | W       | -         | -        | -      | -                 | -                     |
 
-Para más información sobre la configuración de acceso, véase el manual de
-OpenLDAP: <https://www.openldap.org/doc/admin26/access-control.html>
+### Implementación de la política de acceso
+
+La política de acceso se ha definido en el fichero
+[`updates/permissions.ldif`](updates/permissions.ldif), que contiene las
+instrucciones para actualizar la configuración de acceso.
+
+Se ha seguido la sintaxis de configuración de acceso descrita en el manual de
+[OpenLDAP v2.5][openldap-v2.5-AC] (versión instalada en la máquina virtual) y
+en la página del manual `slapd.access(5)`.
+
+Esta política de acceso se ha aplicado modificando la entrada de configuración
+`olcDatabase={1}mdb,cn=config` mediante el comando `ldapmodify`. El archivo
+`permissions.ldif` contiene las instrucciones para modificar la configuración,
+con `changetype: modify` y `replace: olcAccess` para asegurar que los permisos
+en la configuración coinciden exactamente con los descritos en el archivo. Las
+entradas de control de acceso se han añadido como adiciones al atributo
+`olcAccess`, reemplazando a todas las anteriores y preservando el orden
+necesario.
+
+Para traducir la tabla en entradas de configuración de acceso, primero se ha
+definido la regla menos específica. A continuación se han añadido las reglas
+más específicas, incluyendo las especificaciones de la regla genérica cuando la
+estas se solapan.
+
+### Desafíos notables
+
+#### Acceso de `entry`
+
+Aunque un usuario tenga acceso a un atributo, puede no tener acceso al
+pseudoatributo `entry` del objeto, por lo que será incapaz de acceder al
+atributo en cuestión. Para ello, se ha añadido una regla para permitir el
+acceso a este pseudoatributo en todas las entradas de clase `marvelPerson`
+desde los usuarios de clase `marvelHero` y `marvelMentor`. Se ha decidido así
+para seguir el principio de menor privilegio, y no se han juntado los `by`
+para hacerlo más claro y editable.
+
+#### Acceso de un héroe a su equipo
+
+Para permitir el entre héroes del mismo equipo se ha usado el selector de
+*what* `to dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$"` junto con el
+selector de *who* `by dn.subtree,expand="$0"`, donde `$0` se expande a la parte
+del DN de la entrada a la que se está intentando acceder que coincida con la
+expresión regular. La expresión regular recoge el equipo al que pertenece la
+entrada a la que se quiere acceder, mientras que el selector de *who* permite
+el acceso a los héroes del mismo equipo.
+
+#### Acceso de un héroe a su mentor
+
+Para permitir el acceso de los héroes a los mentores especificados en su campo
+`manager`, se ha utilizado el selector `by set="user/manager & this"`, donde
+`this` se refiere al mentor al que se intenta acceder, y `user/manager` permite
+la comparación de la entrada accedida con el campo `manager` del usuario que
+está intentando acceder
+
 
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
@@ -258,3 +312,5 @@ OpenLDAP: <https://www.openldap.org/doc/admin26/access-control.html>
 [cc-by-sa]: https://creativecommons.org/licenses/by-sa/4.0/
 [gitt]:     https://uc3m.es/bachelor-degree/telecommunication
 [lna]:       https://aplicaciones.uc3m.es/cpa/generaFicha?est=252&plan=445&asig=18467&idioma=2
+
+[openldap-v2.5-AC]: https://www.openldap.org/doc/admin25/access-control.html
