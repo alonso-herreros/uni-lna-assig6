@@ -162,8 +162,9 @@ echo "==== Testing collection: Permissions ===="
 
 # --- Run tests ---
 # By self
+# WARNING: avoid testing special privileged users like Prof. X.
 test_ldap_access_array -t "Self Access" \
-    --self W R R R R  R R R  R R R
+    --self W R- R- R- R-  R- R- R-  R- R- R-
 fails=$((fails + $?))
 
 # By admin
