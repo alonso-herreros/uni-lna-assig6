@@ -2,9 +2,10 @@ dn: olcDatabase={1}mdb,cn=config
 changetype: modify
 # 'replace' required because order matters
 replace: olcAccess
-# Passwords
+# ---- Passwords ----
 olcAccess: to attrs=userPassword by self write by anonymous auth by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
+# ---- Mentor-specific ----
 # Avengers' room numbers (write by Nick Fury)
 olcAccess: to
   dn.subtree="ou=Vengadores,ou=Equipos,dc=marvel,dc=com" attrs=roomNumber
@@ -19,7 +20,7 @@ olcAccess: to
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
   by set="user/objectClass & [marvelMentor]" read
   by self read
-# Default permission
+# ---- Default permission ----
 olcAccess: to *
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
   by set="user/objectClass & [marvelMentor]" read
