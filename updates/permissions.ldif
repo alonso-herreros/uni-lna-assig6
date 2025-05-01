@@ -9,5 +9,8 @@ olcAccess: to attrs=shadowLastChange by self write by * read
 olcAccess: to
   dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$" attrs=entry,objectClass,cn
   by dn.subtree,expand="$0" read
-olcAccess: to dn="dc=marvel,dc=com" by * search
-olcAccess: to * by self read
+# Default permission
+olcAccess: to *
+  by self read
+  by users search
+  by * none
