@@ -209,6 +209,41 @@ telephoneNumber: +1-555-1976
 employeeNumber: 0003
 ```
 
+## Ejercicio 2: control de acceso
+
+El control de acceso en LDAP sigue un orden de comprobación muy estricto.
+Siguiendo el orden de las entradas en la configuración:
+
+* Se selecciona la primera entrada en la que coincida el `<what>` con el
+  atributo que se intenta acceder
+* Se selecciona la primera entrada en la que coincida el `<who>` con el
+  usuario que intenta acceder
+
+Ya que esto no permite *fallbacks*, se ha creado una tabla con todas las
+combinaciones de acceso y usuarios. Cada fila corresponde a un `<what>`,
+mientras que cada columna correspone a un `who`. Ha de tenerse en cuenta que
+el acceso para el administrador está implícito, y no es necesario incluirlo en
+la configuración, aunque se hará.
+
+La tabla está ordenada verticalmente con prioridad descendente (que en este
+caso coincide con el orden de las entradas en la configuración). El orden
+horizontal no coincide con el de la configuración, sino que se ha decidido
+de forma que la información sea más clara y fácil de entender.
+
+| What \ Who                          | admin | self | anon | Mentores | Prof. X | Nick Fury | Starlord | Héroes | Héroes del equipo | Héroes mentorizados   |
+| ----------                          | ----- | ---- | ---- | -------- | ------- | --------- | -------- | ------ | ----------------- | --------------------- |
+| `userPassword`                      | W     | W    | Auth | -        | -       | -         | -        | -      | -                 | -                     |
+| `Vengadores`: `roomNumber`          | W     | R    | -    | R        | W       | W         | -        | -      | -                 | -                     |
+| `Guardianes`: `title`               | W     | R    | -    | R        | W       | -         | W        | -      | -                 | -                     |
+| `Mentores`: `mail`                  | W     | R    | -    | R        | W       | -         | -        | R      | -                 | -                     |
+| `Héroes`: `mail`, `telephoneNumber` | W     | R    | -    | R        | W       | -         | -        | R      | -                 | -                     |
+| `Héroes`: `cn`                      | W     | R    | -    | R        | W       | -         | -        | -      | R                 | -                     |
+| `Mentores`: `cn`                    | W     | R    | -    | R        | W       | -         | -        | -      | -                 | R                     |
+| `*`                                 | W     | R    | -    | R        | W       | -         | -        | -      | -                 | -                     |
+
+Para más información sobre la configuración de acceso, véase el manual de
+OpenLDAP: <https://www.openldap.org/doc/admin26/access-control.html>
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
