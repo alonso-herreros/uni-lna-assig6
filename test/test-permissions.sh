@@ -175,7 +175,7 @@ fails=$((fails + $?))
 # By Mentors
 test_ldap_access_array -t "Mentor Read 1" \
     "$NICKFURY" - R R R- R-  R- R- R-  R- R- R-
-test_ldap_access_array -t "Mentor Read 1" \
+test_ldap_access_array -t "Mentor Read 2" \
     "$STARLORD" - R R R- R-  R- R- R-  R- R- R-
 fails=$((fails + $?))
 
