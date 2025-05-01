@@ -1,8 +1,28 @@
 #!/usr/bin/env bash
 # vim: ts=4
 
-# Overridable defaults
+# ---- Overridable defaults ----
 [ -z "$PASSWORD_DIR" ] && PASSWORD_DIR="passwords"
+
+# Abstraction to test an arbitrary access level
+function _test_ldap_access() {
+	# First arg should be access level
+	level="$1"
+	shift
+
+	echo "Test '$level' access to '$to': '$attr' by '$as'"
+
+	case "$level" in
+		W )
+			_test_ldap_write "$@";;
+		R )
+			_test_ldap_read "$@" \
+			&& _test_ldap_write -n "$@";;
+		* )
+			_test_ldap_read -n "$@";;
+	esac
+	return $?
+}
 
 # Test modifying an LDAP entry
 function _test_ldap_write() {
