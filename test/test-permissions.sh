@@ -170,9 +170,9 @@ test_ldap_access_array -t "Nick Fury write Room Number" \
     "$NICKFURY" - W R R R  R R R  R R R
 fails=$((fails + $?))
 
-# test_ldap_access_array -t "Starlord write Title" \
-#     "$STARLORD" - R W R R  R R R  R R R
-# fails=$((fails + $?))
+test_ldap_access_array -t "Starlord write Title" \
+    "$STARLORD" - R W R R  R R R  R R R
+fails=$((fails + $?))
 
 # # By heroes
 # test_ldap_access_array -t "Hero read general" \

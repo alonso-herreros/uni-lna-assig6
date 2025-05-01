@@ -12,6 +12,13 @@ olcAccess: to
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
   by set="user/objectClass & [marvelMentor]" read
   by self read
+# Guardians' title (write by Starlord)
+olcAccess: to
+  dn.subtree="ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com" attrs=title
+  by dn="uid=starlord,ou=Mentores,dc=marvel,dc=com" write
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by self read
 # Default permission
 olcAccess: to *
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
