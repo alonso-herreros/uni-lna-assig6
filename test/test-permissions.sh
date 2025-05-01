@@ -47,6 +47,9 @@ HAWKEYE="uid=hawkeye,$AVENGERS"
 GROOT="uid=groot,$GUARDIANS"
 DRAX="uid=drax,$GUARDIANS"
 
+# When possible, use the first example in a class as the accessing user and the
+# last as the accessed entry
+
 # ---- Info ----
 # Whats:
 # `Random user`: `userPassword`
@@ -61,7 +64,7 @@ DRAX="uid=drax,$GUARDIANS"
 # `Mentor de los Vengadores`: `cn`
 # `Mentor de los Guardianes`: `cn`
 
-WHAT_DNS=( "$WOLVERINE" "$IRONMAN" "$GROOT" "$STARLORD" "$GROOT" \
+WHAT_DNS=( "$CYCLOPS" "$HAWKEYE" "$DRAX" "$STARLORD" "$DRAX" \
     "$CYCLOPS" "$HAWKEYE" "$DRAX" "$PROFESSORX" "$NICKFURY" "$STARLORD" )
 WHAT_ATTRS=( "userPassword" "roomNumber" "title" "mail" "telephoneNumber" \
     "cn" "cn" "cn" "cn" "cn" "cn" )
@@ -158,7 +161,7 @@ fails=$((fails + $?))
 
 # By Mentors
 test_ldap_access_array -t "Mentor Read" \
-    "$STARLORD" - R R R R  R R R  R R R
+    "$NICKFURY" - R R R R  R R R  R R R
 fails=$((fails + $?))
 
 # By specific people
