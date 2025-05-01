@@ -13,12 +13,14 @@ function _test_ldap_access() {
 	echo "Test '$level' access to '$to': '$attr' by '$as'"
 
 	case "$level" in
-		W )
+		W | RW )
 			_test_ldap_write "$@";;
-		R )
+		R | R? )
+			_test_ldap_read "$@";;
+		R- )
 			_test_ldap_read "$@" \
 			&& _test_ldap_write -n "$@";;
-		? )
+		? | ?? )
 			true;;
 		* )
 			_test_ldap_read -n "$@";;
