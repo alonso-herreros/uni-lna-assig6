@@ -5,9 +5,9 @@ replace: olcAccess
 # Passwords
 olcAccess: to attrs=userPassword by self write by anonymous auth by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
+# For team and members, only the team itself and its members can read the cn
 olcAccess: to
   dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$" attrs=entry,objectClass,cn
-  by dn.children,expand="$0" read
-  by self read
+  by dn.subtree,expand="$0" read
 olcAccess: to dn="dc=marvel,dc=com" by * search
 olcAccess: to * by self read
