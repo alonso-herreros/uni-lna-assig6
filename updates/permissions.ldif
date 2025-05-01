@@ -20,6 +20,27 @@ olcAccess: to
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
   by set="user/objectClass & [marvelMentor]" read
   by self read
+# ----- By groups and relationships ----
+# Entry read permission required for heroes to even see the entry.
+# Write permission not required for writing other attributes.
+# Self permission isn't required.
+olcAccess: to
+  filter=(objectClass=marvelPerson) attrs=entry
+  by set="user/objectClass & [marvelMentor]" read
+  by set="user/objectClass & [marvelHero]" read
+# Mentors email, Heroes email & telephone number (read by Heroes)
+olcAccess: to
+  filter=(objectClass=marvelHero) attrs=mail,telephoneNumber
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by set="user/objectClass & [marvelHero]" read
+  by self read
+olcAccess: to
+  filter=(objectClass=marvelMentor) attrs=mail
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by set="user/objectClass & [marvelHero]" read
+  by self read
 # ---- Default permission ----
 olcAccess: to *
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
