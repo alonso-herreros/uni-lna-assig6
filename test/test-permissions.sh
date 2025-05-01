@@ -99,6 +99,7 @@ function _test_ldap_access_array() {
         [ $fails -eq 0 ] \
             && echo "---- Test $title: all passed ----" \
             || echo "!!-- Test $title: $fails FAILED--!!"
+        echo ""
     fi
 
     return $fails
