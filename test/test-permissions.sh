@@ -202,16 +202,16 @@ test_ldap_access_array -t "Hero read general 3" \
     "$GROOT" - - - R- R-  ? ? ?  ? ? ?
 fails=$((fails + $?))
 
-# # Between heroes in the same team, plus their mentors
-# test_ldap_access_array -t "Hero read general" \
-#     "$WOLVERINE" ? ? ? ? ?  R - -  R - -
-# fails=$((fails + $?))
-# test_ldap_access_array -t "Hero read general" \
-#     "$IRONMAN" ? ? ? ? ?  - R -  - R -
-# fails=$((fails + $?))
-# test_ldap_access_array -t "Hero read general" \
-#     "$GROOT" ? ? ? ? ?  - - R  - - R
-# fails=$((fails + $?))
+# Between heroes in the same team, plus their mentors
+test_ldap_access_array -t "Hero read general" \
+    "$WOLVERINE" ? ? ? ? ?  R - -  R - -
+fails=$((fails + $?))
+test_ldap_access_array -t "Hero read general" \
+    "$IRONMAN" ? ? ? ? ?  - R -  - R -
+fails=$((fails + $?))
+test_ldap_access_array -t "Hero read general" \
+    "$GROOT" ? ? ? ? ?  - - R  - - R
+fails=$((fails + $?))
 
 # Test report
 [ $fails -eq 0 ] \
