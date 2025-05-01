@@ -225,10 +225,17 @@ mientras que cada columna correspone a un `who`. Ha de tenerse en cuenta que
 el acceso para el administrador está implícito, y no es necesario incluirlo en
 la configuración, aunque se hará.
 
-La tabla está ordenada verticalmente con prioridad descendente (que en este
-caso coincide con el orden de las entradas en la configuración). El orden
-horizontal no coincide con el de la configuración, sino que se ha decidido
-de forma que la información sea más clara y fácil de entender.
+La tabla está ordenada verticalmente con prioridad descendente, que en este
+caso coincide con el orden de las entradas en la configuración. Al no haber
+solapamiento entre distintas filas (excepto la última), un cambio de orden no
+afectaría la funcionalidad.
+
+El orden horizontal no coincide con el de la configuración, sino que se ha
+decidido de forma que la información sea más clara y fácil de entender. Las
+entradas con '-' indican que no se ha definido acceso, pero no indica que se
+le niegue explícitamente. Si hubiera otra columna que aplicara al usuario,
+se aplicaría la regla de la columna correspondiente. Si ninguna columna
+le concediera acceso, se le denegaría.
 
 | What \ Who                          | admin | self | anon | Mentores | Prof. X | Nick Fury | Starlord | Héroes | Héroes del equipo | Héroes mentorizados   |
 | ----------                          | ----- | ---- | ---- | -------- | ------- | --------- | -------- | ------ | ----------------- | --------------------- |
