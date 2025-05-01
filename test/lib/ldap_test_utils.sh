@@ -63,6 +63,11 @@ function _test_ldap_read() {
 
 
 function __test_ldap_parse_args() {
+	neg=0
+	as=
+	to=
+	attr=
+
 	while [ -n "$1" ]; do
 		case "$1" in
 			-n | --neg )
