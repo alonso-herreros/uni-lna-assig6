@@ -5,6 +5,13 @@ replace: olcAccess
 # Passwords
 olcAccess: to attrs=userPassword by self write by anonymous auth by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
+# Avengers' room numbers (write by Nick Fury)
+olcAccess: to
+  dn.subtree="ou=Vengadores,ou=Equipos,dc=marvel,dc=com" attrs=roomNumber
+  by dn="uid=nickfury,ou=Mentores,dc=marvel,dc=com" write
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by self read
 # Default permission
 olcAccess: to *
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
