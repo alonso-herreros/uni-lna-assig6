@@ -304,6 +304,41 @@ Para permitir el acceso de los héroes a los mentores especificados en su campo
 la comparación de la entrada accedida con el campo `manager` del usuario que
 está intentando acceder
 
+## Ejercicio 3: Comprobaciones
+
+Las comprobaciones más relevantes son las de acceso. Los tests se han
+desarrollado como scripts de Bash y se han usado continuamente siguiendo el
+enfoque de *test-driven development* (TDD) y de desarrollo incremental.
+
+Estos tests se encuentran en el directorio [`tests`](tests), y el principal
+ejecutable es [`tests/test-permissions.sh`](tests/test-permissions.sh). Este
+script ejecuta todos los tests definidos, dando información sobre el resultado
+de cada uno.
+
+### Autenticación y contraseñas
+
+Los tests de permisos dependen de la autenticación como varios usuarios. Para
+obtener las contraseñas de forma automática, el script busca un fichero cuyo
+nombre coincida con el usuario que se está autenticando en el directorio
+especificado por la opción `-p` o `--passwords` del script (`./passwords` por
+defecto). Este fichero debe contener únicamente la contraseña del usuario,
+**sin nueva línea adicional al final**[^1]. Los ficheros de contraseñas
+requeridos para los tests, a excepción del del administrador, se han incluido
+en el directorio [`tests/passwords`](tests/passwords).
+
+Para evitar inconsistencias, se ha creado un script de Bash
+[`tests/set-passwords.sh`](tests/set-passwords.sh) que establece las
+contraseñas de los usuarios si encuentra un fichero con su nombre en el
+directorio definido por la opción `-p` o `--passwords` (`./passwords` por
+defecto). Este script depende de la existencia del directorio y de un fichero
+con la contraseña del usuario `cn=admin,dc=marvel,dc=com`, que se usa para
+autenticarse como administrador y poder cambiar las contraseñas con permisos
+elevados. **Este archivo no se incluye en el repositorio**
+
+[^1]: Para crear un archivo sin saltos de línea al final, se pueden usar
+    comandos como `echo -n` o `printf`, o bien usar un editor de texto que
+    permita guardar el archivo sin saltos de línea. En Vim, esto se puede
+    conseguir usando `:set nofixeol | set noeol`.
 
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
