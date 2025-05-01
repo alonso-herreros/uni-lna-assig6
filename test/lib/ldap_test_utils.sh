@@ -18,6 +18,8 @@ function _test_ldap_access() {
 		R )
 			_test_ldap_read "$@" \
 			&& _test_ldap_write -n "$@";;
+		? )
+			true;;
 		* )
 			_test_ldap_read -n "$@";;
 	esac
