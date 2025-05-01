@@ -66,7 +66,7 @@ function _test_ldap_read() {
 
 	# Search for attribute
 	ldapsearch -xD "$as" -y "$passwdfile" -b "$to" $attr "$@" -LLL 2>/dev/null \
-		| grep "^$attr"
+		| grep "^$attr" >/dev/null
 	fail=$?
 
 	if [ $fail -ne 0 -a $neg -ne 1 ]; then
