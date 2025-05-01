@@ -142,6 +142,14 @@ test_ldap_access_array -t "Admin Write" \
     "$ADMIN" W W W W W W W W W W W
 fails=$((fails + $?))
 
+test_ldap_access_array -t "Mentor Read" \
+    "$STARLORD" - R R R R R R R R R R
+fails=$((fails + $?))
+
+test_ldap_access_array -t "Profesor X Write" \
+    "$PROFESSORX" - W W W W W W W W W W
+fails=$((fails + $?))
+
 
 # Test report
 [ $fails -eq 0 ] \
