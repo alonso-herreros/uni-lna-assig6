@@ -21,6 +21,6 @@ for newpasswdfile in $PASSWORD_DIR/*,dc=com; do
     case "$who" in "cn=admin"* ) continue;; esac
 
     echo "Setting password for '$who'"
-    ldappasswd -xWD "$ADMIN" -y "$PASSWDFILE" -S "$who" -T "$newpasswdfile"
+    ldappasswd -xWD "$ADMIN" -y "$PASSWDFILE" "$who" -T "$newpasswdfile"
 done
 
