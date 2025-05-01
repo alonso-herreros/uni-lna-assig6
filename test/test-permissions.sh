@@ -68,8 +68,8 @@ WHAT_ATTRS=( "userPassword" "roomNumber" "title" "mail" "telephoneNumber" \
 
 # ---- Test abstraction ----
 function _test_ldap_access_array() {
-    as=
-    title=
+    local as=
+    local title=
     while [ -n "$1" ]; do case "$1" in
         -D | --as )
             as="$2"
@@ -82,15 +82,15 @@ function _test_ldap_access_array() {
 
     # If 'as' wasn't set, assume it's the first arg
     [ -z "$as" ] && as="$1" && shift
-    permissions=("$@")
+    local permissions=("$@")
 
     [ -n "$title" ] && echo "---- Testing $title ----"
 
-    fails=0
+    local fails=0
     for i in "${!permissions[@]}"; do
-        level="${permissions[$i]}"
-        to="${WHAT_DNS[$i]}"
-        attr="${WHAT_ATTRS[$i]}"
+        local level="${permissions[$i]}"
+        local to="${WHAT_DNS[$i]}"
+        local attr="${WHAT_ATTRS[$i]}"
         _test_ldap_access "$level" -D "$as" -b "$to" -a "$attr"
         [ $? -ne 0 ] && ((fails++))
     done
