@@ -156,10 +156,10 @@ test_ldap_access_array -t "Admin Write" \
     "$ADMIN" W W W W W  W W W  W W W
 fails=$((fails + $?))
 
-# # By Mentors
-# test_ldap_access_array -t "Mentor Read" \
-#     "$STARLORD" - R R R R  R R R  R R R
-# fails=$((fails + $?))
+# By Mentors
+test_ldap_access_array -t "Mentor Read" \
+    "$STARLORD" - R R R R  R R R  R R R
+fails=$((fails + $?))
 
 # # By specific people
 # test_ldap_access_array -t "Profesor X Write" \
