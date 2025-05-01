@@ -50,8 +50,15 @@ function _test_ldap_read() {
 	else
 		ldapsearch -xD "$as" -y "$passwdfile" -b "$to" >/dev/null
 	fi
+	fail=$?
 
-	return $?
+	if [ $fail -ne 0 -a $neg -ne 1 ]; then
+		echo "!!! FAIL: '$as' failed to read attribute '$attr' of '$to' !!!"
+		return 1
+	elif [ $fail -eq 0 -a $neg -eq 1 ]; then
+		echo "!!! FAIL: '$as' managed to read attribute '$attr' of '$to' !!!"
+		return 1
+	fi
 }
 
 
