@@ -26,8 +26,28 @@ function Help() {
 
 # ==== Specifics ====
 # ---- Constants ----
-ADMIN="cn=admin,dc=marvel,dc=com"
+ROOT="dc=marvel,dc=com"
+ADMIN="cn=admin,$ROOT"
+MENTORS="ou=Mentores,$ROOT"
+TEAMS="ou=Equipos,$ROOT"
+XMEN="ou=XMen,$TEAMS"
+AVENGERS="ou=Vengadores,$TEAMS"
+GUARDIANS="ou=GuardianesDeLaGalaxia,$TEAMS"
 
+PROFESSORX="uid=profesorx,$MENTORS"
+NICKFURY="uid=nickfury,$MENTORS"
+STARLORD="uid=starlord,$MENTORS"
+
+WOLVERINE="uid=wolverine,$XMEN"
+CYCLOPS="uid=ciclope,$XMEN"
+
+IRONMAN="uid=ironman,$AVENGERS"
+HAWKEYE="uid=hawkeye,$AVENGERS"
+
+GROOT="uid=groot,$GUARDIANS"
+DRAX="uid=drax,$GUARDIANS"
+
+# ---- Test admin write all permission ----
 function test_admin_write() {
     user_hero="uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com"
     _test_ldap_write --as "$ADMIN" --to "$user_hero" --attr roomNumber
