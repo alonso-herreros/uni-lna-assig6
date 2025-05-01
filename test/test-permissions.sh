@@ -105,12 +105,11 @@ function _test_ldap_access_array() {
     return $fails
 }
 
-# ---- Test admin write all permission ----
+# ---- Tests per 'who' ----
 function test_admin_write() {
-    _test_ldap_access_array -t "Admin Write" "$ADMIN" W W W W W W W W W W W
-    fails=$?
-
-    return $fails
+    _test_ldap_access_array -t "Admin Write" \
+        "$ADMIN" W W W W W W W W W W W
+    return $?
 }
 
 # ==== Argument parsing ====
