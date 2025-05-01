@@ -16,7 +16,7 @@ function _test_ldap_write() {
 		| grep "^$attr")
 	# If save failed
 	if [ $? -ne 0 -o -z "$attr_reset" ]; then
-		echo "!!! ERROR: Can't read attribute '$attr' of '$to'. !!!"
+		echo "!!! ERROR: Can't read attribute '$attr' of '$to' !!!"
 		return 1
 	fi
 
