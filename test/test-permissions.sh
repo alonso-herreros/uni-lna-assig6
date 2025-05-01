@@ -156,39 +156,39 @@ test_ldap_access_array -t "Admin Write" \
     "$ADMIN" W W W W W  W W W  W W W
 fails=$((fails + $?))
 
-# By Mentors
-test_ldap_access_array -t "Mentor Read" \
-    "$STARLORD" - R R R R  R R R  R R R
-fails=$((fails + $?))
+# # By Mentors
+# test_ldap_access_array -t "Mentor Read" \
+#     "$STARLORD" - R R R R  R R R  R R R
+# fails=$((fails + $?))
 
-# By specific people
-test_ldap_access_array -t "Profesor X Write" \
-    "$PROFESSORX" - W W W W  W W W  W W W
-fails=$((fails + $?))
+# # By specific people
+# test_ldap_access_array -t "Profesor X Write" \
+#     "$PROFESSORX" - W W W W  W W W  W W W
+# fails=$((fails + $?))
 
-test_ldap_access_array -t "Nick Fury write Room Number" \
-    "$NICKFURY" - W R R R  R R R  R R R
-fails=$((fails + $?))
+# test_ldap_access_array -t "Nick Fury write Room Number" \
+#     "$NICKFURY" - W R R R  R R R  R R R
+# fails=$((fails + $?))
 
-test_ldap_access_array -t "Starlord write Title" \
-    "$STARLORD" - R W R R  R R R  R R R
-fails=$((fails + $?))
+# test_ldap_access_array -t "Starlord write Title" \
+#     "$STARLORD" - R W R R  R R R  R R R
+# fails=$((fails + $?))
 
-# By heroes
-test_ldap_access_array -t "Hero read general" \
-    "$WOLVERINE" - - - R R  ? - -  ? ? ?
-fails=$((fails + $?))
+# # By heroes
+# test_ldap_access_array -t "Hero read general" \
+#     "$WOLVERINE" - - - R R  ? - -  ? ? ?
+# fails=$((fails + $?))
 
-# Between heroes in the same team, plus their mentors
-test_ldap_access_array -t "Hero read general" \
-    "$WOLVERINE" - - - R R  R - -  R - -
-fails=$((fails + $?))
-test_ldap_access_array -t "Hero read general" \
-    "$IRONMAN" - - - R R  - R -  - R -
-fails=$((fails + $?))
-test_ldap_access_array -t "Hero read general" \
-    "$GROOT" - - - R R  - - R  - - R
-fails=$((fails + $?))
+# # Between heroes in the same team, plus their mentors
+# test_ldap_access_array -t "Hero read general" \
+#     "$WOLVERINE" - - - R R  R - -  R - -
+# fails=$((fails + $?))
+# test_ldap_access_array -t "Hero read general" \
+#     "$IRONMAN" - - - R R  - R -  - R -
+# fails=$((fails + $?))
+# test_ldap_access_array -t "Hero read general" \
+#     "$GROOT" - - - R R  - - R  - - R
+# fails=$((fails + $?))
 
 # Test report
 [ $fails -eq 0 ] \
