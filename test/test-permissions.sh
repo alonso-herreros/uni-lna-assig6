@@ -67,7 +67,7 @@ WHAT_ATTRS=( "userPassword" "roomNumber" "title" "mail" "telephoneNumber" \
     "cn" "cn" "cn" "cn" "cn" "cn" )
 
 # ---- Test abstraction ----
-function _test_ldap_access_array() {
+function test_ldap_access_array() {
     local as=
     local title=
     while [ -n "$1" ]; do case "$1" in
@@ -105,13 +105,6 @@ function _test_ldap_access_array() {
     return $fails
 }
 
-# ---- Tests per 'who' ----
-function test_admin_write() {
-    _test_ldap_access_array -t "Admin Write" \
-        "$ADMIN" W W W W W W W W W W W
-    return $?
-}
-
 # ==== Argument parsing ====
 function args() {
     local options=$(getopt -o "$OPTSTRING" --long "$OPTSTRING_LONG" -- "$@")
@@ -140,4 +133,17 @@ PASSWORD_DIR="passwords"
 # Parse args, setting options
 args "$@"
 
-test_admin_write
+
+# Test header
+echo "==== Testing collection: Permissions ===="
+
+# Run tests
+test_ldap_access_array -t "Admin Write" \
+    "$ADMIN" W W W W W W W W W W W
+fails=$((fails + $?))
+
+
+# Test report
+[ $fails -eq 0 ] \
+    && echo "==== Test collection Permissions: all passed ====" \
+    || echo "!=== Test collection Permissions: $fails FAILED ===!"
