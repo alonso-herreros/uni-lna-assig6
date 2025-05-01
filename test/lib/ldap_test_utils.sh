@@ -10,7 +10,11 @@ function _test_ldap_access() {
 	level="$1"
 	shift
 
-	echo "Test '$level' access to '$to': '$attr' by '$as'"
+	case "$level" in "?" | "??" )
+		return 0;;
+	esac
+
+	echo "Test '$level' access by '$as' to '$to': '$attr'"
 
 	case "$level" in
 		W | RW )
@@ -20,8 +24,6 @@ function _test_ldap_access() {
 		R- )
 			_test_ldap_read "$@" \
 			&& _test_ldap_write -n "$@";;
-		? | ?? )
-			true;;
 		* )
 			_test_ldap_read -n "$@";;
 	esac

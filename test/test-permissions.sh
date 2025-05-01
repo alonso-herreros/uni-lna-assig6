@@ -160,8 +160,10 @@ test_ldap_access_array -t "Admin Write" \
 fails=$((fails + $?))
 
 # By Mentors
-test_ldap_access_array -t "Mentor Read" \
-    "$NICKFURY" - R R R R  R R R  R R R
+test_ldap_access_array -t "Mentor Read 1" \
+    "$NICKFURY" - R R R- R-  R- R- R-  R- R- R-
+test_ldap_access_array -t "Mentor Read 1" \
+    "$STARLORD" - R R R- R-  R- R- R-  R- R- R-
 fails=$((fails + $?))
 
 # By specific people
@@ -170,11 +172,11 @@ test_ldap_access_array -t "Profesor X Write" \
 fails=$((fails + $?))
 
 test_ldap_access_array -t "Nick Fury write Room Number" \
-    "$NICKFURY" - W R R R  R R R  R R R
+    "$NICKFURY" - W R- ? ?  ? ? ?  ? ? ?
 fails=$((fails + $?))
 
 test_ldap_access_array -t "Starlord write Title" \
-    "$STARLORD" - R W R R  R R R  R R R
+    "$STARLORD" - R- W ? ?  ? ? ?  ? ? ?
 fails=$((fails + $?))
 
 # # By heroes
