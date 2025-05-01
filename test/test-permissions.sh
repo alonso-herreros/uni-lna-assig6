@@ -47,10 +47,69 @@ HAWKEYE="uid=hawkeye,$AVENGERS"
 GROOT="uid=groot,$GUARDIANS"
 DRAX="uid=drax,$GUARDIANS"
 
+# ---- Info ----
+# Whats:
+# `Random user`: `userPassword`
+# `Vengadores`: `roomNumber`
+# `Guardianes`: `title`
+# `Mentores`: `mail`
+# `Héroes`: `mail`, `telephoneNumber`
+# `Héroe de los X-Men`: `cn`
+# `Héroe de los Vengadores`: `cn`
+# `Héroe de los Guardianes`: `cn`
+# `Mentor de los X-Men`: `cn`
+# `Mentor de los Vengadores`: `cn`
+# `Mentor de los Guardianes`: `cn`
+
+WHAT_DNS=( "$WOLVERINE" "$IRONMAN" "$GROOT" "$STARLORD" "$GROOT" \
+    "$CYCLOPS" "$HAWKEYE" "$DRAX" "$PROFESSORX" "$NICKFURY" "$STARLORD" )
+WHAT_ATTRS=( "userPassword" "roomNumber" "title" "mail" "telephoneNumber" \
+    "cn" "cn" "cn" "cn" "cn" "cn" )
+
+# ---- Test abstraction ----
+function _test_ldap_access_array() {
+    as=
+    title=
+    while [ -n "$1" ]; do case "$1" in
+        -D | --as )
+            as="$2"
+            shift 2;;
+        -t | --title )
+            title="$2"
+            shift 2;;
+        * ) break;; # No arg shift
+    esac; done
+
+    # If 'as' wasn't set, assume it's the first arg
+    [ -z "$as" ] && as="$1" && shift
+    permissions=("$@")
+
+    [ -n "$title" ] && echo "---- Testing $title ----"
+
+    fails=0
+    for i in "${!permissions[@]}"; do
+        level="${permissions[$i]}"
+        to="${WHAT_DNS[$i]}"
+        attr="${WHAT_ATTRS[$i]}"
+        _test_ldap_access "$level" -D "$as" -b "$to" -a "$attr"
+        [ $? -ne 0 ] && ((fails++))
+    done
+
+    if [ -n "$title" ]; then
+        [ $fails -eq 0 ] \
+            && echo "---- Test $title: all passed ----" \
+            || echo "!!-- Test $title: $fails FAILED--!!"
+    fi
+
+    return $fails
+}
+
 # ---- Test admin write all permission ----
 function test_admin_write() {
-    user_hero="uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com"
-    _test_ldap_write --as "$ADMIN" --to "$user_hero" --attr roomNumber
+    _test_ldap_access_array -t "Admin Write" "$ADMIN" W W W W W W W W W W W
+    fails=$?
+
+    return $fails
 }
 
 # ==== Argument parsing ====
