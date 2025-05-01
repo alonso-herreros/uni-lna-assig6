@@ -27,12 +27,12 @@ function _test_ldap_write() {
 		replace: $attr
 		$attr_reset
 	EOF
+	fail=$?
 
-	# If write fail
-	if [ $? -ne 0 -a "$neg" != 1 ]; then
+	if [ $fail -ne 0 -a $neg -ne 1 ]; then
 		echo "!!! FAIL: '$as' failed to write attribute '$attr' of '$to' !!!"
 		return 1
-	elif [ $? -eq 0 -a "$neg" == 1 ]; then
+	elif [ $fail -eq 0 -a "$neg" -eq 1 ]; then
 		echo "!!! FAIL: '$as' managed to write attribute '$attr' of '$to' !!!"
 		return 1
 	fi
