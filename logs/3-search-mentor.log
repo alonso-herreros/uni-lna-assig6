@@ -1,0 +1,265 @@
+[2025-05-02, 05:19:33] ldapsearch -xWD 'uid=starlord,ou=Mentores,dc=marvel,dc=com'
+Enter LDAP Password: 
+# extended LDIF
+#
+# LDAPv3
+# base <dc=marvel,dc=com> (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# marvel.com
+dn: dc=marvel,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Marvel (Admin de Sistemas Linux)
+dc: marvel
+
+# Mentores, marvel.com
+dn: ou=Mentores,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Mentores
+
+# Equipos, marvel.com
+dn: ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Equipos
+
+# XMen, Equipos, marvel.com
+dn: ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: XMen
+
+# Vengadores, Equipos, marvel.com
+dn: ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Vengadores
+
+# GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: GuardianesDeLaGalaxia
+
+# profesorx, Mentores, marvel.com
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+uid: profesorx
+sn: Xavier
+mail: profesorx@mentores.marvel.com
+telephoneNumber: +1-555-0001
+employeeNumber: 0001
+cn: Charles Xavier
+
+# nickfury, Mentores, marvel.com
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+uid: nickfury
+sn: Fury
+mail: nickfury@mentores.marvel.com
+telephoneNumber: +1-555-1963
+employeeNumber: 0002
+cn: Nick Fury
+
+# starlord, Mentores, marvel.com
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+uid: starlord
+sn: Quill
+telephoneNumber: +1-555-1976
+employeeNumber: 0003
+userPassword:: e1NTSEF9U3dKNFdBWFR1UHBESjRHZzVhMW12UWV5b29ZWGM2UFI=
+mail: starlord@mentores.marvel.com
+cn: Peter Quill
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: wolverine
+cn: James "Logan" Howlett
+sn: Howlett
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 101
+title: Arma X
+
+# ciclope, XMen, Equipos, marvel.com
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: ciclope
+sn: Summers
+mail: ciclope@xmen.marvel.com
+telephoneNumber: +1-555-1002
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 102
+title:: TMOtZGVy
+cn: Scott Summers
+
+# tormenta, XMen, Equipos, marvel.com
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: tormenta
+cn: Ororo Munroe
+sn: Munroe
+mail: tormenta@xmen.marvel.com
+telephoneNumber: +1-555-1003
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 103
+title: Manipuladora del Clima
+
+# jeangrey, XMen, Equipos, marvel.com
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: jeangrey
+cn: Jean Elaine Grey-Summers
+sn: Grey-Summers
+mail: jeangrey@xmen.marvel.com
+telephoneNumber: +1-555-1004
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 104
+title:: UHPDrXF1aWNhIC8gU2VndW5kYSBhbCBNYW5kbw==
+
+# ironman, Vengadores, Equipos, marvel.com
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: ironman
+cn: Anthony Edward "Tony" Stark
+sn: Stark
+mail: ironman@vengadores.marvel.com
+telephoneNumber: +1-555-3000
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+title:: TMOtZGVyIGUgSW5nZW5pZXJv
+roomNumber: 201
+
+# capitanamerica, Vengadores, Equipos, marvel.com
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: capitanamerica
+cn: Steve Rogers
+sn: Rogers
+mail: capitanamerica@vengadores.marvel.com
+telephoneNumber: +1-555-2002
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 202
+title:: Q2FwaXTDoW4=
+
+# thor, Vengadores, Equipos, marvel.com
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: thor
+cn: Thor Odinson
+sn: Odinson
+mail: thor@vengadores.marvel.com
+telephoneNumber: +1-555-2003
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 203
+title: Dios
+
+# hulk, Vengadores, Equipos, marvel.com
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: hulk
+cn: Bruce Banner
+sn: Banner
+mail: hulk@vengadores.marvel.com
+telephoneNumber: +1-555-2004
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 204
+title:: Q2llbnTDrWZpY28=
+
+# blackwidow, Vengadores, Equipos, marvel.com
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: blackwidow
+cn: Natasha Romanoff
+sn: Romanoff
+mail: blackwidow@vengadores.marvel.com
+telephoneNumber: +1-555-2005
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 205
+title:: RXNww61hIHkgQXNlc2luYQ==
+
+# hawkeye, Vengadores, Equipos, marvel.com
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: hawkeye
+sn: Barton
+mail: hawkeye@vengadores.marvel.com
+telephoneNumber: +1-555-2006
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+title: Francotirador
+cn: Clint Barton
+roomNumber: 206
+
+# gamora, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: gamora
+cn: Gamora Zen-Whoberi
+sn: Zen-Whoberi
+mail: gamora@guardianes.marvel.com
+telephoneNumber: +1-555-3001
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 301
+title: Asesina
+
+# rocket, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: rocket
+cn: Rocket Raccoon
+sn: Raccoon
+mail: rocket@guardianes.marvel.com
+telephoneNumber: +1-555-89P13
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 302
+title:: R3VhcmRpw6FuIGRlbCBDdWFkcmFudGUgS2V5c3RvbmU=
+
+# groot, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: groot
+cn: Groot
+sn: Groot
+mail: groot@guardianes.marvel.com
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 303
+telephoneNumber: +1-555-3003
+title:: w4FyYm9s
+
+# drax, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: drax
+sn: Douglas
+mail: drax@guardianes.marvel.com
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 304
+telephoneNumber: +1-555-3004
+cn: Arthur Sampson Douglas
+title: El Destructor
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 24
+# numEntries: 23
