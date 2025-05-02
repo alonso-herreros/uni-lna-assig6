@@ -366,6 +366,7 @@ El principal ejecutable para estos tests es
 [`tests/test-permissions.sh`](tests/test-permissions.sh). Este script ejecuta
 todos los tests definidos, dando información sobre el resultado de cada uno.
 
+### Autenticación automática
 
 Los tests de permisos dependen de la autenticación como varios usuarios. Para
 obtener las contraseñas de forma automática, el script busca un fichero cuyo
@@ -383,7 +384,7 @@ directorio definido por la opción `-p` o `--passwords` (`./passwords` por
 defecto). Este script depende de la existencia del directorio y de un fichero
 con la contraseña del usuario `cn=admin,dc=marvel,dc=com`, que se usa para
 autenticarse como administrador y poder cambiar las contraseñas con permisos
-elevados. **Este archivo no se incluye en el repositorio**
+elevados. **Este fichero no se incluye en el repositorio**
 
 [^1]: Para crear un archivo sin saltos de línea al final, se pueden usar
     comandos como `echo -n` o `printf`, o bien usar un editor de texto que
