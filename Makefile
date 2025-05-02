@@ -4,6 +4,8 @@ BUILD_DIR = build
 MARKER_DIR = ${BUILD_DIR}/markers
 
 HOST = ldapi:///
+ADMIN = cn=admin,dc=marvel,dc=com
+
 
 all: base permissions
 test: test-permissions
@@ -13,7 +15,7 @@ test: test-permissions
 BASE_MARKER = ${MARKER_DIR}/base.marker
 base: ${BASE_MARKER}
 ${BASE_MARKER}: entries/base.ldif | ${MARKER_DIR}
-	sudo ldapadd -xWD 'cn=admin,dc=marvel,dc=com' -f $?
+	sudo ldapadd -xWD ${ADMIN} -f $<
 	@touch $@
 
 PERMISSIONS_MARKER = ${MARKER_DIR}/permissions.marker
@@ -36,6 +38,7 @@ test-permissions: base permissions passwords
 ${MARKER_DIR}:
 	mkdir -p $@
 
+# Clean
 clean:
-	sudo ldapmodify -xWD 'cn=admin,dc=marvel,dc=com' -f updates/icoe-nuke.ldif
+	-ldapmodify -xWD "${ADMIN}" -f updates/icoe-nuke.ldif
 	rm -rf ${BUILD_DIR}
