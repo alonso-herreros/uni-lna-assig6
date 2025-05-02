@@ -35,9 +35,12 @@ ${PASSWORDS_MARKER}: ${TEST_DIR}/passwords/* | ${MARKER_DIR}
 	@touch $@
 
 
+# ---- Test recipe ----
 test-permissions: base permissions passwords
 	test/test-permissions.sh -p "${TEST_DIR}/passwords"
 
+
+# Dir dependency
 ${MARKER_DIR}:
 	mkdir -p $@
 
