@@ -239,6 +239,8 @@ le niegue explícitamente. Si hubiera otra columna que aplicara al usuario,
 se aplicaría la regla de la columna correspondiente. Si ninguna columna
 le concediera acceso, se le denegaría.
 
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable MD013 -->
 | What \ Who                          | admin | self | anon | Mentores | Prof. X | Nick Fury | Starlord | Héroes | Héroes del equipo | Héroes mentorizados   |
 | ----------                          | ----- | ---- | ---- | -------- | ------- | --------- | -------- | ------ | ----------------- | --------------------- |
 | `userPassword`                      | W     | W    | Auth | -        | -       | -         | -        | -      | -                 | -                     |
@@ -249,6 +251,7 @@ le concediera acceso, se le denegaría.
 | `Héroes`: `cn`                      | W     | R    | -    | R        | W       | -         | -        | -      | R                 | -                     |
 | `Mentores`: `cn`                    | W     | R    | -    | R        | W       | -         | -        | -      | -                 | R                     |
 | `*`                                 | W     | R    | -    | R        | W       | -         | -        | -      | -                 | -                     |
+<!-- markdownlint-restore -->
 
 ### Implementación de la política de acceso
 
