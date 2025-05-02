@@ -391,6 +391,194 @@ elevados. **Este fichero no se incluye en el repositorio**
     permita guardar el archivo sin saltos de línea. En Vim, esto se puede
     conseguir usando `:set nofixeol | set noeol`.
 
+### Demostración
+
+Para demostrar el funcionamiento de las políticas de acceso, a continuación se
+muestran algunos ejemplos de acceso mediante `ldapsearch`. La salida de los
+comandos se ha reducido a las partes más significativas.
+
+#### Búsqueda anónima
+
+Los usuarios anónimos no tienen acceso de lectura a nada, pero pueden usar el
+atributo `userPassword` para autenticarse.
+
+| [logs/3-search-anon.log](logs/3-search-anon.log) |
+| -------------------------------------------------- |
+<!-- File extract -->
+```text
+$ ldapsearch -xD ''
+# extended LDIF
+#
+# LDAPv3
+# base <dc=marvel,dc=com> (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# search result
+search: 2
+result: 32 No such object
+
+# numResponses: 1
+```
+
+#### Lectura a uno mismo
+
+Cualquier usuario puede leer todos sus atributos. Además, pueden cambiar su
+contraseña (no se puede comprobar con `ldapsearch`, pero sí con `ldapmodify`,
+como hacen los tests automáticos).
+
+| [logs/3-search-self.log](logs/3-search-self.log) |
+| ------------------------------------------------ |
+<!-- File extract -->
+```text
+$ ldapsearch -xWD 'uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com' -b 'uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com'
+[...]
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: wolverine
+cn: James "Logan" Howlett
+sn: Howlett
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 101
+title: Arma X
+userPassword:: e1NTSEF9UWhrbXVvOUVsczNYcFBZT0pmQVhSQXRueHRIK1p3SU0=
+
+[...]
+```
+
+#### Búsqueda desde un mentor
+
+Los mentores tienen acceso de lectura a todo (excepto contraseñas)
+
+| [logs/3-search-mentor.log](logs/3-search-mentor.log) |
+| ---------------------------------------------------- |
+<!-- File extract -->
+```text
+$ ldapsearch -xWD 'uid=starlord,ou=Mentores,dc=marvel,dc=com'
+[...]
+
+# profesorx, Mentores, marvel.com
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+uid: profesorx
+sn: Xavier
+mail: profesorx@mentores.marvel.com
+telephoneNumber: +1-555-0001
+employeeNumber: 0001
+cn: Charles Xavier
+
+# nickfury, Mentores, marvel.com
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+uid: nickfury
+sn: Fury
+mail: nickfury@mentores.marvel.com
+telephoneNumber: +1-555-1963
+employeeNumber: 0002
+cn: Nick Fury
+
+# starlord, Mentores, marvel.com
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+uid: starlord
+sn: Quill
+telephoneNumber: +1-555-1976
+employeeNumber: 0003
+userPassword:: e1NTSEF9U3dKNFdBWFR1UHBESjRHZzVhMW12UWV5b29ZWGM2UFI=
+mail: starlord@mentores.marvel.com
+cn: Peter Quill
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: wolverine
+cn: James "Logan" Howlett
+sn: Howlett
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 101
+title: Arma X
+
+[...]
+```
+
+#### Búsqueda desde un héroe
+
+Los héroes tienen acceso de lectura al `mail` de todos los mentores y al `mail`
+y `telephoneNumber` de todos los héroes. Además, pueden leer el `cn` de los
+héroes de su propio equipo y de su mentor.
+
+| [logs/3-search-hero.log](logs/3-search-hero.log) |
+| ------------------------------------------------ |
+<!-- File extract -->
+```text
+$ ldapsearch -xWD 'uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com'
+[...]
+
+# profesorx, Mentores, marvel.com
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+mail: profesorx@mentores.marvel.com
+cn: Charles Xavier
+
+# nickfury, Mentores, marvel.com
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+mail: nickfury@mentores.marvel.com
+
+# starlord, Mentores, marvel.com
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+mail: starlord@mentores.marvel.com
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: wolverine
+cn: James "Logan" Howlett
+sn: Howlett
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 101
+title: Arma X
+userPassword:: e1NTSEF9UWhrbXVvOUVsczNYcFBZT0pmQVhSQXRueHRIK1p3SU0=
+
+# ciclope, XMen, Equipos, marvel.com
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: ciclope@xmen.marvel.com
+telephoneNumber: +1-555-1002
+cn: Scott Summers
+
+# tormenta, XMen, Equipos, marvel.com
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+cn: Ororo Munroe
+mail: tormenta@xmen.marvel.com
+telephoneNumber: +1-555-1003
+
+# jeangrey, XMen, Equipos, marvel.com
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+cn: Jean Elaine Grey-Summers
+mail: jeangrey@xmen.marvel.com
+telephoneNumber: +1-555-1004
+
+# ironman, Vengadores, Equipos, marvel.com
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: ironman@vengadores.marvel.com
+telephoneNumber: +1-555-3000
+
+[...]
+```
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
