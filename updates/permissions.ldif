@@ -1,0 +1,65 @@
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+# 'replace' required because order matters
+replace: olcAccess
+# ---- Passwords ----
+olcAccess: to attrs=userPassword by self write by anonymous auth by * none
+olcAccess: to attrs=shadowLastChange by self write by * read
+# ---- Mentor-specific ----
+# Avengers' room numbers (write by Nick Fury)
+olcAccess: to
+  dn.subtree="ou=Vengadores,ou=Equipos,dc=marvel,dc=com" attrs=roomNumber
+  by dn="uid=nickfury,ou=Mentores,dc=marvel,dc=com" write
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by self read
+# Guardians' title (write by Starlord)
+olcAccess: to
+  dn.subtree="ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com" attrs=title
+  by dn="uid=starlord,ou=Mentores,dc=marvel,dc=com" write
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by self read
+# ----- By groups ----
+# Entry read permission required for heroes to even see the entry.
+# Write permission not required for writing other attributes.
+# Self permission isn't required.
+olcAccess: to
+  filter=(objectClass=marvelPerson) attrs=entry
+  by set="user/objectClass & [marvelMentor]" read
+  by set="user/objectClass & [marvelHero]" read
+# Mentors email, Heroes email & telephone number (read by Heroes)
+olcAccess: to
+  filter=(objectClass=marvelHero) attrs=mail,telephoneNumber
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by set="user/objectClass & [marvelHero]" read
+  by self read
+olcAccess: to
+  filter=(objectClass=marvelMentor) attrs=mail
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by set="user/objectClass & [marvelHero]" read
+  by self read
+# ---- By relationships ----
+# Heroes cn (read by Heroes in same team)
+olcAccess: to
+  dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$" attrs=cn
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by dn.subtree,expand="$0" read
+  by self read
+# Mentors cn (read by Heroes listing mentor as manager)
+olcAccess: to
+  filter=(objectClass=marvelMentor) attrs=cn
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by set="user/manager & this" read
+  by self read
+# ---- Default permission ----
+olcAccess: to *
+  by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
+  by set="user/objectClass & [marvelMentor]" read
+  by self read
+  by users search
+  by * none
