@@ -309,16 +309,63 @@ está intentando acceder
 
 ## Ejercicio 3: Comprobaciones
 
-Las comprobaciones más relevantes son las de acceso. Los tests se han
-desarrollado como scripts de Bash y se han usado continuamente siguiendo el
-enfoque de *test-driven development* (TDD) y de desarrollo incremental.
+### Automatización
 
-Estos tests se encuentran en el directorio [`tests`](tests), y el principal
-ejecutable es [`tests/test-permissions.sh`](tests/test-permissions.sh). Este
-script ejecuta todos los tests definidos, dando información sobre el resultado
-de cada uno.
+Las comprobaciones más relevantes son las de acceso. Se han desarrollado tests
+en forma de scripts de Bash y se han usado continuamente siguiendo el enfoque
+de *test-driven development* (TDD) y de desarrollo incremental.
 
-### Autenticación y contraseñas
+Los tests están diseñados siguiendo la tabla del apartado anterior, comprobando
+para cada usuario el acceso a los distintos atributos. Concretamente, los
+permisos comprobados son los siguientes, confiando en que sean suficientes para
+cubrir todos los casos:
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable MD013 -->
+|                    | Usuario cualquiera (Cíclope): `userPassword` | Héroe de los Vengadores (Hawkeye): `roomNumber`  | Héroe de los Guardianes (Drax): `title` | Mentor (Starlord): `mail`  | Héroe (Drax): `telephoneNumber` |
+| ----------         | -------------------------------------------- | ------------------------------------------------ | -------------------------------------   | -------------------------- | ------------------------------- |
+| [Self]             | `W`                                          | `R-`                                             | `R-`                                    | `R-`                       | `R-`                            |
+| Admin              | `W`                                          | `W`                                              | `W`                                     | `W`                        | `W`                             |
+| Mentor (Nick Fury) | `-`                                          | `R`                                              | `R`                                     | `R-`                       | `R-`                            |
+| Mentor (Starlord)  | `-`                                          | `R`                                              | `R`                                     | `R-`                       | `R-`                            |
+| Profesor X         | `-`                                          | `W`                                              | `W`                                     | `W`                        | `W`                             |
+|                    |                                              |                                                  |                                         |                            |                                 |
+| Nick Fury          | `-`                                          | `W`                                              | `R-`                                    |                            |                                 |
+| Starlord           | `-`                                          | `R-`                                             | `W`                                     |                            |                                 |
+| Héroe (Wolverine)  | `-`                                          | `-`                                              | `-`                                     | `R-`                       | `R-`                            |
+| Héroe (Ironman)    | `-`                                          | `-`                                              | `-`                                     | `R-`                       | `R-`                            |
+| Héroe (Groot)      | `-`                                          | `-`                                              | `-`                                     | `R-`                       | `R-`                            |
+
+<span></span>
+
+|                                   | Héroe de los X-Men (Cíclope): `cn` | Héroe de los Vengadores (Hawkeye): `cn` | Héroe de los Guardianes (Drax): `cn` | Mentor de los X-Men (Profesor X): `cn` | Mentor de los Vengadores (Nick Fury): `cn` | Mentor de los Guardianes (Starlord): `cn` |
+| ----------                        | ---------------------------------- | --------------------------------------- | ------------------------------------ | -------------------------------------- | ------------------------------------------ | ----------------------------------------- |
+| [Self]                            | `R-`                               | `R-`                                    | `R-`                                 | `R-`                                   | `R-`                                       | `R-`                                      |
+| Admin                             | `W`                                | `W`                                     | `W`                                  | `W`                                    | `W`                                        | `W`                                       |
+| Mentor (Nick Fury)                | `R-`                               | `R-`                                    | `R-`                                 | `R-`                                   | `R-`                                       | `R-`                                      |
+| Mentor (Starlord)                 | `R-`                               | `R-`                                    | `R-`                                 | `R-`                                   | `R-`                                       | `R-`                                      |
+| Profesor X                        | `W`                                | `W`                                     | `W`                                  | `W`                                    | `W`                                        | `W`                                       |
+|                                   |                                    |                                         |                                      |                                        |                                            |                                           |
+| Héroe de los X-Men (Wolverine)    | `R`                                | `-`                                     | `-`                                  | `R`                                    | `-`                                        | `-`                                       |
+| Héroe de los Vengadores (Ironman) | `-`                                | `R`                                     | `-`                                  | `-`                                    | `R`                                        | `-`                                       |
+| Héroe de los Guardianes (Groot)   | `-`                                | `-`                                     | `R`                                  | `-`                                    | `-`                                        | `R`                                       |
+<!-- markdownlint-restore -->
+
+En las tablas anteriores, cada fila es un conjunto de tests. Se comprueba que
+el usuario que encabeza la fila tiene el acceso correspondiente para la entrada
+especificada en la columna: `R` para lectura (al menos), `R-` para lectura
+exclusiva, `W` para escritura, `-` para denegado.
+
+En las cabezas de fila y columna se describe el grupo de entradas que se
+pretende probar, seguido del ejemplar entre paréntesis y el atributo concreto a
+coninuación. Por ejemplo, `Mentor (Starlord): mail` indica que se pretende
+probar el acceso al atributo `mail` de un mentor, y se ha usado Starlord para
+la prueba.
+
+El principal ejecutable para estos tests es
+[`tests/test-permissions.sh`](tests/test-permissions.sh). Este script ejecuta
+todos los tests definidos, dando información sobre el resultado de cada uno.
+
 
 Los tests de permisos dependen de la autenticación como varios usuarios. Para
 obtener las contraseñas de forma automática, el script busca un fichero cuyo
