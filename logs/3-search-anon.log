@@ -1,0 +1,14 @@
+[2025-05-02, 05:15:34] ldapsearch -xD ''
+# extended LDIF
+#
+# LDAPv3
+# base <dc=marvel,dc=com> (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# search result
+search: 2
+result: 32 No such object
+
+# numResponses: 1
