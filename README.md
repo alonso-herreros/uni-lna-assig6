@@ -291,13 +291,13 @@ para hacerlo más claro y editable.
 
 #### Acceso de un héroe a su equipo
 
-Para permitir el entre héroes del mismo equipo se ha usado el selector de
-*what* `to dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$"` junto con el
-selector de *who* `by dn.subtree,expand="$0"`, donde `$0` se expande a la parte
-del DN de la entrada a la que se está intentando acceder que coincida con la
-expresión regular. La expresión regular recoge el equipo al que pertenece la
-entrada a la que se quiere acceder, mientras que el selector de *who* permite
-el acceso a los héroes del mismo equipo.
+Para permitir el acceso entre héroes del mismo equipo se ha usado `to
+dn.regex="ou=[^,]+,ou=Equipos,dc=marvel,dc=com$"` junto con `by
+dn.subtree,expand="$0"`, donde `$0` se expande a la parte del DN de la entrada
+a la que se está intentando acceder que coincida con la expresión regular. La
+expresión regular recoge el equipo al que pertenece la entrada a la que se
+quiere acceder, mientras que el selector de *who* permite el acceso a los
+héroes del mismo equipo.
 
 #### Acceso de un héroe a su mentor
 
