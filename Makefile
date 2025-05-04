@@ -21,26 +21,29 @@ test: test-permissions
 # ---- Aliases ----
 # Make these targets be aliases for their markers
 MARKER_ALIASES = schema base permissions passwords
-${MARKER_ALIASES}: %: ${MARKER_DIR}/%.marker
+${MARKER_ALIASES}: %: ${MARKER_DIR}/%
 
-SCHEMA_MARKER      = ${MARKER_DIR}/schema.marker
-BASE_MARKER        = ${MARKER_DIR}/base.marker
-PERMISSIONS_MARKER = ${MARKER_DIR}/permissions.marker
-PASSWORDS_MARKER   = ${MARKER_DIR}/passwords.marker
+SCHEMA_MARKER      = ${MARKER_DIR}/schema
+BASE_MARKER        = ${MARKER_DIR}/base
+PERMISSIONS_MARKER = ${MARKER_DIR}/permissions
+PASSWORDS_MARKER   = ${MARKER_DIR}/passwords
 
 
-# ---- Actual recipes for markers ----
+# ---- Actual recipes (for markers) ----
 
+# Tree base
 ${BASE_MARKER}: entries/base.ldif \
 		| ${PASSWDFILE} ${MARKER_DIR}
 	sudo ldapadd -xWD ${ADMIN} -y ${PASSWDFILE} -f $<
 	@touch $@
 
+#Permissions
 ${PERMISSIONS_MARKER}: updates/permissions.ldif ${BASE_MARKER} \
 		| ${PASSWDFILE} ${MARKER_DIR}
 	sudo ldapmodify -WY EXTERNAL -y ${PASSWDFILE} -f $<
 	@touch $@
 
+# Passwords
 # TODO: make this depend on an actual passwords LDIF
 ${PASSWORDS_MARKER}: ${TEST_DIR}/passwords/* ${BASE_MARKER} \
 		| ${MARKER_DIR}
