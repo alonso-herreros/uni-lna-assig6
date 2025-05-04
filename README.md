@@ -16,6 +16,17 @@ title: Administración de Redes Linux - Entregable 6: LDAP II
 Este documento contiene el registro del desarrollo de la actividad, incluyendo
 las instrucciones principales, las decisiones, y los resultados.
 
+## Configuración inicial
+
+Para agilizar los comandos y evitar tener que especificar el servidor y la base
+(sólo para búsquedas) cada vez, se ha modificado el fichero de configuración
+`/etc/ldap/ldap.conf` para incluir las siguientes líneas:
+
+```text
+BASE    dc=marvel,dc=com
+URI     ldapi:///
+```
+
 ## Ejercicio 1: creación del árbol
 
 ### Definición de clases
