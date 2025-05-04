@@ -223,7 +223,7 @@ Siguiendo el orden de las entradas en la configuración:
 
 Ya que esto no permite *fallbacks*, se ha creado una tabla con todas las
 combinaciones de acceso y usuarios. Cada fila corresponde a un `<what>`,
-mientras que cada columna correspone a un `who`. Ha de tenerse en cuenta que
+mientras que cada columna corresponde a un `who`. Ha de tenerse en cuenta que
 el acceso para el administrador está implícito, y no es necesario incluirlo en
 la configuración, aunque se hará.
 
