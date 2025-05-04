@@ -1,0 +1,30 @@
+[2025-05-02, 05:16:27] ldapsearch -xWD 'uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com' -b 'uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com'
+Enter LDAP Password: 
+# extended LDIF
+#
+# LDAPv3
+# base <uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com> with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+uid: wolverine
+cn: James "Logan" Howlett
+sn: Howlett
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 101
+title: Arma X
+userPassword:: e1NTSEF9UWhrbXVvOUVsczNYcFBZT0pmQVhSQXRueHRIK1p3SU0=
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
