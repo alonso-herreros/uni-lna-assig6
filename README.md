@@ -27,6 +27,29 @@ BASE    dc=marvel,dc=com
 URI     ldapi:///
 ```
 
+## Sistema de construcción
+
+Se ha automatizado la implementación de la actividad con el sistema de
+construcción `make` mediante un [`Makefile`](Makefile).
+
+La estructura diseñada permite ejecutar los pasos de forma independiente,
+definiendo claramente las dependencias y el orden de ejecución. Además, se ha
+definido de forma que se detecten los cambios en los ficheros fuente para
+decidir si es necesario volver a ejecutar los pasos.
+
+Cada sección contiene más detalles sobre el uso de `make` en su contexto.
+
+### Uso
+
+Con `make` o `make all` se añaden las entradas al árbol LDAP y se aplican las
+políticas de acceso.
+
+Con `make test` se ejecutan los tests disponibles (tests de permisos).
+
+Con `make clean` se eliminan las entradas del árbol. Las entradas de
+configuración de *schema*, requieren operaciones complejas para su completa
+eliminación, por lo que simplemente se vacían.
+
 ## Ejercicio 1: creación del árbol
 
 ### Definición de clases
