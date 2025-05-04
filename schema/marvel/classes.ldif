@@ -1,0 +1,27 @@
+dn: cn={4}marvel,cn=schema,cn=config
+changetype: modify
+replace: olcObjectClasses
+olcObjectClasses: ( 2.999.0493990.1 NAME 'marvelPerson'
+    DESC 'Person class for the Marvel LDAP assignment for Linux Networks Administration (2024-2025)'
+    SUP inetOrgPerson STRUCTURAL
+    MUST ( mail $ telephoneNumber )
+    )
+#
+olcObjectClasses: ( 2.999.0493990.2 NAME 'marvelHero'
+    DESC 'Marvel Hero (Marvel LDAP assignment, Linux Networks Administration course 2024-2025)'
+    SUP marvelPerson STRUCTURAL
+    MUST ( manager $ roomNumber $ title )
+    )
+#
+olcObjectClasses: ( 2.999.0493990.3 NAME 'marvelMentor'
+    DESC 'Marvel Mentor (Marvel LDAP assignment, Linux Networks Administration course 2024-2025)'
+    SUP marvelPerson STRUCTURAL
+    MUST ( employeeNumber )
+    )
+#
+olcObjectClasses: ( 2.999.0493990.4 NAME 'marvelPersonExt'
+  DESC 'Extended Person class for the Marvel LDAP assignment. See parent.'
+  SUP marvelPerson STRUCTURAL
+  MUST ( firstAppearance )
+  )
+

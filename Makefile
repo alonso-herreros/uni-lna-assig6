@@ -6,6 +6,7 @@ MARKER_DIR = ${BUILD_DIR}/markers
 HOST = ldapi:///
 ADMIN = cn=admin,dc=marvel,dc=com
 PASSWDFILE := $(shell mktemp -u --tmpdir ldap_secret.XXXX)
+SCHEMAS = marvel
 
 
 all: base permissions
@@ -28,11 +29,42 @@ BASE_MARKER        = ${MARKER_DIR}/base
 PERMISSIONS_MARKER = ${MARKER_DIR}/permissions
 PASSWORDS_MARKER   = ${MARKER_DIR}/passwords
 
+SCHEMAS_MARKERS    = $(addprefix ${MARKER_DIR}/schema/, ${SCHEMAS})
+
+.SECONDARY: $(join ${SCHEMAS_MARKERS}, /base /classes /attrs)
+
 
 # ---- Actual recipes (for markers) ----
 
+# Schema
+${SCHEMA_MARKER}: ${SCHEMAS_MARKERS} | ${MARKER_DIR}
+	@touch $@
+
+${SCHEMAS_MARKERS}: %: %/classes %/attrs | ${MARKER_DIR}
+	@touch $@
+
+${MARKER_DIR}/schema/%/classes: schema/%/classes.ldif \
+		${MARKER_DIR}/schema/%/attrs ${MARKER_DIR}/schema/%/base \
+		| ${PASSWDFILE} ${MARKER_DIR}
+	sudo ldapmodify -WY EXTERNAL -y ${PASSWDFILE} -f $<
+	@touch $@
+
+${MARKER_DIR}/schema/%/attrs: schema/%/attrs.ldif \
+		${MARKER_DIR}/schema/%/base \
+		| ${PASSWDFILE} ${MARKER_DIR}
+	[ -f $< ] && sudo ldapmodify -WY EXTERNAL -y ${PASSWDFILE} -f $<
+	@touch $@
+
+${MARKER_DIR}/schema/%/base: schema/%.ldif \
+		| ${PASSWDFILE} ${MARKER_DIR}
+	-sudo ldapadd -WY EXTERNAL -y ${PASSWDFILE} -f $<
+	@# This is very important. It makes the dirs. Without it, many things \
+	 # will fail.
+	@mkdir -p $(@D) && touch $@
+
+
 # Tree base
-${BASE_MARKER}: entries/base.ldif \
+${BASE_MARKER}: entries/base.ldif ${SCHEMA_MARKER} \
 		| ${PASSWDFILE} ${MARKER_DIR}
 	sudo ldapadd -xWD ${ADMIN} -y ${PASSWDFILE} -f $<
 	@touch $@
@@ -71,4 +103,5 @@ ${MARKER_DIR}:
 # Clean
 clean: | ${PASSWDFILE}
 	-ldapmodify -xWD "${ADMIN}" -y ${PASSWDFILE} -f updates/icoe-nuke.ldif
+	-sudo ldapmodify -WY EXTERNAL -y ${PASSWDFILE} -f schema/clean.ldif
 	rm -rf ${BUILD_DIR}
