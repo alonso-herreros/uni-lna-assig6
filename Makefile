@@ -33,7 +33,8 @@ PASSWORDS_MARKER   = ${MARKER_DIR}/passwords
 SCHEMAS_MARKERS    = $(addprefix ${MARKER_DIR}/schema/, ${SCHEMAS})
 
 # Prevents deletion
-.SECONDARY: $(join ${SCHEMAS_MARKERS}, /base /classes /attrs)
+.SECONDARY: ${SCHEMAS_MARKERS}/base \
+	${SCHEMAS_MARKERS}/classes ${SCHEMAS_MARKERS}/attrs
 
 
 # ---- Actual recipes (for markers) ----
