@@ -482,6 +482,20 @@ elevados. **Este fichero no se incluye en el repositorio**
     permita guardar el archivo sin saltos de línea. En Vim, esto se puede
     conseguir usando `:set nofixeol | set noeol`.
 
+#### Integración con `make` <!-- markdownlint-disable-line MD024 -->
+
+Para gestionar mejor el proceso de establecimiento de contraseñas, se ha
+definido un *target* en el [`Makefile`](Makefile):
+
+```sh
+make passwords
+```
+
+Este *target* depende de `base`, por lo que se asegura de que el árbol LDAP
+está creado antes de establecer las contraseñas. Obtiene las contraseñas del
+directorio `test/passwords`, comprobando si se han cambiado desde la última
+aplicación.
+
 ### Demostración
 
 Para demostrar el funcionamiento de las políticas de acceso, a continuación se
