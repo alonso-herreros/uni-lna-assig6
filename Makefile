@@ -46,18 +46,18 @@ ${SCHEMAS_MARKERS}: %: %/classes %/attrs | ${MARKER_DIR}
 ${MARKER_DIR}/schema/%/classes: schema/%/classes.ldif \
 		${MARKER_DIR}/schema/%/attrs ${MARKER_DIR}/schema/%/base \
 		| ${PASSWDFILE} ${MARKER_DIR}
-	sudo ldapmodify -WY EXTERNAL -y ${PASSWDFILE} -f $<
+	sudo ldapmodify -Y EXTERNAL -y ${PASSWDFILE} -f $<
 	@touch $@
 
 ${MARKER_DIR}/schema/%/attrs: schema/%/attrs.ldif \
 		${MARKER_DIR}/schema/%/base \
 		| ${PASSWDFILE} ${MARKER_DIR}
-	[ -f $< ] && sudo ldapmodify -WY EXTERNAL -y ${PASSWDFILE} -f $<
+	[ -f $< ] && sudo ldapmodify -Y EXTERNAL -y ${PASSWDFILE} -f $<
 	@touch $@
 
 ${MARKER_DIR}/schema/%/base: schema/%.ldif \
 		| ${PASSWDFILE} ${MARKER_DIR}
-	-sudo ldapadd -WY EXTERNAL -y ${PASSWDFILE} -f $<
+	-sudo ldapadd -Y EXTERNAL -y ${PASSWDFILE} -f $<
 	@# This is very important. It makes the dirs. Without it, many things \
 	 # will fail.
 	@mkdir -p $(@D) && touch $@
@@ -66,13 +66,13 @@ ${MARKER_DIR}/schema/%/base: schema/%.ldif \
 # Tree base
 ${BASE_MARKER}: entries/base.ldif ${SCHEMA_MARKER} \
 		| ${PASSWDFILE} ${MARKER_DIR}
-	ldapadd -xWD ${ADMIN} -y ${PASSWDFILE} -f $<
+	ldapadd -xD ${ADMIN} -y ${PASSWDFILE} -f $<
 	@touch $@
 
 #Permissions
 ${PERMISSIONS_MARKER}: updates/permissions.ldif ${BASE_MARKER} \
 		| ${PASSWDFILE} ${MARKER_DIR}
-	sudo ldapmodify -WY EXTERNAL -y ${PASSWDFILE} -f $<
+	sudo ldapmodify -Y EXTERNAL -y ${PASSWDFILE} -f $<
 	@touch $@
 
 # Passwords
@@ -102,6 +102,6 @@ ${MARKER_DIR}:
 
 # Clean
 clean: | ${PASSWDFILE}
-	-ldapmodify -xWD "${ADMIN}" -y ${PASSWDFILE} -f updates/icoe-nuke.ldif
-	-sudo ldapmodify -WY EXTERNAL -y ${PASSWDFILE} -f schema/clean.ldif
+	-ldapmodify -xD "${ADMIN}" -y ${PASSWDFILE} -f updates/icoe-nuke.ldif
+	-sudo ldapmodify -Y EXTERNAL -y ${PASSWDFILE} -f schema/clean.ldif
 	rm -rf ${BUILD_DIR}
