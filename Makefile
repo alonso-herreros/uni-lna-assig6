@@ -70,7 +70,7 @@ ${BASE_MARKER}: entries/base.ldif ${SCHEMA_MARKER} \
 	@touch $@
 
 #Permissions
-${PERMISSIONS_MARKER}: updates/permissions.ldif ${BASE_MARKER} \
+${PERMISSIONS_MARKER}: updates/permissions.ldif \
 		| ${PASSWDFILE} ${MARKER_DIR}
 	sudo ldapmodify -Y EXTERNAL -y "${PASSWDFILE}" -f $<
 	@touch $@
