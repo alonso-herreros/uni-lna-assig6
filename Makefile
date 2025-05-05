@@ -17,6 +17,7 @@ test: test-permissions
 	test-permissions \
 	clean
 
+# Ensures deletion
 .INTERMEDIATE: ${PASSWDFILE}
 
 # ---- Aliases ----
@@ -31,6 +32,7 @@ PASSWORDS_MARKER   = ${MARKER_DIR}/passwords
 
 SCHEMAS_MARKERS    = $(addprefix ${MARKER_DIR}/schema/, ${SCHEMAS})
 
+# Prevents deletion
 .SECONDARY: $(join ${SCHEMAS_MARKERS}, /base /classes /attrs)
 
 
