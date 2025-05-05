@@ -101,23 +101,43 @@ class marvelMentor {
 }
 ```
 
-Esta extensión clases se ha definido mediante ficheros `.ldif` en el directorio
-`./schema/` bajo la entidad `cn=marvel,cn=schema,cn=config`, con un fichero
-para definir la entidad (`marvel.ldif`) más un fichero de cambios de tipo `add`
-por cada clase.
+Esta extensión de clases se ha implementado usando la configuración OLC
+(*on-line configuration*), usando ficheros `.ldif` en el directorio `schema/`,
+afectando a la entidad `cn=marvel,cn=schema,cn=config`.
 
-Para crear la entidad se ha utilizado el comando `ldapadd`:
+El fichero [`marvel.ldif`](schema/marvel.ldif) define la entidad.
+
+El directorio `schema/marvel/` contiene los detalles del nuevo *schema* en
+forma de modificaciones de tipo *replace*, permitiendo el reemplazo por nuevas
+versiones. El fichero [`classes.ldif`](schema/marvel/classes.ldif) define las
+clases.
+
+#### Aplicación automática <!-- markdownlint-disable MD024 -->
+
+Para aplicar todos los cambios en los *schemas* existe un *target* en el
+[`Makefile`](Makefile):
 
 ```sh
-sudo ldapadd -WY EXTERNAL -H ldapi:/// -f ./schema/marvel.ldif
+make schema
 ```
 
-Para añadir cada clase se ha utilizado el comando `ldapmodify`:
+Este *target* automatiza la aplicación manual descrita en la sección siguiente,
+con la diferencia de que mantiene un pequeño registro de los cambios aplicados
+y la fecha de última actualización para evitar repetir las operaciones si no es
+necesario.
+
+#### Aplicación manual <!-- markdownlint-disable MD024 -->
+
+Para crear la entidad principal se utiliza el comando `ldapadd`:
 
 ```sh
-sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelPerson.ldif
-sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelHero.ldif
-sudo ldapmodify -WY EXTERNAL -H ldapi:/// -f ./schema/marvelMentor.ldif
+sudo ldapadd -WY EXTERNAL -f schema/marvel.ldif
+```
+
+Para añadir las clases se utiliza el comando `ldapmodify`:
+
+```sh
+sudo ldapmodify -WY EXTERNAL -f schema/marvel/classes.ldif
 ```
 
 ### Definición de entradas en el árbol
