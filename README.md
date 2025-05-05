@@ -243,7 +243,7 @@ telephoneNumber: +1-555-1976
 employeeNumber: 0003
 ```
 
-#### Aplicación automática
+#### Aplicación automática <!-- markdownlint-disable-line MD024 -->
 
 Para añadir todas las entradas al árbol existe un *target* en el
 [`Makefile`](Makefile):
@@ -255,7 +255,7 @@ make base
 Este *target* automatiza la aplicación manual descrita en la sección siguiente
 y la registra en el sistema de construcción.
 
-#### Aplicación manual
+#### Aplicación manual <!-- markdownlint-disable-line MD024 -->
 
 Para añadir entradas al árbol LDAP se usa el comando `ldapadd`:
 
@@ -331,7 +331,7 @@ entradas de control de acceso se han añadido como adiciones al atributo
 `olcAccess`, reemplazando a todas las anteriores y preservando el orden
 necesario.
 
-#### Aplicación automática
+#### Aplicación automática <!-- markdownlint-disable-line MD024 -->
 
 Para aplicar al servidor la configuración definida existe un *target* en el
 [`Makefile`](Makefile):
@@ -346,7 +346,7 @@ evitar repetir las operaciones cuando se requiera el *target* pero esté ya
 aplicada la configuración más reciente. Además, depende de `base`, por lo que
 se asegura de que el árbol LDAP está creado antes de aplicar la configuración.
 
-#### Aplicación manual
+#### Aplicación manual <!-- markdownlint-disable-line MD024 -->
 
 Para actualizar la configuración se usa el comando `ldapmodify`:
 
