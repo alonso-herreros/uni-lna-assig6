@@ -16,6 +16,40 @@ title: Administración de Redes Linux - Entregable 6: LDAP II
 Este documento contiene el registro del desarrollo de la actividad, incluyendo
 las instrucciones principales, las decisiones, y los resultados.
 
+## Configuración inicial
+
+Para agilizar los comandos y evitar tener que especificar el servidor y la base
+(sólo para búsquedas) cada vez, se ha modificado el fichero de configuración
+`/etc/ldap/ldap.conf` para incluir las siguientes líneas:
+
+```text
+BASE    dc=marvel,dc=com
+URI     ldapi:///
+```
+
+## Sistema de construcción
+
+Se ha automatizado la implementación de la actividad con el sistema de
+construcción `make` mediante un [`Makefile`](Makefile).
+
+La estructura diseñada permite ejecutar los pasos de forma independiente,
+definiendo claramente las dependencias y el orden de ejecución. Además, se ha
+definido de forma que se detecten los cambios en los ficheros fuente para
+decidir si es necesario volver a ejecutar los pasos.
+
+Cada sección contiene más detalles sobre el uso de `make` en su contexto.
+
+### Uso
+
+Con `make` o `make all` se añaden las entradas al árbol LDAP y se aplican las
+políticas de acceso.
+
+Con `make test` se ejecutan los tests disponibles (tests de permisos).
+
+Con `make clean` se eliminan las entradas del árbol. Las entradas de
+configuración de *schema*, requieren operaciones complejas para su completa
+eliminación, por lo que simplemente se vacían.
+
 ## Ejercicio 1: creación del árbol
 
 ### Definición de clases
@@ -229,6 +263,26 @@ telephoneNumber: +1-555-1976
 employeeNumber: 0003
 ```
 
+#### Aplicación automática <!-- markdownlint-disable-line MD024 -->
+
+Para añadir todas las entradas al árbol existe un *target* en el
+[`Makefile`](Makefile):
+
+```sh
+make base
+```
+
+Este *target* automatiza la aplicación manual descrita en la sección siguiente
+y la registra en el sistema de construcción.
+
+#### Aplicación manual <!-- markdownlint-disable-line MD024 -->
+
+Para añadir entradas al árbol LDAP se usa el comando `ldapadd`:
+
+```sh
+ldapadd -xWD 'cn=admin,dc=marvel,dc=com' -f entries/base.ldif
+```
+
 ## Ejercicio 2: control de acceso
 
 ### Definición de la política de acceso
@@ -283,6 +337,11 @@ Se ha seguido la sintaxis de configuración de acceso descrita en el manual de
 [OpenLDAP v2.5][openldap-v2.5-AC] (versión instalada en la máquina virtual) y
 en la página del manual `slapd.access(5)`.
 
+Para traducir la tabla en entradas de configuración de acceso, primero se ha
+definido la regla menos específica. A continuación se han añadido las reglas
+más específicas, incluyendo las especificaciones de la regla genérica cuando la
+estas se solapan.
+
 Esta política de acceso se ha aplicado modificando la entrada de configuración
 `olcDatabase={1}mdb,cn=config` mediante el comando `ldapmodify`. El archivo
 `permissions.ldif` contiene las instrucciones para modificar la configuración,
@@ -292,10 +351,28 @@ entradas de control de acceso se han añadido como adiciones al atributo
 `olcAccess`, reemplazando a todas las anteriores y preservando el orden
 necesario.
 
-Para traducir la tabla en entradas de configuración de acceso, primero se ha
-definido la regla menos específica. A continuación se han añadido las reglas
-más específicas, incluyendo las especificaciones de la regla genérica cuando la
-estas se solapan.
+#### Aplicación automática <!-- markdownlint-disable-line MD024 -->
+
+Para aplicar al servidor la configuración definida existe un *target* en el
+[`Makefile`](Makefile):
+
+```sh
+make permissions
+```
+
+Este *target* automatiza la aplicación manual descrita en la sección siguiente
+y registra este hecho, así como la fecha de última actualización, para poder
+evitar repetir las operaciones cuando se requiera el *target* pero esté ya
+aplicada la configuración más reciente. Además, depende de `base`, por lo que
+se asegura de que el árbol LDAP está creado antes de aplicar la configuración.
+
+#### Aplicación manual <!-- markdownlint-disable-line MD024 -->
+
+Para actualizar la configuración se usa el comando `ldapmodify`:
+
+```sh
+sudo ldapmodify -WY EXTERNAL -f updates/permissions.ldif
+```
 
 ### Desafíos notables
 
@@ -383,8 +460,22 @@ probar el acceso al atributo `mail` de un mentor, y se ha usado Starlord para
 la prueba.
 
 El principal ejecutable para estos tests es
-[`tests/test-permissions.sh`](tests/test-permissions.sh). Este script ejecuta
+[`test/test-permissions.sh`](test/test-permissions.sh). Este script ejecuta
 todos los tests definidos, dando información sobre el resultado de cada uno.
+
+#### Integración con `make` <!-- markdownlint-disable-line MD024 -->
+
+Para ejecutar los tests de permisos, se ha definido un *target* en el
+[`Makefile`](Makefile), incluído en el *target* `test`:
+
+```sh
+make test-permissions
+```
+
+Este *target* depende de `permissions` y de `passwords` (definido en la sección
+siguiente), por lo que se asegura de que la configuración de acceso y las
+contraseñas están actualizadas antes de ejecutar los tests. Requiere que las
+contraseñas de los usuarios estén definidas en el directorio `test/passwords`.
 
 ### Autenticación automática
 
@@ -395,10 +486,10 @@ especificado por la opción `-p` o `--passwords` del script (`./passwords` por
 defecto). Este fichero debe contener únicamente la contraseña del usuario,
 **sin nueva línea adicional al final**[^1]. Los ficheros de contraseñas
 requeridos para los tests, a excepción del del administrador, se han incluido
-en el directorio [`tests/passwords`](tests/passwords).
+en el directorio [`test/passwords`](test/passwords).
 
 Para evitar inconsistencias, se ha creado un script de Bash
-[`tests/set-passwords.sh`](tests/set-passwords.sh) que establece las
+[`test/set-passwords.sh`](test/set-passwords.sh) que establece las
 contraseñas de los usuarios si encuentra un fichero con su nombre en el
 directorio definido por la opción `-p` o `--passwords` (`./passwords` por
 defecto). Este script depende de la existencia del directorio y de un fichero
@@ -410,6 +501,20 @@ elevados. **Este fichero no se incluye en el repositorio**
     comandos como `echo -n` o `printf`, o bien usar un editor de texto que
     permita guardar el archivo sin saltos de línea. En Vim, esto se puede
     conseguir usando `:set nofixeol | set noeol`.
+
+#### Integración con `make` <!-- markdownlint-disable-line MD024 -->
+
+Para gestionar mejor el proceso de establecimiento de contraseñas, se ha
+definido un *target* en el [`Makefile`](Makefile):
+
+```sh
+make passwords
+```
+
+Este *target* depende de `base`, por lo que se asegura de que el árbol LDAP
+está creado antes de establecer las contraseñas. Obtiene las contraseñas del
+directorio `test/passwords`, comprobando si se han cambiado desde la última
+aplicación.
 
 ### Demostración
 
