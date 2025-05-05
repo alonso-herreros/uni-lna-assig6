@@ -243,6 +243,26 @@ telephoneNumber: +1-555-1976
 employeeNumber: 0003
 ```
 
+#### Aplicación automática
+
+Para añadir todas las entradas al árbol existe un *target* en el
+[`Makefile`](Makefile):
+
+```sh
+make base
+```
+
+Este *target* automatiza la aplicación manual descrita en la sección siguiente
+y la registra en el sistema de construcción.
+
+#### Aplicación manual
+
+Para añadir entradas al árbol LDAP se usa el comando `ldapadd`:
+
+```sh
+ldapadd -xWD 'cn=admin,dc=marvel,dc=com' -f entries/base.ldif
+```
+
 ## Ejercicio 2: control de acceso
 
 ### Definición de la política de acceso
