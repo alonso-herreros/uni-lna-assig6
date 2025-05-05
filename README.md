@@ -317,6 +317,11 @@ Se ha seguido la sintaxis de configuración de acceso descrita en el manual de
 [OpenLDAP v2.5][openldap-v2.5-AC] (versión instalada en la máquina virtual) y
 en la página del manual `slapd.access(5)`.
 
+Para traducir la tabla en entradas de configuración de acceso, primero se ha
+definido la regla menos específica. A continuación se han añadido las reglas
+más específicas, incluyendo las especificaciones de la regla genérica cuando la
+estas se solapan.
+
 Esta política de acceso se ha aplicado modificando la entrada de configuración
 `olcDatabase={1}mdb,cn=config` mediante el comando `ldapmodify`. El archivo
 `permissions.ldif` contiene las instrucciones para modificar la configuración,
@@ -326,10 +331,28 @@ entradas de control de acceso se han añadido como adiciones al atributo
 `olcAccess`, reemplazando a todas las anteriores y preservando el orden
 necesario.
 
-Para traducir la tabla en entradas de configuración de acceso, primero se ha
-definido la regla menos específica. A continuación se han añadido las reglas
-más específicas, incluyendo las especificaciones de la regla genérica cuando la
-estas se solapan.
+#### Aplicación automática
+
+Para aplicar al servidor la configuración definida existe un *target* en el
+[`Makefile`](Makefile):
+
+```sh
+make permissions
+```
+
+Este *target* automatiza la aplicación manual descrita en la sección siguiente
+y registra este hecho, así como la fecha de última actualización, para poder
+evitar repetir las operaciones cuando se requiera el *target* pero esté ya
+aplicada la configuración más reciente. Además, depende de `base`, por lo que
+se asegura de que el árbol LDAP está creado antes de aplicar la configuración.
+
+#### Aplicación manual
+
+Para actualizar la configuración se usa el comando `ldapmodify`:
+
+```sh
+sudo ldapmodify -WY EXTERNAL -f updates/permissions.ldif
+```
 
 ### Desafíos notables
 
