@@ -1,8 +1,0 @@
-dn: cn={4}marvel,cn=schema,cn=config
-changetype: modify
-add: olcObjectClasses
-olcObjectClasses: ( 2.999.0493990.3 NAME 'marvelMentor'
-    DESC 'Marvel Mentor (Marvel LDAP assignment, Linux Networks Administration course 2024-2025)'
-    SUP marvelPerson STRUCTURAL
-    MUST ( employeeNumber )
-    )
