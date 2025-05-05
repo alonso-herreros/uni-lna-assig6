@@ -443,6 +443,20 @@ El principal ejecutable para estos tests es
 [`tests/test-permissions.sh`](tests/test-permissions.sh). Este script ejecuta
 todos los tests definidos, dando información sobre el resultado de cada uno.
 
+#### Integración con `make` <!-- markdownlint-disable-line MD024 -->
+
+Para ejecutar los tests de permisos, se ha definido un *target* en el
+[`Makefile`](Makefile), incluído en el *target* `test`:
+
+```sh
+make test-permissions
+```
+
+Este *target* depende de `permissions` y de `passwords` (definido en la sección
+siguiente), por lo que se asegura de que la configuración de acceso y las
+contraseñas están actualizadas antes de ejecutar los tests. Requiere que las
+contraseñas de los usuarios estén definidas en el directorio `tests/passwords`.
+
 ### Autenticación automática
 
 Los tests de permisos dependen de la autenticación como varios usuarios. Para
