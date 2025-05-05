@@ -704,6 +704,42 @@ telephoneNumber: +1-555-3000
 [...]
 ```
 
+## Ejercicio 4: Mejoras
+
+Además de las ampliaciones propuestas en el enunciado, que son continuaciones
+de los ejercicios anteriores, se han incluido varias mejoras que afectan al
+sistema entero.
+
+### Mejora sistémica: Construcción con `make`
+
+Durante el desarrollo del control de acceso, se empezó a usar `make` para
+automatizar la aplicación de los cambios y los tests, incluyendo varios
+*targets*:
+
+* `base`: La población del árbol LDAP.
+* `permissions`: La aplicación de la configuración de acceso.
+* `passwords`: El establecimiento de las contraseñas definidas
+* `test` y `test-permissions`: La ejecución de los tests.
+* `clean`: El borrado de entradas del árbol LDAP.
+
+Más adelante se integró la aplicación de los *schemas* en el sistema, con
+capacidad de ampliación, bajo el *target* `schema`.
+
+El uso de `make` aplicado a cada sección está documentado brevemente en la
+sección correspondiente.
+
+#### Detalles técnicos
+
+El `Makefile` está diseñado de tal manera que se registren los cambios
+aplicados mediante archivos vacíos en el directorio `build`, que funcionan como
+marcadores para detectar si hay cambios en los archivos fuente que haya que
+aplicar.
+
+Además, hay implementado un sistema que guarda la contraseña del administrador
+una sola vez en un archivo temporal seguro (pero no encriptado) y la reutiliza
+para todas las operaciones en una misma llamada a `make`, eliminando el archivo
+al terminar o si hay un error o interrupción.
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
