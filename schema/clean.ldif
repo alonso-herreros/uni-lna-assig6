@@ -1,0 +1,8 @@
+dn: cn={4}marvel,cn=schema,cn=config
+changetype: modify
+delete: olcObjectClasses
+
+dn: cn={4}marvel,cn=schema,cn=config
+changetype: modify
+delete: olcAttributeTypes
+
