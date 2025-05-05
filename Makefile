@@ -66,7 +66,7 @@ ${MARKER_DIR}/schema/%/base: schema/%.ldif \
 # Tree base
 ${BASE_MARKER}: entries/base.ldif ${SCHEMA_MARKER} \
 		| ${PASSWDFILE} ${MARKER_DIR}
-	sudo ldapadd -xWD ${ADMIN} -y ${PASSWDFILE} -f $<
+	ldapadd -xWD ${ADMIN} -y ${PASSWDFILE} -f $<
 	@touch $@
 
 #Permissions
