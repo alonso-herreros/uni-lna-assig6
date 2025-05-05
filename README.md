@@ -710,7 +710,18 @@ Además de las ampliaciones propuestas en el enunciado, que son continuaciones
 de los ejercicios anteriores, se han incluido varias mejoras que afectan al
 sistema entero.
 
-### Mejora sistémica: Construcción con `make`
+### Schemas personalizados
+
+Aunque no se requiere en el enunciado, las especificaciones de los distintos
+tipos de entradas encajan bien con el uso de *schemas* personalizados. Con este
+enfoque, las especificaciones se imponen estrictamente, además de facilitar la
+lectura y la interpretación de los datos. Estos *schemas* están detallados en
+las secciones correspondientes:
+
+* Los *schemas* relacionados con los requerimientos del ejercicio 1 están en el
+  apartado [Definición de clases](#definición-de-clases)
+
+### Construcción con `make`
 
 Durante el desarrollo del control de acceso, se empezó a usar `make` para
 automatizar la aplicación de los cambios y los tests, incluyendo varios
