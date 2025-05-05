@@ -440,7 +440,7 @@ probar el acceso al atributo `mail` de un mentor, y se ha usado Starlord para
 la prueba.
 
 El principal ejecutable para estos tests es
-[`tests/test-permissions.sh`](tests/test-permissions.sh). Este script ejecuta
+[`test/test-permissions.sh`](test/test-permissions.sh). Este script ejecuta
 todos los tests definidos, dando información sobre el resultado de cada uno.
 
 #### Integración con `make` <!-- markdownlint-disable-line MD024 -->
@@ -455,7 +455,7 @@ make test-permissions
 Este *target* depende de `permissions` y de `passwords` (definido en la sección
 siguiente), por lo que se asegura de que la configuración de acceso y las
 contraseñas están actualizadas antes de ejecutar los tests. Requiere que las
-contraseñas de los usuarios estén definidas en el directorio `tests/passwords`.
+contraseñas de los usuarios estén definidas en el directorio `test/passwords`.
 
 ### Autenticación automática
 
@@ -466,10 +466,10 @@ especificado por la opción `-p` o `--passwords` del script (`./passwords` por
 defecto). Este fichero debe contener únicamente la contraseña del usuario,
 **sin nueva línea adicional al final**[^1]. Los ficheros de contraseñas
 requeridos para los tests, a excepción del del administrador, se han incluido
-en el directorio [`tests/passwords`](tests/passwords).
+en el directorio [`test/passwords`](test/passwords).
 
 Para evitar inconsistencias, se ha creado un script de Bash
-[`tests/set-passwords.sh`](tests/set-passwords.sh) que establece las
+[`test/set-passwords.sh`](test/set-passwords.sh) que establece las
 contraseñas de los usuarios si encuentra un fichero con su nombre en el
 directorio definido por la opción `-p` o `--passwords` (`./passwords` por
 defecto). Este script depende de la existencia del directorio y de un fichero
