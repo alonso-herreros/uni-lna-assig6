@@ -36,6 +36,9 @@ sn: Xavier
 mail: profesorx@mentores.marvel.com
 telephoneNumber: +1-555-0001
 employeeNumber: 0001
+species: Mutante
+snapped: FALSE
+quote: Class is now in session! Tardiness will be punished!
 
 dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -46,6 +49,11 @@ sn: Fury
 mail: nickfury@mentores.marvel.com
 telephoneNumber: +1-555-1963
 employeeNumber: 0002
+species: Humano
+snapped: TRUE
+quote: I'm here to talk to you about the Avenger Initiative
+quote: I'm about five seconds from complicating that wall with some ugly-ass
+  Skrull brains.
 
 dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -56,7 +64,9 @@ sn: Quill
 mail: starlord@mentores.marvel.com
 telephoneNumber: +1-555-1976
 employeeNumber: 0003
-
+species: Humano-Spartoi
+snapped: TRUE
+quote: I'm not from Earth, I'm from Missouri
 
 # ==== Héroes ====
 
@@ -75,6 +85,8 @@ telephoneNumber: +1-555-1001
 manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 roomNumber: 101
 title: Arma X
+species: Mutante
+quote: What's a Magneto?
 
 dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -87,6 +99,8 @@ telephoneNumber: +1-555-1002
 manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 roomNumber: 102
 title: Líder
+species: Mutante
+quote: I want this thing off my lawn
 
 dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -99,6 +113,9 @@ telephoneNumber: +1-555-1003
 manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 roomNumber: 103
 title: Manipuladora del Clima
+species: Mutante
+quote: Do you know what happens to a toad when it's struck by lightning? The
+  same thing that happens to everything else.
 
 dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -111,6 +128,8 @@ telephoneNumber: +1-555-1004
 manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 roomNumber: 104
 title: Psíquica / Segunda al Mando
+species: Mutante
+quote: If there's two of them, I quit.
 
 # ---- Vengadores ----
 
@@ -125,6 +144,11 @@ telephoneNumber: +1-555-3000
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 201
 title: Líder e Ingeniero
+species: Humano
+snapped: FALSE
+quote: It would be irresponsible not to drink.
+quote: They say the best weapon is one you never have to fire. I respectfully
+  disagree. I prefer the weapon you only have to fire once.
 
 dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -137,6 +161,9 @@ telephoneNumber: +1-555-2002
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 202
 title: Capitán
+species: Humano
+snapped: FALSE
+quote: I can do this all day
 
 dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -149,6 +176,12 @@ telephoneNumber: +1-555-2003
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 203
 title: Dios
+species: Asgardiano
+snapped: FALSE
+quote: You turned me into a frog!
+quote: This is a friend of mine, Tree
+quote: Get help!
+quote: And he was like "byah! It's me!" and he stabbed me.
 
 dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -161,6 +194,10 @@ telephoneNumber: +1-555-2004
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 204
 title: Científico
+species: Humano
+snapped: FALSE
+quote: Hulk have ten more minutes of fart jokes
+quote: Hulk wants beans!
 
 dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -173,6 +210,10 @@ telephoneNumber: +1-555-2005
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 205
 title: Espía y Asesina
+species: Humana
+snapped: FALSE
+quote: I don't know how you snuck into S.H.I.E.L.D.'s top-secret carrier,
+  buster... But I know how you're going out.
 
 dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -185,6 +226,10 @@ telephoneNumber: +1-555-2006
 manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 roomNumber: 206
 title: Francotirador
+species: Humano
+snapped: FALSE
+quote: Did I do a good job?
+quote: Lucky, stop eating the russian.
 
 # ---- Guardianes de la Galaxia ----
 
@@ -199,6 +244,9 @@ telephoneNumber: +1-555-3001
 manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
 roomNumber: 301
 title: Asesina
+species: Zehoberei
+quote: Angela, will you marry me?
+quote: I am going to die surrounded by the biggest idiots in the galaxy.
 
 dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -211,6 +259,10 @@ telephoneNumber: +1-555-89P13
 manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
 roomNumber: 302
 title: Guardián del Cuadrante Keystone
+species: Mapache
+snapped: FALSE
+quote: Dude, they were really easy to steal.
+quote: That's the plan? We're gonna hit him with a brick?
 
 dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -223,6 +275,9 @@ telephoneNumber: +1-555-3003
 manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
 roomNumber: 303
 title: Árbol
+species: Flora colossus
+snapped: TRUE
+quote: I am Groot
 
 dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
@@ -235,3 +290,8 @@ telephoneNumber: +1-555-3004
 manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
 roomNumber: 304
 title: El Destructor
+species: Humano mutante
+snapped: TRUE
+quote: I'll do you one better, why is Gamora?
+quote: I have famously huge turds.
+quote: I have sensitive nipples.
