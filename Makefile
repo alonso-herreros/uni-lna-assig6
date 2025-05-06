@@ -105,6 +105,6 @@ ${MARKER_DIR}:
 
 # Clean
 clean: | ${PASSWDFILE}
-	-ldapmodify -xD "${ADMIN}" -y "${PASSWDFILE}" -f updates/icoe-nuke.ldif
-	-sudo ldapmodify -Y EXTERNAL -y "${PASSWDFILE}" -f schema/clean.ldif
+	-ldapmodify -xD "${ADMIN}" -y "${PASSWDFILE}" -cf updates/icoe-nuke.ldif
+	-sudo ldapmodify -Y EXTERNAL -y "${PASSWDFILE}" -cf schema/clean.ldif
 	rm -rf ${BUILD_DIR}
