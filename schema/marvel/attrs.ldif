@@ -1,11 +1,12 @@
 dn: cn={4}marvel,cn=schema,cn=config
 changetype: modify
 replace: olcAttributeTypes
+#
+# ==== Character metadata ====
 # see 1.3.6.1.4.1.1466.115.121.1.24
 olcAttributeTypes: ( 2.999.0493990.101 NAME 'firstAppearance'
   DESC 'Date or year of first appearance ever of a Marvel character'
-  EQUALITY caseIgnoreMatch
-  SUBSTR caseIgnoreSubstringsMatch
-  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{32}
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
   )
-
