@@ -1,0 +1,33 @@
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: X-Men
+inComic: Uncanny X-Men
+inComic: New Mutants
+inComic: New X-Men
+inComic: Excalibur
+inComic: X-Men: Legacy
+inComic: X-Force
+inComic: X-Men Unlimited Infinity Comic
+inComic: X-Men First Class
+inComic: Wolverine
+inComic: X-Factor
+inComic: X-Men: The Hidden Years
+inComic: Professor Xavier and the X-Men
+inComic: Cable
+inComic: Astonishing X-Men
+inComic: Immortal X-Men
+inComic: Avengers
+inComic: Mystique
+inComic: X-Men Unlimited
+inComic: Marvel Super Heroes Secret Wars
+inComic: Marauders
+inComic: Fantastic Four

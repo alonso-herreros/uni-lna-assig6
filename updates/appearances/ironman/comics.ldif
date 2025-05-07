@@ -1,0 +1,66 @@
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Iron Man
+inComic: Avengers
+inComic: Invincible Iron Man
+inComic: Captain America
+inComic: New Avengers
+inComic: Fantastic Four
+inComic: Tales of Suspense
+inComic: Amazing Spider-Man
+inComic: Thor
+inComic: West Coast Avengers
+inComic: Incredible Hulk
+inComic: Captain Marvel
+inComic: Avengers West Coast
+inComic: Black Panther
+inComic: Daredevil
+inComic: Avengers Unlimited Infinity Comic
+inComic: Marvel Comics Presents
+inComic: Force Works
+inComic: Avengers: Electric Rain
+inComic: Hulk
+inComic: Tony Stark: Iron Man
+inComic: Thunderbolts
+inComic: Mighty Avengers
+inComic: Avengers Annual
+inComic: Marvel Team-Up
+inComic: Iron Man Annual
+inComic: Nova
+inComic: Ms. Marvel
+inComic: Eternals
+inComic: Avengers Assemble
+inComic: All-New, All-Different Avengers
+inComic: Uncanny X-Men
+inComic: Unbeatable Squirrel Girl
+inComic: Iron Man: Fatal Frontier Infinite Comic
+inComic: Avengers vs. X-Men
+inComic: X-Men
+inComic: Uncanny Avengers
+inComic: Secret Invasion
+inComic: Original Sin
+inComic: Moon Knight
+inComic: Defenders
+inComic: Avengers / Invaders
+inComic: Wolverine
+inComic: She-Hulk
+inComic: New Warriors
+inComic: Marvel Knights: Spider-Man
+inComic: Iron Man: Legacy
+inComic: Guardians of the Galaxy
+inComic: Young Avengers
+inComic: The Order
+inComic: The Marvels
+inComic: Sentry
+inComic: Deadpool
+inComic: Black Widow
+inComic: Avengers: The Initiative

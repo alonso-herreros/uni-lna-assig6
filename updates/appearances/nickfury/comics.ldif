@@ -1,0 +1,30 @@
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Captain America
+inComic: Sgt. Fury
+inComic: Nick Fury, Agent of S.H.I.E.L.D.
+inComic: Strange Tales
+inComic: Iron Man
+inComic: Secret Warriors
+inComic: Avengers
+inComic: Fantastic Four
+inComic: Wolverine
+inComic: Incredible Hulk
+inComic: Hulk Comic (UK)
+inComic: Daredevil
+inComic: Nick Fury, Agent of SHIELD
+inComic: Deathlok
+inComic: New Avengers
+inComic: Marvel Team-Up
+inComic: Marvel Comics Presents
+inComic: Captain Britain
+inComic: Wolverine: Origins

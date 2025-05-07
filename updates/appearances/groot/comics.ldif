@@ -1,0 +1,15 @@
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Guardians of the Galaxy
+inComic: Groot
+inComic: Rocket Raccoon and Groot
+inComic: Rocket Raccoon

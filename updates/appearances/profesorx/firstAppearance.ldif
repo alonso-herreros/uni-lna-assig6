@@ -1,0 +1,12 @@
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelCharacter
+-
+add: firstAppearance
+firstAppearance: 0000010100Z
+
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+changetype: modify
+replace: firstAppearance
+firstAppearance: 1963070200Z

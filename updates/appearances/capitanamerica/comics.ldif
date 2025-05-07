@@ -1,0 +1,64 @@
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Captain America
+inComic: Avengers
+inComic: Amazing Spider-Man
+inComic: Invaders
+inComic: Iron Man
+inComic: New Avengers
+inComic: Captain America Comics
+inComic: Fantastic Four
+inComic: Tales of Suspense
+inComic: Deadpool
+inComic: Daredevil
+inComic: Black Panther
+inComic: Uncanny Avengers
+inComic: Thunderbolts
+inComic: Captain Marvel
+inComic: Secret Avengers
+inComic: Incredible Hulk
+inComic: Captain America: Sentinel of Liberty
+inComic: Avengers Unlimited Infinity Comic
+inComic: Thor
+inComic: Avengers Assemble
+inComic: Avengers Annual
+inComic: Marvel Team-Up
+inComic: Uncanny X-Men
+inComic: Avengers: Electric Rain
+inComic: All Winners Comics
+inComic: Venom
+inComic: Hulk
+inComic: Young Avengers
+inComic: Marvel Comics Presents
+inComic: Defenders
+inComic: Captain America and the Falcon
+inComic: Avengers: Forever
+inComic: Captain America Annual
+inComic: Avengers West Coast
+inComic: X-Men
+inComic: Wolverine
+inComic: She-Hulk
+inComic: Quasar
+inComic: Mighty Thor
+inComic: Marvel Super Heroes Secret Wars
+inComic: Invincible Iron Man
+inComic: Captain Britain
+inComic: Avengers vs. X-Men
+inComic: Avengers / Invaders
+inComic: U.S.A. Comics
+inComic: Superior Spider-Man
+inComic: Spectacular Spider-Man
+inComic: Marvel Two-In-One
+inComic: Marvel Knights: Spider-Man
+inComic: Marvel Fanfare
+inComic: A + X
+inComic: All-New Invaders

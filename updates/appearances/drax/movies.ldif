@@ -1,0 +1,17 @@
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelMovieCharacter
+-
+add: inMovie
+inMovie: DUMMY
+
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inMovie
+inMovie: Guardians of the Galaxy (2014)
+inMovie: Guardians of the Galaxy Vol. 2 (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Avengers: Endgame (2019)
+inMovie: Thor: Love and Thunder (2022)
+inMovie: Guardians of the Galaxy Vol. 3 (2023)

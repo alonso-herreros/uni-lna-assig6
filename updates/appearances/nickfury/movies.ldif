@@ -1,0 +1,23 @@
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelMovieCharacter
+-
+add: inMovie
+inMovie: DUMMY
+
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+changetype: modify
+replace: inMovie
+inMovie: Iron Man (2008)
+inMovie: Iron Man 2 (2010)
+inMovie: Thor (2011)
+inMovie: Captain America: The First Avenger (2011)
+inMovie: The Avengers (2012)
+inMovie: Captain America: The Winter Soldier (2014)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Captain Marvel (2019)
+inMovie: Avengers: Endgame (2019)
+inMovie: Spider-Man: Far From Home (2019)
+inMovie: The Marvels (2023)
