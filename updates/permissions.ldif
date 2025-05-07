@@ -5,6 +5,10 @@ replace: olcAccess
 # ---- Passwords ----
 olcAccess: to attrs=userPassword by self write by anonymous auth by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
+# ---- Out of character ----
+olcAccess: to attrs=firstAppearance,inMovie,inComic
+  by dn="cn=admin,dc=marvel,dc=com" write
+  by * none
 # ---- Mentor-specific ----
 # Avengers' room numbers (write by Nick Fury)
 olcAccess: to
