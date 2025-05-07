@@ -836,6 +836,17 @@ Los atributos relacionados con las apariciones de los personajes en cómics y
 películas se han definido en el directorio `updates/appearances/`, para separar
 estos datos del resto.
 
+### Ampliación de los permisos
+
+#### Nuevos atributos
+
+Se han creado nuevas reglas de acceso específicas a los atributos creados en el
+apartado anterior:
+
+* Nadie salvo el administrador, ni siquiera el propio personaje, puede leer los
+  atributos *fuera de personaje*, es decir, los que son externos al universo
+  Marvel: `firstAppearance`, `inComic`, `inMovie`.
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
