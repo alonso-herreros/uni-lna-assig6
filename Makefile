@@ -135,7 +135,7 @@ ${PASSWORDS_MARKER}: ${TEST_DIR}/passwords/* ${BASE_MARKER} \
 
 
 # ---- Test recipe ----
-test-permissions: base permissions passwords
+test-permissions: base appearances permissions passwords
 	test/test-permissions.sh -p "${TEST_DIR}/passwords"
 
 
