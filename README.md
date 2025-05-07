@@ -704,6 +704,74 @@ telephoneNumber: +1-555-3000
 [...]
 ```
 
+## Ejercicio 4: Mejoras
+
+### Ampliación del árbol
+
+Para dar variedad al ejercicio más allá de añadir entradas o datos adicionales,
+se ha ampliado la información requerida por las especificaciones con
+**atributos personalizados** de distintos tipos.
+
+Estos atributos se han añadido al *schema* introducido anteriormente añadiendo
+`olcAttributeTypes` a la entrada de configuración correspondiente. Están
+definidos en el archivo
+[`schema/marvel/attributes.ldif`](schema/marvel/attributes.ldif), y su
+aplicación está integrada en el *target* `schema` del `Makefile`.
+
+#### Nuevos atributos
+
+Los atributos definidos son los siguientes
+
+* `species` (Texto) \
+  Ya que los personajes de Marvel no son todos humanos, se usará este atributo
+  para describir su especie.
+
+* `snapped` (Booleano: `TRUE` | `FALSE`) \
+  Este atributo contiene `TRUE` si el personaje fue víctima del chasquido de
+  Thanos (Avengers: Infinity War). Se aplica a muchos personajes, pero no a
+  todos
+
+* `quote` (Texto) \
+  Este atributo está pensado para guardar frases y citas memorables de un
+  personaje. Puede aparecer varias veces.
+
+* `firstAppearance` (Formato de Tiempo Generalizado:
+  `<YYYY><MM><DD><HH>[mm][ss][.fff]<Z>`) \
+  Este atributo servirá para almacenar la fecha de primera aparición de un
+  personaje (primer cómic o película en la que salió)
+
+* `comic`, `inComic`, `movie`, `inMovie` (Texto) \
+  `comic` y `movie` son simplemente títulos de una película, sin más
+  implicaciones, mientras que `inComic` e `inMovie` implican que el personaje
+  al que corresponde la entrada LDAP apareció en el cómic o en la película
+  indicada. Lo normal es que estos atributos tengan varios valores, pero no
+  necesariamente son una lista exhaustiva de todas las apariciones de un
+  personaje (de hecho, debido a la gran cantidad de material, normalmente
+  contendrán solo algunos valores importantes)
+
+#### Nuevas clases
+
+Para que las entradas del árbol puedan tener estos atributos, se han creado
+nuevas clases y se han ampliado algunas ya existentes.
+
+Se ha actualizado la clase `marvelPerson` para requerir la especie (`species`)
+del personaje en cuestión, además de aceptar opcionalmente los atributos
+`snapped` y `quote`.
+
+Se han creado nuevas clases de tipo **auxiliar**. Esto es necesario para que
+puedan coexistir sin problemas con el resto de clases, que son
+**estructurales**.
+
+* `marvelCharacter` amplía un personaje de Marvel. La diferencia con
+  `marvelPerson` es que esta clase se centra en *metadatos*, o datos sobre el
+  personaje visto desde el mundo real. Como atributo obligatorio tiene
+  `firstAppearance`.
+
+* `marvelComicCharacter` y `marvelMovieCharacter` son sub-clases de
+  `marvelCharacter`, y representan respectivamente personajes que aparecen en
+  cómics y en películas. Como atributos obligatorios tienen, respectivamente,
+  `inComic` e `inMovie`.
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
