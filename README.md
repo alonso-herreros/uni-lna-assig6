@@ -1,5 +1,5 @@
 ---
-title: Administración de Redes Linux - Entregable 6: LDAP II
+title: "Administración de Redes Linux - Entregable 6: LDAP II"
 ---
 
 ## Administración de Redes Linux
