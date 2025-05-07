@@ -706,6 +706,54 @@ telephoneNumber: +1-555-3000
 
 ## Ejercicio 4: Mejoras
 
+Además de las ampliaciones propuestas en el enunciado, que son continuaciones
+de los ejercicios anteriores, se han incluido varias mejoras que afectan al
+sistema entero.
+
+### Schemas personalizados
+
+Aunque no se requiere en el enunciado, las especificaciones de los distintos
+tipos de entradas encajan bien con el uso de *schemas* personalizados. Con este
+enfoque, las especificaciones se imponen estrictamente, además de facilitar la
+lectura y la interpretación de los datos. Estos *schemas* están detallados en
+las secciones correspondientes:
+
+* Los *schemas* relacionados con los requerimientos del ejercicio 1 están en el
+  apartado [Definición de clases](#definición-de-clases)
+* Los *schemas* añadidos como mejoras al realizar el ejercicio 4 están en los
+  apartados [Nuevos atributos](#nuevos-atributos) y [Nuevas
+  clases](#nuevas-clases)
+
+### Construcción con `make`
+
+Durante el desarrollo del control de acceso, se empezó a usar `make` para
+automatizar la aplicación de los cambios y los tests, incluyendo varios
+*targets*:
+
+* `base`: La población del árbol LDAP.
+* `permissions`: La aplicación de la configuración de acceso.
+* `passwords`: El establecimiento de las contraseñas definidas
+* `test` y `test-permissions`: La ejecución de los tests.
+* `clean`: El borrado de entradas del árbol LDAP.
+
+Más adelante se integró la aplicación de los *schemas* en el sistema, con
+capacidad de ampliación, bajo el *target* `schema`.
+
+El uso de `make` aplicado a cada sección está documentado brevemente en la
+sección correspondiente.
+
+#### Detalles técnicos
+
+El `Makefile` está diseñado de tal manera que se registren los cambios
+aplicados mediante archivos vacíos en el directorio `build`, que funcionan como
+marcadores para detectar si hay cambios en los archivos fuente que haya que
+aplicar.
+
+Además, hay implementado un sistema que guarda la contraseña del administrador
+una sola vez en un archivo temporal seguro (pero no encriptado) y la reutiliza
+para todas las operaciones en una misma llamada a `make`, eliminando el archivo
+al terminar o si hay un error o interrupción.
+
 ### Ampliación del árbol
 
 Para dar variedad al ejercicio más allá de añadir entradas o datos adicionales,
