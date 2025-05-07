@@ -772,6 +772,22 @@ puedan coexistir sin problemas con el resto de clases, que son
   cómics y en películas. Como atributos obligatorios tienen, respectivamente,
   `inComic` e `inMovie`.
 
+#### Aplicación de las clases actualizadas
+
+Los atributos añadidos a la clase `marvelPerson` (`species`, `snapped`,
+`quote`) se han añadido directamente en el fichero original `base.ldif`, que
+crea el árbol desde cero. Para aplicar los cambios basta con hacer `make clean
+base`, lo cual limpiará todos los datos y creará el árbol de nuevo con datos
+actualizados.
+
+A los personajes a los que no aplica `snapped` no se les ha añadido el atributo.
+
+Las frases del atributo `quote` se han puesto en inglés, el idioma original.
+
+Los atributos relacionados con las apariciones de los personajes en cómics y
+películas se han definido en el directorio `updates/appearances/`, para separar
+estos datos del resto.
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
