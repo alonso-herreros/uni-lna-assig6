@@ -1,0 +1,35 @@
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Avengers
+inComic: Thunderbolts
+inComic: New Avengers
+inComic: West Coast Avengers
+inComic: Secret Avengers
+inComic: Captain America
+inComic: Hawkeye
+inComic: Avengers West Coast
+inComic: Iron Man
+inComic: Amazing Spider-Man
+inComic: Avengers Assemble
+inComic: Solo Avengers
+inComic: Avengers Academy
+inComic: Black Widow
+inComic: Avengers Spotlight
+inComic: Incredible Hulk
+inComic: Fantastic Four
+inComic: Tales of Suspense
+inComic: Marvel Super Heroes Secret Wars
+inComic: Avengers: Forever
+inComic: Avengers vs. X-Men
+inComic: All-New Hawkeye
+inComic: Avengers No Road Home
+inComic: Avengers Annual

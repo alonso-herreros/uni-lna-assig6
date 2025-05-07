@@ -1,0 +1,31 @@
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: X-Men
+inComic: Uncanny X-Men
+inComic: X-Factor
+inComic: All-New X-Men
+inComic: Wolverine
+inComic: X-Men: Blue
+inComic: New X-Men
+inComic: Cable
+inComic: X-Men First Class
+inComic: X-Men: The Hidden Years
+inComic: X-Force
+inComic: X-Men Unlimited Infinity Comic
+inComic: Professor Xavier and the X-Men
+inComic: Extraordinary X-Men
+inComic: X-Men Unlimited
+inComic: Jean Grey
+inComic: Avengers
+inComic: X-Men: Red
+inComic: Fantastic Four
+inComic: Phoenix

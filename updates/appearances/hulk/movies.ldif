@@ -1,0 +1,20 @@
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelMovieCharacter
+-
+add: inMovie
+inMovie: DUMMY
+
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inMovie
+inMovie: The Incredible Hulk (2008)
+inMovie: The Avengers (2012)
+inMovie: Iron Man 3 (2013)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Thor: Ragnarok (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Captain Marvel (2019)
+inMovie: Avengers: Endgame (2019)
+inMovie: Shang-Chi and the Legend of the Ten Rings (2021)

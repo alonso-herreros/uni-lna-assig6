@@ -1,0 +1,20 @@
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelMovieCharacter
+-
+add: inMovie
+inMovie: DUMMY
+
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inMovie
+inMovie: Iron Man 2 (2010)
+inMovie: The Avengers (2012)
+inMovie: Captain America: The Winter Soldier (2014)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Captain America: Civil War (2016)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Captain Marvel (2019)
+inMovie: Avengers: Endgame (2019)
+inMovie: Black Widow (2021)

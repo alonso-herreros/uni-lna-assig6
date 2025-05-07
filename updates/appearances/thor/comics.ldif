@@ -1,0 +1,42 @@
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Thor
+inComic: Avengers
+inComic: Mighty Thor
+inComic: Journey Into Mystery
+inComic: Captain America
+inComic: Fantastic Four
+inComic: Amazing Spider-Man
+inComic: Alligator Loki Infinity Comic
+inComic: Incredible Hulk
+inComic: Thor: God of Thunder
+inComic: Captain Marvel
+inComic: Iron Man
+inComic: Immortal Thor
+inComic: Thor Annual
+inComic: Avengers Assemble
+inComic: Avengers Annual
+inComic: Uncanny Avengers
+inComic: New Avengers
+inComic: Black Panther
+inComic: Avengers Unlimited Infinity Comic
+inComic: Original Sin
+inComic: Thor: Son of Asgard
+inComic: Marvel Super Heroes Secret Wars
+inComic: Deadpool
+inComic: Thunderstrike
+inComic: Thunderbolts
+inComic: Hulk
+inComic: Avengers vs. X-Men
+inComic: Marvel Team-Up
+inComic: Invincible Iron Man
+inComic: Loki

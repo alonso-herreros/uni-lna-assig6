@@ -1,0 +1,20 @@
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelMovieCharacter
+-
+add: inMovie
+inMovie: DUMMY
+
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inMovie
+inMovie: X-Men (2000)
+inMovie: X2: X-Men United (2003)
+inMovie: X-Men: The Last Stand (2006)
+inMovie: X-Men Origins: Wolverine (2009)
+inMovie: The Wolverine (2013)
+inMovie: X-Men: Days of Future Past (2014)
+inMovie: Logan (2017)
+inMovie: Deadpool 2 (2018)
+inMovie: Deadpool & Wolverine (2024)

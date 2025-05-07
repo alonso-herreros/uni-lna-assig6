@@ -1,0 +1,16 @@
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Guardians of the Galaxy
+inComic: Warlock and the Infinity Watch
+inComic: Captain Marvel
+inComic: Silver Surfer
+inComic: Drax

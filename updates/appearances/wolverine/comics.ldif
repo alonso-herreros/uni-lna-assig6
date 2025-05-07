@@ -1,0 +1,62 @@
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Wolverine
+inComic: Uncanny X-Men
+inComic: X-Men
+inComic: Marvel Comics Presents
+inComic: X-Force
+inComic: New Avengers
+inComic: Astonishing X-Men
+inComic: Avengers
+inComic: Wolverine: Origins
+inComic: Wolverine & the X-Men
+inComic: New X-Men
+inComic: Uncanny X-Force
+inComic: Amazing Spider-Man
+inComic: X-Men: Legacy
+inComic: Fantastic Four
+inComic: Alpha Flight
+inComic: X-Men Unlimited
+inComic: X-Factor
+inComic: Wolverine: First Class
+inComic: Deadpool
+inComic: Savage Wolverine
+inComic: Marvel Team-Up
+inComic: X-Men Unlimited Infinity Comic
+inComic: New Mutants
+inComic: Incredible Hulk
+inComic: Classic X-Men
+inComic: X-Treme X-Men
+inComic: Uncanny Avengers
+inComic: Nightcrawler
+inComic: X-Men Annual
+inComic: Wolverine Weapon X
+inComic: All-New X-Men
+inComic: Wolverine: Japan's Most Wanted: Infinite Comic
+inComic: Savage Avengers
+inComic: Punisher
+inComic: Captain America
+inComic: Cable
+inComic: Avengers vs. X-Men
+inComic: Wolverine: The Best There Is
+inComic: Ghost Rider
+inComic: Amazing X-Men
+inComic: Weapon X
+inComic: Storm
+inComic: Marvel Super Heroes Secret Wars
+inComic: Black Panther
+inComic: Avengers / Invaders
+inComic: X-23
+inComic: Venom
+inComic: Life of Wolverine Infinity Comic
+inComic: Daredevil
+inComic: Avengers Assemble

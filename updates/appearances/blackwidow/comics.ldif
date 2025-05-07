@@ -1,0 +1,32 @@
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Avengers
+inComic: Daredevil
+inComic: Black Widow
+inComic: Captain America
+inComic: Secret Avengers
+inComic: Iron Man
+inComic: Marvel Knights
+inComic: Thunderbolts
+inComic: Avengers Assemble
+inComic: Winter Soldier
+inComic: Punisher
+inComic: Champions
+inComic: New Avengers
+inComic: Mighty Avengers
+inComic: Amazing Spider-Man
+inComic: Avengers: Electric Rain
+inComic: Avengers vs. X-Men
+inComic: Tales of Suspense
+inComic: Secret Invasion
+inComic: Marvel Comics Presents
+inComic: Fantastic Four

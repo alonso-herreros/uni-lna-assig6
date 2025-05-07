@@ -1,0 +1,39 @@
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Uncanny X-Men
+inComic: X-Men
+inComic: Black Panther
+inComic: X-Treme X-Men
+inComic: Wolverine
+inComic: X-Men: Gold
+inComic: Storm
+inComic: Wolverine & the X-Men
+inComic: X-Men: Red
+inComic: Fantastic Four
+inComic: X-Force
+inComic: New Mutants
+inComic: Extraordinary X-Men
+inComic: Astonishing X-Men
+inComic: Avengers
+inComic: Nightcrawler
+inComic: Marauders
+inComic: Amazing X-Men
+inComic: Cable
+inComic: All-New X-Men
+inComic: X-Men: Legacy
+inComic: X-Men Annual
+inComic: Uncanny X-Force
+inComic: Classic X-Men
+inComic: X-Men Unlimited
+inComic: X-Factor
+inComic: Marvel Super Heroes Secret Wars
+inComic: Immortal X-Men

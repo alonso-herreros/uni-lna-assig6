@@ -1,11 +1,52 @@
 dn: cn={4}marvel,cn=schema,cn=config
 changetype: modify
 replace: olcAttributeTypes
+# ==== Attributes not necessarily restricted to Marvel ====
+olcAttributeTypes: ( 2.999.0493990.901 NAME 'comic'
+  DESC 'Comic title'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{128}
+  )
+olcAttributeTypes: ( 2.999.0493990.902 NAME 'movie'
+  DESC 'Movie title'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{128}
+  )
+#
+# ==== Character metadata ====
 # see 1.3.6.1.4.1.1466.115.121.1.24
 olcAttributeTypes: ( 2.999.0493990.101 NAME 'firstAppearance'
   DESC 'Date or year of first appearance ever of a Marvel character'
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+  )
+olcAttributeTypes: ( 2.999.0493990.102 NAME 'inComic'
+  DESC 'Comic in which a character appears'
+  SUP comic
+  )
+olcAttributeTypes: ( 2.999.0493990.103 NAME 'inMovie'
+  DESC 'Movie in which a character appears'
+  SUP movie
+  )
+#
+# ==== Character in-universe data ====
+olcAttributeTypes: ( 2.999.0493990.131 NAME 'species'
+  DESC 'Simple species name of a Marvel character'
   EQUALITY caseIgnoreMatch
   SUBSTR caseIgnoreSubstringsMatch
   SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{32}
   )
-
+olcAttributeTypes: ( 2.999.0493990.135 NAME 'quote'
+  DESC 'A memorable quote'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256}
+  )
+olcAttributeTypes: ( 2.999.0493990.141 NAME 'snapped'
+  DESC 'Whether or not a Marvel character was affected by Thanos\27 Snap'
+  EQUALITY booleanMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.7
+  )

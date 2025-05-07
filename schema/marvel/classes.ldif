@@ -4,7 +4,8 @@ replace: olcObjectClasses
 olcObjectClasses: ( 2.999.0493990.1 NAME 'marvelPerson'
     DESC 'Person class for the Marvel LDAP assignment for Linux Networks Administration (2024-2025)'
     SUP inetOrgPerson STRUCTURAL
-    MUST ( mail $ telephoneNumber )
+    MUST ( mail $ telephoneNumber $ species )
+    MAY ( quote $ snapped )
     )
 #
 olcObjectClasses: ( 2.999.0493990.2 NAME 'marvelHero'
@@ -12,16 +13,24 @@ olcObjectClasses: ( 2.999.0493990.2 NAME 'marvelHero'
     SUP marvelPerson STRUCTURAL
     MUST ( manager $ roomNumber $ title )
     )
-#
 olcObjectClasses: ( 2.999.0493990.3 NAME 'marvelMentor'
     DESC 'Marvel Mentor (Marvel LDAP assignment, Linux Networks Administration course 2024-2025)'
     SUP marvelPerson STRUCTURAL
     MUST ( employeeNumber )
     )
 #
-olcObjectClasses: ( 2.999.0493990.4 NAME 'marvelPersonExt'
-  DESC 'Extended Person class for the Marvel LDAP assignment. See parent.'
-  SUP marvelPerson STRUCTURAL
+olcObjectClasses: ( 2.999.0493990.4 NAME 'marvelCharacter'
+  DESC 'Marvel character with out-of-character info'
+  SUP top AUXILIARY
   MUST ( firstAppearance )
   )
-
+olcObjectClasses: ( 2.999.0493990.5 NAME 'marvelComicCharacter'
+  DESC 'Marvel character which appears in a comic'
+  SUP marvelCharacter AUXILIARY
+  MUST ( inComic )
+  )
+olcObjectClasses: ( 2.999.0493990.6 NAME 'marvelMovieCharacter'
+  DESC 'Marvel character which appears in a movie'
+  SUP marvelCharacter AUXILIARY
+  MUST ( inMovie )
+  )

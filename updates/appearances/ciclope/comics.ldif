@@ -1,0 +1,41 @@
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: X-Men
+inComic: Uncanny X-Men
+inComic: X-Factor
+inComic: New X-Men
+inComic: Astonishing X-Men
+inComic: All-New X-Men
+inComic: X-Men First Class
+inComic: Cable
+inComic: Wolverine
+inComic: X-Men: Blue
+inComic: X-Force
+inComic: X-Men: Legacy
+inComic: Avengers
+inComic: X-Men Unlimited
+inComic: X-Men: The Hidden Years
+inComic: Champions
+inComic: Amazing Spider-Man
+inComic: Wolverine & the X-Men
+inComic: Professor Xavier and the X-Men
+inComic: Cyclops
+inComic: New Mutants
+inComic: Classic X-Men
+inComic: Avengers vs. X-Men
+inComic: Young X-Men
+inComic: Marvel Super Heroes Secret Wars
+inComic: Marvel Comics Presents
+inComic: X-Men Unlimited Infinity Comic
+inComic: Fantastic Four
+inComic: X-Men: Phoenix - Warsong
+inComic: Wolverine: Origins

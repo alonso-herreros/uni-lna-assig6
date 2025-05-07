@@ -720,6 +720,9 @@ las secciones correspondientes:
 
 * Los *schemas* relacionados con los requerimientos del ejercicio 1 están en el
   apartado [Definición de clases](#definición-de-clases)
+* Los *schemas* añadidos como mejoras al realizar el ejercicio 4 están en los
+  apartados [Nuevos atributos](#nuevos-atributos) y [Nuevas
+  clases](#nuevas-clases)
 
 ### Construcción con `make`
 
@@ -750,6 +753,88 @@ Además, hay implementado un sistema que guarda la contraseña del administrador
 una sola vez en un archivo temporal seguro (pero no encriptado) y la reutiliza
 para todas las operaciones en una misma llamada a `make`, eliminando el archivo
 al terminar o si hay un error o interrupción.
+
+### Ampliación del árbol
+
+Para dar variedad al ejercicio más allá de añadir entradas o datos adicionales,
+se ha ampliado la información requerida por las especificaciones con
+**atributos personalizados** de distintos tipos.
+
+Estos atributos se han añadido al *schema* introducido anteriormente añadiendo
+`olcAttributeTypes` a la entrada de configuración correspondiente. Están
+definidos en el archivo
+[`schema/marvel/attributes.ldif`](schema/marvel/attributes.ldif), y su
+aplicación está integrada en el *target* `schema` del `Makefile`.
+
+#### Nuevos atributos
+
+Los atributos definidos son los siguientes
+
+* `species` (Texto) \
+  Ya que los personajes de Marvel no son todos humanos, se usará este atributo
+  para describir su especie.
+
+* `snapped` (Booleano: `TRUE` | `FALSE`) \
+  Este atributo contiene `TRUE` si el personaje fue víctima del chasquido de
+  Thanos (Avengers: Infinity War). Se aplica a muchos personajes, pero no a
+  todos
+
+* `quote` (Texto) \
+  Este atributo está pensado para guardar frases y citas memorables de un
+  personaje. Puede aparecer varias veces.
+
+* `firstAppearance` (Formato de Tiempo Generalizado:
+  `<YYYY><MM><DD><HH>[mm][ss][.fff]<Z>`) \
+  Este atributo servirá para almacenar la fecha de primera aparición de un
+  personaje (primer cómic o película en la que salió)
+
+* `comic`, `inComic`, `movie`, `inMovie` (Texto) \
+  `comic` y `movie` son simplemente títulos de una película, sin más
+  implicaciones, mientras que `inComic` e `inMovie` implican que el personaje
+  al que corresponde la entrada LDAP apareció en el cómic o en la película
+  indicada. Lo normal es que estos atributos tengan varios valores, pero no
+  necesariamente son una lista exhaustiva de todas las apariciones de un
+  personaje (de hecho, debido a la gran cantidad de material, normalmente
+  contendrán solo algunos valores importantes)
+
+#### Nuevas clases
+
+Para que las entradas del árbol puedan tener estos atributos, se han creado
+nuevas clases y se han ampliado algunas ya existentes.
+
+Se ha actualizado la clase `marvelPerson` para requerir la especie (`species`)
+del personaje en cuestión, además de aceptar opcionalmente los atributos
+`snapped` y `quote`.
+
+Se han creado nuevas clases de tipo **auxiliar**. Esto es necesario para que
+puedan coexistir sin problemas con el resto de clases, que son
+**estructurales**.
+
+* `marvelCharacter` amplía un personaje de Marvel. La diferencia con
+  `marvelPerson` es que esta clase se centra en *metadatos*, o datos sobre el
+  personaje visto desde el mundo real. Como atributo obligatorio tiene
+  `firstAppearance`.
+
+* `marvelComicCharacter` y `marvelMovieCharacter` son sub-clases de
+  `marvelCharacter`, y representan respectivamente personajes que aparecen en
+  cómics y en películas. Como atributos obligatorios tienen, respectivamente,
+  `inComic` e `inMovie`.
+
+#### Aplicación de las clases actualizadas
+
+Los atributos añadidos a la clase `marvelPerson` (`species`, `snapped`,
+`quote`) se han añadido directamente en el fichero original `base.ldif`, que
+crea el árbol desde cero. Para aplicar los cambios basta con hacer `make clean
+base`, lo cual limpiará todos los datos y creará el árbol de nuevo con datos
+actualizados.
+
+A los personajes a los que no aplica `snapped` no se les ha añadido el atributo.
+
+Las frases del atributo `quote` se han puesto en inglés, el idioma original.
+
+Los atributos relacionados con las apariciones de los personajes en cómics y
+películas se han definido en el directorio `updates/appearances/`, para separar
+estos datos del resto.
 
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee

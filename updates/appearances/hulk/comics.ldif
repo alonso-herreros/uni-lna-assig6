@@ -1,0 +1,36 @@
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+add: objectClass
+objectClass: marvelComicCharacter
+-
+add: inComic
+inComic: DUMMY
+
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+changetype: modify
+replace: inComic
+inComic: Incredible Hulk
+inComic: Defenders
+inComic: Avengers
+inComic: Hulk
+inComic: Immortal Hulk
+inComic: Tales to Astonish
+inComic: Fantastic Four
+inComic: Incredible Hulks
+inComic: Iron Man
+inComic: Hulk Comic (UK)
+inComic: Indestructible Hulk
+inComic: Hulk!
+inComic: Avengers: Electric Rain
+inComic: Avengers Assemble
+inComic: Incredible Hulk Annual
+inComic: Amazing Spider-Man
+inComic: Marvel Team-Up
+inComic: Marvel Comics Presents
+inComic: Captain America
+inComic: Marvel Super Heroes Secret Wars
+inComic: Original Sin
+inComic: New Avengers
+inComic: Captain Marvel
+inComic: Silver Surfer
+inComic: Avengers No Road Home
