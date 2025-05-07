@@ -31,7 +31,7 @@ dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelMentor
 uid: profesorx
-cn: Charles Xavier
+cn: Charles Francis Xavier
 sn: Xavier
 mail: profesorx@mentores.marvel.com
 telephoneNumber: +1-555-0001
@@ -44,7 +44,7 @@ dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelMentor
 uid: nickfury
-cn: Nick Fury
+cn: Nicholas Joseph Fury
 sn: Fury
 mail: nickfury@mentores.marvel.com
 telephoneNumber: +1-555-1963
@@ -59,7 +59,7 @@ dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelMentor
 uid: starlord
-cn: Peter Quill
+cn: Peter Jason Quill
 sn: Quill
 mail: starlord@mentores.marvel.com
 telephoneNumber: +1-555-1976
@@ -154,7 +154,7 @@ dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelHero
 uid: capitanamerica
-cn: Steve Rogers
+cn: Steven "Steve" Rogers
 sn: Rogers
 mail: capitanamerica@vengadores.marvel.com
 telephoneNumber: +1-555-2002
@@ -187,7 +187,7 @@ dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelHero
 uid: hulk
-cn: Bruce Banner
+cn: Robert Bruce Banner
 sn: Banner
 mail: hulk@vengadores.marvel.com
 telephoneNumber: +1-555-2004
@@ -203,7 +203,7 @@ dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelHero
 uid: blackwidow
-cn: Natasha Romanoff
+cn: Natalia Alianovna "Natasha" Romanova
 sn: Romanoff
 mail: blackwidow@vengadores.marvel.com
 telephoneNumber: +1-555-2005
@@ -219,7 +219,7 @@ dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelHero
 uid: hawkeye
-cn: Clint Barton
+cn: Clinton Francis "Clint" Barton
 sn: Barton
 mail: hawkeye@vengadores.marvel.com
 telephoneNumber: +1-555-2006
@@ -237,8 +237,8 @@ dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelHero
 uid: gamora
-cn: Gamora Zen-Whoberi
-sn: Zen-Whoberi
+cn: Gamora Zen-Whoberi Ben Titan
+sn: Zen-Whoberi Ben Titan
 mail: gamora@guardianes.marvel.com
 telephoneNumber: +1-555-3001
 manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
@@ -268,8 +268,8 @@ dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
 objectClass: marvelHero
 uid: groot
-cn: Groot
-sn: Groot
+cn: Groot XXCVII
+sn: (none)
 mail: groot@guardianes.marvel.com
 telephoneNumber: +1-555-3003
 manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
