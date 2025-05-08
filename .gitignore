@@ -1,2 +1,3 @@
 test/passwords/cn=admin,*
 build/
+out/
