@@ -2,7 +2,7 @@
 title: "Administración de Redes Linux - Entregable 6: LDAP II"
 ---
 
-## Administración de Redes Linux
+## Administración de Redes Linux <!-- omit in toc -->
 
 # Entregable 6: LDAP II
 
@@ -10,6 +10,29 @@ title: "Administración de Redes Linux - Entregable 6: LDAP II"
 [![CC BY-SA 4.0][shield-cc-by-sa]][cc-by-sa]
 [![GITT][shield-gitt]][gitt]
 [![Administración de Redes Linux][shield-lna]][lna]
+
+* [Introducción](#introducción)
+* [Configuración inicial](#configuración-inicial)
+* [Sistema de construcción](#sistema-de-construcción)
+    * [Uso](#uso)
+* [Ejercicio 1: creación del árbol](#ejercicio-1-creación-del-árbol)
+    * [Definición de clases](#definición-de-clases)
+    * [Definición de entradas en el árbol](#definición-de-entradas-en-el-árbol)
+* [Ejercicio 2: control de acceso](#ejercicio-2-control-de-acceso)
+    * [Definición de la política de acceso](#definición-de-la-política-de-acceso)
+    * [Implementación de la política de acceso](#implementación-de-la-política-de-acceso)
+    * [Desafíos notables](#desafíos-notables)
+* [Ejercicio 3: Comprobaciones](#ejercicio-3-comprobaciones)
+    * [Automatización](#automatización)
+    * [Autenticación automática](#autenticación-automática)
+    * [Demostración](#demostración)
+* [Ejercicio 4: Mejoras](#ejercicio-4-mejoras)
+    * [Schemas personalizados](#schemas-personalizados)
+    * [Construcción con `make`](#construcción-con-make)
+    * [Ampliación del árbol](#ampliación-del-árbol)
+    * [Ampliación de los permisos](#ampliación-de-los-permisos)
+
+---
 
 ## Introducción
 
