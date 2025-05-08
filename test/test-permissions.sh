@@ -42,6 +42,7 @@ WOLVERINE="uid=wolverine,$XMEN"
 CYCLOPS="uid=ciclope,$XMEN"
 
 IRONMAN="uid=ironman,$AVENGERS"
+THOR="uid=thor,$AVENGERS"
 HAWKEYE="uid=hawkeye,$AVENGERS"
 
 GROOT="uid=groot,$GUARDIANS"
@@ -63,11 +64,34 @@ DRAX="uid=drax,$GUARDIANS"
 # `Mentor de los X-Men`: `cn`
 # `Mentor de los Vengadores`: `cn`
 # `Mentor de los Guardianes`: `cn`
+# `Random user`: `firstAppearance`
+# `Random user`: `inMovie`
+# `Héroe de los X-Men`: `species`
+# `Héroe de los Vengadores`: `species`
+# `Héroe de los Guardianes`: `species`
+# `Mentor`: `species`
+# `Héroe de los X-Men`: `snapped` (UNDEFINED, SHOULD SKIP)
+# `Héroe de los Vengadores`: `snapped`
+# `Héroe de los Guardianes`: `snapped`
+# `Mentor de los X-Men`: `snapped`
+# `Mentor de los Vengadores`: `snapped`
+# `Mentor de los Guardianes`: `snapped`
+# `Héroe`: `quote`
+# `Mentor`: `quote`
+# `Groot`: `quote`
 
 WHAT_DNS=( "$CYCLOPS" "$HAWKEYE" "$DRAX" "$STARLORD" "$DRAX" \
-    "$CYCLOPS" "$HAWKEYE" "$DRAX" "$PROFESSORX" "$NICKFURY" "$STARLORD" )
+    "$CYCLOPS" "$HAWKEYE" "$DRAX" "$PROFESSORX" "$NICKFURY" "$STARLORD" \
+    "$STARLORD" "$DRAX" \
+    "$CYCLOPS" "$HAWKEYE" "$DRAX" "$STARLORD" \
+    "$CYCLOPS" "$HAWKEYE" "$DRAX" "$PROFESSORX" "$NICKFURY" "$STARLORD" \
+    "$HAWKEYE" "$NICKFURY" "$GROOT" )
 WHAT_ATTRS=( "userPassword" "roomNumber" "title" "mail" "telephoneNumber" \
-    "cn" "cn" "cn" "cn" "cn" "cn" )
+    "cn" "cn" "cn" "cn" "cn" "cn" \
+    "firstAppearance" "inMovie"
+    "species" "species" "species" "species" \
+    "snapped" "snapped" "snapped" "snapped" "snapped" "snapped" \
+    "quote" "quote" "quote" )
 
 # ---- Test abstraction ----
 function test_ldap_access_array() {
@@ -77,6 +101,11 @@ function test_ldap_access_array() {
     while [ -n "$1" ]; do case "$1" in
         -s | --self )
             self=1
+            shift;;
+        -S | --no-self )
+            # Skip checks if accessing = accessed
+            echo "no self"
+            self=-1
             shift;;
         -D | --as )
             as="$2"
@@ -88,7 +117,7 @@ function test_ldap_access_array() {
     esac; done
 
     # If 'as' wasn't set and not using self, assume it's the first arg
-    [ -z "$as" -a $self -eq 0 ] && as="$1" && shift
+    [ -z "$as" -a $self -ne 1 ] && as="$1" && shift
     local permissions=("$@")
 
     [ -n "$title" ] && echo "---- Testing $title ----"
@@ -100,6 +129,7 @@ function test_ldap_access_array() {
         local level="${permissions[$i]}"
         local to="${WHAT_DNS[$i]}"
         local attr="${WHAT_ATTRS[$i]}"
+        [ $self -eq -1 ] && [ "$as" == "$to" ] && continue
         [ $self -eq 1 ] && as="$to"
         _test_ldap_access "$level" -D "$as" -b "$to" -a "$attr"
         [ $? -ne 0 ] && ((fails++))
@@ -147,41 +177,34 @@ args "$@"
 # Test header
 echo "==== Testing collection: Permissions ===="
 
-# INFO: 'what' order
-# `Random user`: `userPassword`
-# `Vengadores`: `roomNumber`
-# `Guardianes`: `title`
-# `Mentores`: `mail`
-# `Héroes`: `mail`, `telephoneNumber`
-# `Héroe de los X-Men`: `cn`
-# `Héroe de los Vengadores`: `cn`
-# `Héroe de los Guardianes`: `cn`
-# `Mentor de los X-Men`: `cn`
-# `Mentor de los Vengadores`: `cn`
-# `Mentor de los Guardianes`: `cn`
-
 # --- Run tests ---
 # By self
 # WARNING: avoid testing special privileged users like Prof. X.
 test_ldap_access_array -t "Self Access" \
-    --self W R- R- R- R-  R- R- R-  R- R- R-
+    --self W R- R- R- R-  R- R- R-  R- R- R-  - - \
+    R- R- R-  R-   ? R- R-  R- R- R-   W W  W
 fails=$((fails + $?))
 
 # By admin
 test_ldap_access_array -t "Admin Write" \
-    "$ADMIN" W W W W W  W W W  W W W
+    "$ADMIN" W W W W W  W W W  W W W  W W \
+    W W W  W   ? W W  W W W   W W  W
 fails=$((fails + $?))
 
 # By Mentors
-test_ldap_access_array -t "Mentor Read 1" \
-    "$NICKFURY" - R R R- R-  R- R- R-  R- R- R-
-test_ldap_access_array -t "Mentor Read 2" \
-    "$STARLORD" - R R R- R-  R- R- R-  R- R- R-
+test_ldap_access_array -t "Mentor Read 1" -S \
+    "$NICKFURY" - R R R- R-  R- R- R-  R- R- R-  - - \
+    - R- -  R-   ? R- -  - - -   R- R-  -
+fails=$((fails + $?))
+test_ldap_access_array -t "Mentor Read 2" -S \
+    "$STARLORD" - R R R- R-  R- R- R-  R- R- R-  - - \
+    - - R-  R-   ? - R-  - - -   R- R-  R-
 fails=$((fails + $?))
 
 # By specific people
-test_ldap_access_array -t "Profesor X Write" \
-    "$PROFESSORX" - W W W W  W W W  W W W
+test_ldap_access_array -t "Profesor X" \
+    "$PROFESSORX" - W W W W  W W W  W W W  - - \
+    R- R- R-  R-   ? R- R-  R- R- R-   W W  -
 fails=$((fails + $?))
 
 test_ldap_access_array -t "Nick Fury write Room Number" \
@@ -193,25 +216,31 @@ test_ldap_access_array -t "Starlord write Title" \
 fails=$((fails + $?))
 
 # By heroes
-test_ldap_access_array -t "Hero read general 1" \
-    "$WOLVERINE" - - - R- R-  ? ? ?  ? ? ?
+test_ldap_access_array -t "X-Men read" \
+    "$WOLVERINE" - - - R- R-  ? ? ?  ? ? ?  - - \
+    R- - -  -   ? - -  R- - -   R- R-
 fails=$((fails + $?))
-test_ldap_access_array -t "Hero read general 2" \
-    "$IRONMAN" - - - R- R-  ? ? ?  ? ? ?
+test_ldap_access_array -t "Avengers read" \
+    "$IRONMAN" - - - R- R-  ? ? ?  ? ? ?  - - \
+    - R- -  -   ? R- -  - R- -   R- R-
 fails=$((fails + $?))
-test_ldap_access_array -t "Hero read general 3" \
-    "$GROOT" - - - R- R-  ? ? ?  ? ? ?
+test_ldap_access_array -t "Guardians read" \
+    "$GROOT" - - - R- R-  ? ? ?  ? ? ?  - - \
+    - - R-  -   ? - R-  - - R-   R- R-
 fails=$((fails + $?))
 
-# Between heroes in the same team, plus their mentors
-test_ldap_access_array -t "Hero read general" \
-    "$WOLVERINE" ? ? ? ? ?  R - -  R - -
+# Groot quote read test by heroes (by mentors was tested already)
+test_ldap_access_array -t "Groot quote deny 1" \
+    "$IRONMAN" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  -
 fails=$((fails + $?))
-test_ldap_access_array -t "Hero read general" \
-    "$IRONMAN" ? ? ? ? ?  - R -  - R -
+test_ldap_access_array -t "Groot quote deny 2" \
+    "$WOLVERINE" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  -
 fails=$((fails + $?))
-test_ldap_access_array -t "Hero read general" \
-    "$GROOT" ? ? ? ? ?  - - R  - - R
+test_ldap_access_array -t "Groot quote allow 1" \
+    "$DRAX" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  R-
+fails=$((fails + $?))
+test_ldap_access_array -t "Groot quote allow 2" \
+    "$THOR" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  R-
 fails=$((fails + $?))
 
 # Test report
