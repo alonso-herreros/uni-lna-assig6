@@ -847,6 +847,24 @@ apartado anterior:
   atributos *fuera de personaje*, es decir, los que son externos al universo
   Marvel: `firstAppearance`, `inComic`, `inMovie`.
 
+* Ningún usuario, ni siquiera el Profesor X, puede cambiar la especie
+  (`species`) ni si fueron afectados por el Chasquido de Thanos (`snapped`) de
+  ningún personaje.
+
+* Todos los usuarios pueden modificar sus frases (`quote`), y pueden ver las
+  de todos los demás.
+
+* Los mentores pueden ver la especie (`species`) y si fueron afectados por el
+  Chasquido (`snapped`) de los héroes a los que mentorizan y la especie
+  (`species`) de otros mentores.
+
+* Los héroes pueden ver la especie (`species`) y si fueron afectados por el
+  Chasquido (`snapped`) del resto de miembros de su equpio, y si fueron
+  afectados por el Chasquido (`snapped`) de sus mentores.
+
+* El Profesor X puede ver la especie (`species`) y si fue víctima del Chasquido
+  (`snapped`) de cualquier usuario. Además, puede cambiar sus frases (`quote`).
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
