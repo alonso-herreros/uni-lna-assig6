@@ -455,7 +455,7 @@ exclusiva, `W` para escritura, `-` para denegado.
 
 En las cabezas de fila y columna se describe el grupo de entradas que se
 pretende probar, seguido del ejemplar entre paréntesis y el atributo concreto a
-coninuación. Por ejemplo, `Mentor (Starlord): mail` indica que se pretende
+continuación. Por ejemplo, `Mentor (Starlord): mail` indica que se pretende
 probar el acceso al atributo `mail` de un mentor, y se ha usado Starlord para
 la prueba.
 
