@@ -278,6 +278,7 @@ title: Árbol
 species: Flora colossus
 snapped: TRUE
 quote: I am Groot
+quote: I love you guys
 
 dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
 objectClass: inetOrgPerson
