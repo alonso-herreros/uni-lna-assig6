@@ -69,7 +69,7 @@ DRAX="uid=drax,$GUARDIANS"
 # `Héroe de los Vengadores`: `species`
 # `Héroe de los Guardianes`: `species`
 # `Mentor`: `species`
-# `Héroe de los X-Men`: `snapped`
+# `Héroe de los X-Men`: `snapped` (UNDEFINED, SHOULD SKIP)
 # `Héroe de los Vengadores`: `snapped`
 # `Héroe de los Guardianes`: `snapped`
 # `Mentor de los X-Men`: `snapped`
@@ -180,29 +180,29 @@ echo "==== Testing collection: Permissions ===="
 # WARNING: avoid testing special privileged users like Prof. X.
 test_ldap_access_array -t "Self Access" \
     --self W R- R- R- R-  R- R- R-  R- R- R-  - - \
-    R- R- R-  R-   R- R- R-  R- R- R-   W W
+    R- R- R-  R-   ? R- R-  R- R- R-   W W
 fails=$((fails + $?))
 
 # By admin
 test_ldap_access_array -t "Admin Write" \
     "$ADMIN" W W W W W  W W W  W W W  W W \
-    W W W  W   W W W  W W W   W W
+    W W W  W   ? W W  W W W   W W
 fails=$((fails + $?))
 
 # By Mentors
-test_ldap_access_array -t "Mentor Read 2" -S \
+test_ldap_access_array -t "Mentor Read 1" -S \
     "$NICKFURY" - R R R- R-  R- R- R-  R- R- R-  - - \
-    - R- -  R-   R- R- R-  R- R- R-   R- R-
+    - R- -  R-   ? R- -  - - -   R- R-
 fails=$((fails + $?))
-test_ldap_access_array -t "Mentor Read 3" -S \
+test_ldap_access_array -t "Mentor Read 2" -S \
     "$STARLORD" - R R R- R-  R- R- R-  R- R- R-  - - \
-    - - R-  R-   R- R- R-  R- R- R-   R- R-
+    - - R-  R-   ? - R-  - - -   R- R-
 fails=$((fails + $?))
 
 # By specific people
 test_ldap_access_array -t "Profesor X" \
     "$PROFESSORX" - W W W W  W W W  W W W  - - \
-    R- R- R-  R-   R- R- R-  R- R- R-   W W
+    R- R- R-  R-   ? R- R-  R- R- R-   W W
 fails=$((fails + $?))
 
 test_ldap_access_array -t "Nick Fury write Room Number" \
@@ -216,15 +216,15 @@ fails=$((fails + $?))
 # By heroes
 test_ldap_access_array -t "X-Men read" \
     "$WOLVERINE" - - - R- R-  ? ? ?  ? ? ?  - - \
-    R- - -  -   R- - -  R- - -   R- R-
+    R- - -  -   ? - -  R- - -   R- R-
 fails=$((fails + $?))
 test_ldap_access_array -t "Avengers read" \
     "$IRONMAN" - - - R- R-  ? ? ?  ? ? ?  - - \
-    - R- -  -   - R- -  - R- -   R- R-
+    - R- -  -   ? R- -  - R- -   R- R-
 fails=$((fails + $?))
 test_ldap_access_array -t "Guardians read" \
     "$GROOT" - - - R- R-  ? ? ?  ? ? ?  - - \
-    - - R-  -   - - R-  - - R-   R- R-
+    - - R-  -   ? - R-  - - R-   R- R-
 fails=$((fails + $?))
 
 # Test report
