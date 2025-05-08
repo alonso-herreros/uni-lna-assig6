@@ -865,6 +865,27 @@ apartado anterior:
 * El Profesor X puede ver la especie (`species`) y si fue víctima del Chasquido
   (`snapped`) de cualquier usuario. Además, puede cambiar sus frases (`quote`).
 
+#### Resumen de nueva política de acceso
+
+La siguiente tabla es un resumen de estas nuevas reglas, en el mismo formato
+que en la sección principal sobre permisos: las columnas son atributos, las
+filas son usuarios y las intersecciones indican el nivel de acceso que tiene el
+usuario sobre el atributo.
+
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable MD013 -->
+| What \ Who                          | admin | self | Prof. X | Mentores | Héroes del equipo | Héroes mentorizados | Mentor del héroe |
+| ----------                          | ----- | ---- | ------- | -------- | ----------------- | ------------------- | ---------------- |
+| `firstAppearance`                   | W     | -    | -       | -        | -                 | -                   | -                |
+| `inComic`                           | W     | -    | -       | -        | -                 | -                   | -                |
+| `inMovie`                           | W     | -    | -       | -        | -                 | -                   | -                |
+| `quote`                             | W     | W    | W       | R        | R                 | R                   | R                |
+| `Mentores`: `species`               | W     | R    | W       | R        | -                 | R                   | -                |
+| `Mentores`: `snapped`               | W     | R    | W       | -        | -                 | R                   | -                |
+| `Héroes`: `species`                 | W     | R    | W       | -        | R                 | -                   | -                |
+| `Héroes`: `snapped`                 | W     | R    | W       | -        | R                 | -                   | R                |
+<!-- markdownlint-restore -->
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
