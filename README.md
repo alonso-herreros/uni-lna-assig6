@@ -887,9 +887,9 @@ atributo.
 | `inComic`                           | W     | -    | -       | -        | -                 | -                   | -                |
 | `inMovie`                           | W     | -    | -       | -        | -                 | -                   | -                |
 | `quote`                             | W     | W    | W       | R        | R                 | R                   | R                |
-| `Mentores`: `species`               | W     | R    | W       | R        | -                 | R                   | -                |
+| `Mentores`: `species`               | W     | R    | W       | R        | -                 | -                   | -                |
 | `Mentores`: `snapped`               | W     | R    | W       | -        | -                 | R                   | -                |
-| `Héroes`: `species`                 | W     | R    | W       | -        | R                 | -                   | -                |
+| `Héroes`: `species`                 | W     | R    | W       | -        | R                 | -                   | R                |
 | `Héroes`: `snapped`                 | W     | R    | W       | -        | R                 | -                   | R                |
 <!-- markdownlint-restore -->
 
