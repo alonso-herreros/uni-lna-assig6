@@ -865,6 +865,12 @@ apartado anterior:
 * El Profesor X puede ver la especie (`species`) y si fue víctima del Chasquido
   (`snapped`) de cualquier usuario. Además, puede cambiar sus frases (`quote`).
 
+* Como Groot habla en otro idioma, sólo los personajes capaces de entenderlo
+  pueden leer sus frases (`quote`): Star-Lord, Thor, Rocket, Gamora, y Drax.
+  Esto también impide al Profesor X cambiar las frases de Groot.  Groot entiende
+  otros idiomas, por lo que es capaz de leer sin problema las frases del resto
+  de personajes.
+
 #### Resumen de nueva política de acceso
 
 La siguiente tabla es un resumen de estas nuevas reglas, en el mismo formato
