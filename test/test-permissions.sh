@@ -77,19 +77,20 @@ DRAX="uid=drax,$GUARDIANS"
 # `Mentor de los Guardianes`: `snapped`
 # `Héroe`: `quote`
 # `Mentor`: `quote`
+# `Groot`: `quote`
 
 WHAT_DNS=( "$CYCLOPS" "$HAWKEYE" "$DRAX" "$STARLORD" "$DRAX" \
     "$CYCLOPS" "$HAWKEYE" "$DRAX" "$PROFESSORX" "$NICKFURY" "$STARLORD" \
     "$STARLORD" "$DRAX" \
     "$CYCLOPS" "$HAWKEYE" "$DRAX" "$STARLORD" \
     "$CYCLOPS" "$HAWKEYE" "$DRAX" "$PROFESSORX" "$NICKFURY" "$STARLORD" \
-    "$HAWKEYE" "$NICKFURY" )
+    "$HAWKEYE" "$NICKFURY" "$GROOT" )
 WHAT_ATTRS=( "userPassword" "roomNumber" "title" "mail" "telephoneNumber" \
     "cn" "cn" "cn" "cn" "cn" "cn" \
     "firstAppearance" "inMovie"
     "species" "species" "species" "species" \
     "snapped" "snapped" "snapped" "snapped" "snapped" "snapped" \
-    "quote" "quote" )
+    "quote" "quote" "quote" )
 
 # ---- Test abstraction ----
 function test_ldap_access_array() {
@@ -180,29 +181,29 @@ echo "==== Testing collection: Permissions ===="
 # WARNING: avoid testing special privileged users like Prof. X.
 test_ldap_access_array -t "Self Access" \
     --self W R- R- R- R-  R- R- R-  R- R- R-  - - \
-    R- R- R-  R-   ? R- R-  R- R- R-   W W
+    R- R- R-  R-   ? R- R-  R- R- R-   W W  W
 fails=$((fails + $?))
 
 # By admin
 test_ldap_access_array -t "Admin Write" \
     "$ADMIN" W W W W W  W W W  W W W  W W \
-    W W W  W   ? W W  W W W   W W
+    W W W  W   ? W W  W W W   W W  W
 fails=$((fails + $?))
 
 # By Mentors
 test_ldap_access_array -t "Mentor Read 1" -S \
     "$NICKFURY" - R R R- R-  R- R- R-  R- R- R-  - - \
-    - R- -  R-   ? R- -  - - -   R- R-
+    - R- -  R-   ? R- -  - - -   R- R-  -
 fails=$((fails + $?))
 test_ldap_access_array -t "Mentor Read 2" -S \
     "$STARLORD" - R R R- R-  R- R- R-  R- R- R-  - - \
-    - - R-  R-   ? - R-  - - -   R- R-
+    - - R-  R-   ? - R-  - - -   R- R-  R-
 fails=$((fails + $?))
 
 # By specific people
 test_ldap_access_array -t "Profesor X" \
     "$PROFESSORX" - W W W W  W W W  W W W  - - \
-    R- R- R-  R-   ? R- R-  R- R- R-   W W
+    R- R- R-  R-   ? R- R-  R- R- R-   W W  -
 fails=$((fails + $?))
 
 test_ldap_access_array -t "Nick Fury write Room Number" \
@@ -225,6 +226,17 @@ fails=$((fails + $?))
 test_ldap_access_array -t "Guardians read" \
     "$GROOT" - - - R- R-  ? ? ?  ? ? ?  - - \
     - - R-  -   ? - R-  - - R-   R- R-
+fails=$((fails + $?))
+
+# Groot quote read test by heroes (by mentors was tested already)
+test_ldap_access_array -t "Groot quote deny 1" \
+    "$IRONMAN" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  -
+fails=$((fails + $?))
+test_ldap_access_array -t "Groot quote deny 2" \
+    "$WOLVERINE" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  -
+fails=$((fails + $?))
+test_ldap_access_array -t "Groot quote allow 1" \
+    "$DRAX" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  R-
 fails=$((fails + $?))
 
 # Test report
