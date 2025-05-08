@@ -867,9 +867,12 @@ apartado anterior:
 
 * Como Groot habla en otro idioma, sólo los personajes capaces de entenderlo
   pueden leer sus frases (`quote`): Star-Lord, Thor, Rocket, Gamora, y Drax.
-  Esto también impide al Profesor X cambiar las frases de Groot.  Groot entiende
-  otros idiomas, por lo que es capaz de leer sin problema las frases del resto
-  de personajes.
+  Groot entiende otros idiomas, por lo que es capaz de leer sin problema las
+  frases del resto de personajes. \
+  Aunque en el universo Marvel el Profesor X probablemente pudiera entender el
+  significado de las frases de Groot gracias a sus poderes telepáticos, en este
+  ejercicio se ha decidido que no puede leer ni cambiar sus frases para dar más
+  variedad a las políticas de acceso.
 
 #### Resumen de nueva política de acceso
 
