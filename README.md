@@ -873,10 +873,11 @@ apartado anterior:
 
 #### Resumen de nueva política de acceso
 
-La siguiente tabla es un resumen de estas nuevas reglas, en el mismo formato
-que en la sección principal sobre permisos: las columnas son atributos, las
-filas son usuarios y las intersecciones indican el nivel de acceso que tiene el
-usuario sobre el atributo.
+La siguiente tabla es un resumen de estas nuevas reglas (excepto la de las
+frases de Groot), en el mismo formato que en la sección principal sobre
+permisos: las columnas son atributos, las filas son usuarios y las
+intersecciones indican el nivel de acceso que tiene el usuario sobre el
+atributo.
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable MD013 -->
