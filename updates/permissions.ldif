@@ -10,6 +10,17 @@ olcAccess: to attrs=firstAppearance,inMovie,inComic
   by dn="cn=admin,dc=marvel,dc=com" write
   by * none
 # ---- Quotes ----
+# Only some can read groot's quotes
+olcAccess: to
+  dn="uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com"
+    attrs=quote
+  by self write
+  by dn="uid=starlord,ou=Mentores,dc=marvel,dc=com" read
+  by dn="uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com" read
+  by dn="uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com" read
+  by dn="uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com" read
+  by dn="uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com" read
+# Quote attribute for the rest
 olcAccess: to attrs=quote
   by self write
   by dn="uid=profesorx,ou=Mentores,dc=marvel,dc=com" write
