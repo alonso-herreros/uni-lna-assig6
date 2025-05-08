@@ -42,6 +42,7 @@ WOLVERINE="uid=wolverine,$XMEN"
 CYCLOPS="uid=ciclope,$XMEN"
 
 IRONMAN="uid=ironman,$AVENGERS"
+THOR="uid=thor,$AVENGERS"
 HAWKEYE="uid=hawkeye,$AVENGERS"
 
 GROOT="uid=groot,$GUARDIANS"
@@ -237,6 +238,9 @@ test_ldap_access_array -t "Groot quote deny 2" \
 fails=$((fails + $?))
 test_ldap_access_array -t "Groot quote allow 1" \
     "$DRAX" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  R-
+fails=$((fails + $?))
+test_ldap_access_array -t "Groot quote allow 2" \
+    "$THOR" ? ? ? ? ?  ? ? ?  ? ? ?  ? ?  ? ? ?  ?   ? ? ?  ? ? ?   ? ?  R-
 fails=$((fails + $?))
 
 # Test report
