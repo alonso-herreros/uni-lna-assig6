@@ -1,0 +1,152 @@
+# extended LDIF
+#
+# LDAPv3
+# base <dc=marvel,dc=com> (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# profesorx, Mentores, marvel.com
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+mail: profesorx@mentores.marvel.com
+quote: Class is now in session! Tardiness will be punished!
+
+# nickfury, Mentores, marvel.com
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+mail: nickfury@mentores.marvel.com
+quote: I'm here to talk to you about the Avenger Initiative
+quote: I'm about five seconds from complicating that wall with some ugly-ass S
+ krull brains.
+
+# starlord, Mentores, marvel.com
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+mail: starlord@mentores.marvel.com
+snapped: TRUE
+quote: I'm not from Earth, I'm from Missouri
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+quote: What's a Magneto?
+
+# ciclope, XMen, Equipos, marvel.com
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: ciclope@xmen.marvel.com
+telephoneNumber: +1-555-1002
+quote: I want this thing off my lawn
+
+# tormenta, XMen, Equipos, marvel.com
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: tormenta@xmen.marvel.com
+telephoneNumber: +1-555-1003
+quote: Do you know what happens to a toad when it's struck by lightning? The s
+ ame thing that happens to everything else.
+
+# jeangrey, XMen, Equipos, marvel.com
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: jeangrey@xmen.marvel.com
+telephoneNumber: +1-555-1004
+quote: If there's two of them, I quit.
+
+# ironman, Vengadores, Equipos, marvel.com
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: ironman@vengadores.marvel.com
+telephoneNumber: +1-555-3000
+quote: It would be irresponsible not to drink.
+quote: They say the best weapon is one you never have to fire. I respectfully 
+ disagree. I prefer the weapon you only have to fire once.
+
+# capitanamerica, Vengadores, Equipos, marvel.com
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: capitanamerica@vengadores.marvel.com
+telephoneNumber: +1-555-2002
+quote: I can do this all day
+
+# thor, Vengadores, Equipos, marvel.com
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: thor@vengadores.marvel.com
+telephoneNumber: +1-555-2003
+quote: You turned me into a frog!
+quote: This is a friend of mine, Tree
+quote: Get help!
+quote: And he was like "byah! It's me!" and he stabbed me.
+
+# hulk, Vengadores, Equipos, marvel.com
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: hulk@vengadores.marvel.com
+telephoneNumber: +1-555-2004
+quote: Hulk have ten more minutes of fart jokes
+quote: Hulk wants beans!
+
+# blackwidow, Vengadores, Equipos, marvel.com
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: blackwidow@vengadores.marvel.com
+telephoneNumber: +1-555-2005
+quote: I don't know how you snuck into S.H.I.E.L.D.'s top-secret carrier, bust
+ er... But I know how you're going out.
+
+# hawkeye, Vengadores, Equipos, marvel.com
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: hawkeye@vengadores.marvel.com
+telephoneNumber: +1-555-2006
+quote: Did I do a good job?
+quote: Lucky, stop eating the russian.
+
+# gamora, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+cn: Gamora Zen-Whoberi Ben Titan
+mail: gamora@guardianes.marvel.com
+telephoneNumber: +1-555-3001
+species: Zehoberei
+quote: Angela, will you marry me?
+quote: I am going to die surrounded by the biggest idiots in the galaxy.
+
+# rocket, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+cn: Rocket Raccoon
+mail: rocket@guardianes.marvel.com
+telephoneNumber: +1-555-89P13
+species: Mapache
+snapped: FALSE
+quote: Dude, they were really easy to steal.
+quote: That's the plan? We're gonna hit him with a brick?
+
+# groot, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+cn: Groot XXCVII
+mail: groot@guardianes.marvel.com
+telephoneNumber: +1-555-3003
+species: Flora colossus
+snapped: TRUE
+quote: I am Groot
+quote: I love you guys
+
+# drax, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: drax
+cn: Arthur Sampson Douglas
+sn: Douglas
+mail: drax@guardianes.marvel.com
+telephoneNumber: +1-555-3004
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 304
+title: El Destructor
+species: Humano mutante
+snapped: TRUE
+quote: I'll do you one better, why is Gamora?
+quote: I have famously huge turds.
+quote: I have sensitive nipples.
+userPassword:: e1NTSEF9dVNPZ1BJaHFZVjE4c0pEWE1MdysxREpCRzEyaDkxRGo=
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 18
+# numEntries: 17
