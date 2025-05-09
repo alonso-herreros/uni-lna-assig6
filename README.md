@@ -863,6 +863,15 @@ Los atributos relacionados con las apariciones de los personajes en cómics y
 películas se han definido en el directorio `updates/appearances/`, para separar
 estos datos del resto.
 
+La mayoría de datos añadidos se han obtenido de páginas web, como wikis y bases
+de datos de fans de Marvel, y pueden no ser correctos o no estar completos. Se
+han usado principalmente los siguientes sitios web:
+
+* [Marvel Database](https://marvel.fandom.com)
+* [Wikipedia](https://es.wikipedia.org)
+* [MCU Wiki](https://marvelcinematicuniverse.fandom.com)
+* [X-Men Movies Wiki](https://xmenmovies.fandom.com/)
+
 ### Ampliación de los permisos
 
 #### Nuevos atributos
