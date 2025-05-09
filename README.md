@@ -919,6 +919,14 @@ atributo.
 | `Héroes`: `snapped`   | W     | R    | R       | -        | R                 | -                   | R                |
 <!-- markdownlint-restore -->
 
+#### Comprobación de la nueva política de acceso
+
+Gracias al diseño de los tests de acceso que se hicieron en el ejercicio 3, ha
+sido fácil incluir nuevos casos de prueba. Se han integrado directamente en el
+script de permisos original
+([`test/test-permissions.sh`](test/test-permissions.sh)), por lo que se
+ejecutan con el *target* `test-permissions`.
+
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
 [shield-lna]:       https://img.shields.io/badge/Course-Linux_Networks_Administration-eee
