@@ -1,0 +1,361 @@
+# extended LDIF
+#
+# LDAPv3
+# base <dc=marvel,dc=com> (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# marvel.com
+dn: dc=marvel,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Marvel (Admin de Sistemas Linux)
+dc: marvel
+
+# Mentores, marvel.com
+dn: ou=Mentores,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Mentores
+
+# Equipos, marvel.com
+dn: ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Equipos
+
+# XMen, Equipos, marvel.com
+dn: ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: XMen
+
+# Vengadores, Equipos, marvel.com
+dn: ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Vengadores
+
+# GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: GuardianesDeLaGalaxia
+
+# profesorx, Mentores, marvel.com
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: profesorx
+cn: Charles Francis Xavier
+sn: Xavier
+mail: profesorx@mentores.marvel.com
+telephoneNumber: +1-555-0001
+employeeNumber: 0001
+species: Mutante
+quote: Class is now in session! Tardiness will be punished!
+
+# nickfury, Mentores, marvel.com
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: nickfury
+cn: Nicholas Joseph Fury
+sn: Fury
+mail: nickfury@mentores.marvel.com
+telephoneNumber: +1-555-1963
+employeeNumber: 0002
+species: Humano
+snapped: TRUE
+quote: I'm here to talk to you about the Avenger Initiative
+quote: I'm about five seconds from complicating that wall with some ugly-ass S
+ krull brains.
+userPassword:: e1NTSEF9QWtBbWNtM3JvNmZKVUdBcE1CbysxVU9IZlpNbkNtc1k=
+
+# starlord, Mentores, marvel.com
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: starlord
+cn: Peter Jason Quill
+sn: Quill
+mail: starlord@mentores.marvel.com
+telephoneNumber: +1-555-1976
+employeeNumber: 0003
+species: Humano-Spartoi
+quote: I'm not from Earth, I'm from Missouri
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: wolverine
+cn: James "Logan" Howlett
+sn: Howlett
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 101
+title: Arma X
+quote: What's a Magneto?
+
+# ciclope, XMen, Equipos, marvel.com
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: ciclope
+cn: Scott Summers
+sn: Summers
+mail: ciclope@xmen.marvel.com
+telephoneNumber: +1-555-1002
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 102
+title:: TMOtZGVy
+quote: I want this thing off my lawn
+
+# tormenta, XMen, Equipos, marvel.com
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: tormenta
+cn: Ororo Munroe
+sn: Munroe
+mail: tormenta@xmen.marvel.com
+telephoneNumber: +1-555-1003
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 103
+title: Manipuladora del Clima
+quote: Do you know what happens to a toad when it's struck by lightning? The s
+ ame thing that happens to everything else.
+
+# jeangrey, XMen, Equipos, marvel.com
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: jeangrey
+cn: Jean Elaine Grey-Summers
+sn: Grey-Summers
+mail: jeangrey@xmen.marvel.com
+telephoneNumber: +1-555-1004
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 104
+title:: UHPDrXF1aWNhIC8gU2VndW5kYSBhbCBNYW5kbw==
+quote: If there's two of them, I quit.
+
+# ironman, Vengadores, Equipos, marvel.com
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: ironman
+cn: Anthony Edward "Tony" Stark
+sn: Stark
+mail: ironman@vengadores.marvel.com
+telephoneNumber: +1-555-3000
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 201
+title:: TMOtZGVyIGUgSW5nZW5pZXJv
+species: Humano
+snapped: FALSE
+quote: It would be irresponsible not to drink.
+quote: They say the best weapon is one you never have to fire. I respectfully 
+ disagree. I prefer the weapon you only have to fire once.
+
+# capitanamerica, Vengadores, Equipos, marvel.com
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: capitanamerica
+cn: Steven "Steve" Rogers
+sn: Rogers
+mail: capitanamerica@vengadores.marvel.com
+telephoneNumber: +1-555-2002
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 202
+title:: Q2FwaXTDoW4=
+species: Humano
+snapped: FALSE
+quote: I can do this all day
+
+# thor, Vengadores, Equipos, marvel.com
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: thor
+cn: Thor Odinson
+sn: Odinson
+mail: thor@vengadores.marvel.com
+telephoneNumber: +1-555-2003
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 203
+title: Dios
+species: Asgardiano
+snapped: FALSE
+quote: You turned me into a frog!
+quote: This is a friend of mine, Tree
+quote: Get help!
+quote: And he was like "byah! It's me!" and he stabbed me.
+
+# hulk, Vengadores, Equipos, marvel.com
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: hulk
+cn: Robert Bruce Banner
+sn: Banner
+mail: hulk@vengadores.marvel.com
+telephoneNumber: +1-555-2004
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 204
+title:: Q2llbnTDrWZpY28=
+species: Humano
+snapped: FALSE
+quote: Hulk have ten more minutes of fart jokes
+quote: Hulk wants beans!
+
+# blackwidow, Vengadores, Equipos, marvel.com
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: blackwidow
+cn: Natalia Alianovna "Natasha" Romanova
+sn: Romanoff
+mail: blackwidow@vengadores.marvel.com
+telephoneNumber: +1-555-2005
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 205
+title:: RXNww61hIHkgQXNlc2luYQ==
+species: Humana
+snapped: FALSE
+quote: I don't know how you snuck into S.H.I.E.L.D.'s top-secret carrier, bust
+ er... But I know how you're going out.
+
+# hawkeye, Vengadores, Equipos, marvel.com
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: hawkeye
+cn: Clinton Francis "Clint" Barton
+sn: Barton
+mail: hawkeye@vengadores.marvel.com
+telephoneNumber: +1-555-2006
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 206
+title: Francotirador
+species: Humano
+snapped: FALSE
+quote: Did I do a good job?
+quote: Lucky, stop eating the russian.
+
+# gamora, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: gamora
+cn: Gamora Zen-Whoberi Ben Titan
+sn: Zen-Whoberi Ben Titan
+mail: gamora@guardianes.marvel.com
+telephoneNumber: +1-555-3001
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 301
+title:: TGEgbXVqZXIgbcOhcyBtb3J0w61mZXJhIGRlIHRvZGEgbGEgZ2FsYXhpYQ==
+quote: Angela, will you marry me?
+quote: I am going to die surrounded by the biggest idiots in the galaxy.
+
+# rocket, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: rocket
+cn: Rocket Raccoon
+sn: Raccoon
+mail: rocket@guardianes.marvel.com
+telephoneNumber: +1-555-89P13
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 302
+title:: R3VhcmRpw6FuIGRlbCBDdWFkcmFudGUgS2V5c3RvbmU=
+quote: Dude, they were really easy to steal.
+quote: That's the plan? We're gonna hit him with a brick?
+
+# groot, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: groot
+cn: Groot XXCVII
+sn: (none)
+mail: groot@guardianes.marvel.com
+telephoneNumber: +1-555-3003
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 303
+title:: w4FyYm9s
+
+# drax, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: drax
+cn: Arthur Sampson Douglas
+sn: Douglas
+mail: drax@guardianes.marvel.com
+telephoneNumber: +1-555-3004
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 304
+title: El Destructor
+quote: I'll do you one better, why is Gamora?
+quote: I have famously huge turds.
+quote: I have sensitive nipples.
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 24
+# numEntries: 23

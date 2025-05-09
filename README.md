@@ -31,6 +31,10 @@ title: "Administración de Redes Linux - Entregable 6: LDAP II"
     * [Construcción con `make`](#construcción-con-make)
     * [Ampliación del árbol](#ampliación-del-árbol)
     * [Ampliación de los permisos](#ampliación-de-los-permisos)
+* [Anexo A - Búsquedas completas](#anexo-a---búsquedas-completas)
+    * [Árbol completo (búsqueda desde el administrador)](#árbol-completo-búsqueda-desde-el-administrador)
+    * [Búsqueda desde Nick Fury](#búsqueda-desde-nick-fury)
+    * [Búsqueda desde Drax](#búsqueda-desde-drax)
 
 ---
 
@@ -935,6 +939,1475 @@ sido fácil incluir nuevos casos de prueba. Se han integrado directamente en el
 script de permisos original
 ([`test/test-permissions.sh`](test/test-permissions.sh)), por lo que se
 ejecutan con el *target* `test-permissions`.
+
+## Anexo A - Búsquedas completas
+
+En esta sección se muestran los resultados de varias búsquedas usando
+`ldapsearch` para facilitar la visualización del estado final del árbol LDAP y
+los permisos de lectura.
+
+### Árbol completo (búsqueda desde el administrador)
+
+| [logs/5-search-admin.ldif](logs/5-search-admin.ldif) |
+| -------------------------------------------------- |
+<!--- Full file -->
+```text
+# extended LDIF
+#
+# LDAPv3
+# base <dc=marvel,dc=com> (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# marvel.com
+dn: dc=marvel,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Marvel (Admin de Sistemas Linux)
+dc: marvel
+
+# Mentores, marvel.com
+dn: ou=Mentores,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Mentores
+
+# Equipos, marvel.com
+dn: ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Equipos
+
+# XMen, Equipos, marvel.com
+dn: ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: XMen
+
+# Vengadores, Equipos, marvel.com
+dn: ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Vengadores
+
+# GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: GuardianesDeLaGalaxia
+
+# profesorx, Mentores, marvel.com
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: profesorx
+cn: Charles Francis Xavier
+sn: Xavier
+mail: profesorx@mentores.marvel.com
+telephoneNumber: +1-555-0001
+employeeNumber: 0001
+species: Mutante
+snapped: FALSE
+quote: Class is now in session! Tardiness will be punished!
+firstAppearance: 1963070200Z
+inComic: X-Men
+inComic: Uncanny X-Men
+inComic: New Mutants
+inComic: New X-Men
+inComic: Excalibur
+inComic: X-Men: Legacy
+inComic: X-Force
+inComic: X-Men Unlimited Infinity Comic
+inComic: X-Men First Class
+inComic: Wolverine
+inComic: X-Factor
+inComic: X-Men: The Hidden Years
+inComic: Professor Xavier and the X-Men
+inComic: Cable
+inComic: Astonishing X-Men
+inComic: Immortal X-Men
+inComic: Avengers
+inComic: Mystique
+inComic: X-Men Unlimited
+inComic: Marvel Super Heroes Secret Wars
+inComic: Marauders
+inComic: Fantastic Four
+inMovie: X-Men (2000)
+inMovie: X2 (2003)
+inMovie: X-Men: The Last Stand (2006)
+inMovie: X-Men Origins: Wolverine (2009)
+inMovie: X-Men: First Class (2011)
+inMovie: The Wolverine (2013)
+inMovie: X-Men: Days of Future Past (2014)
+inMovie: X-Men: Apocalypse (2016)
+inMovie: Logan (2017)
+inMovie: Deadpool 2 (2018)
+inMovie: Dark Phoenix (2019)
+inMovie: Doctor Strange in the Multiverse of Madness (2022)
+
+# nickfury, Mentores, marvel.com
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: nickfury
+cn: Nicholas Joseph Fury
+sn: Fury
+mail: nickfury@mentores.marvel.com
+telephoneNumber: +1-555-1963
+employeeNumber: 0002
+species: Humano
+snapped: TRUE
+quote: I'm here to talk to you about the Avenger Initiative
+quote: I'm about five seconds from complicating that wall with some ugly-ass S
+ krull brains.
+firstAppearance: 1963030500Z
+inComic: Captain America
+inComic: Sgt. Fury
+inComic: Nick Fury, Agent of S.H.I.E.L.D.
+inComic: Strange Tales
+inComic: Iron Man
+inComic: Secret Warriors
+inComic: Avengers
+inComic: Fantastic Four
+inComic: Wolverine
+inComic: Incredible Hulk
+inComic: Hulk Comic (UK)
+inComic: Daredevil
+inComic: Nick Fury, Agent of SHIELD
+inComic: Deathlok
+inComic: New Avengers
+inComic: Marvel Team-Up
+inComic: Marvel Comics Presents
+inComic: Captain Britain
+inComic: Wolverine: Origins
+inMovie: Iron Man (2008)
+inMovie: Iron Man 2 (2010)
+inMovie: Thor (2011)
+inMovie: Captain America: The First Avenger (2011)
+inMovie: The Avengers (2012)
+inMovie: Captain America: The Winter Soldier (2014)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Captain Marvel (2019)
+inMovie: Avengers: Endgame (2019)
+inMovie: Spider-Man: Far From Home (2019)
+inMovie: The Marvels (2023)
+
+# starlord, Mentores, marvel.com
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: starlord
+cn: Peter Jason Quill
+sn: Quill
+mail: starlord@mentores.marvel.com
+telephoneNumber: +1-555-1976
+employeeNumber: 0003
+species: Humano-Spartoi
+snapped: TRUE
+quote: I'm not from Earth, I'm from Missouri
+firstAppearance: 1975101400Z
+inComic: Guardians of the Galaxy
+inComic: Star-Lord
+inComic: Legendary Star-Lord
+inComic: All-New Guardians of the Galaxy
+inMovie: Guardians of the Galaxy (2014)
+inMovie: Guardians of the Galaxy Vol. 2 (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Avengers: Endgame (2019)
+inMovie: Thor: Love and Thunder (2022)
+inMovie: Guardians of the Galaxy Vol. 3 (2023)
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: wolverine
+cn: James "Logan" Howlett
+sn: Howlett
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 101
+title: Arma X
+species: Mutante
+quote: What's a Magneto?
+firstAppearance: 1974070200Z
+inComic: Wolverine
+inComic: Uncanny X-Men
+inComic: X-Men
+inComic: Marvel Comics Presents
+inComic: X-Force
+inComic: New Avengers
+inComic: Astonishing X-Men
+inComic: Avengers
+inComic: Wolverine: Origins
+inComic: Wolverine & the X-Men
+inComic: New X-Men
+inComic: Uncanny X-Force
+inComic: Amazing Spider-Man
+inComic: X-Men: Legacy
+inComic: Fantastic Four
+inComic: Alpha Flight
+inComic: X-Men Unlimited
+inComic: X-Factor
+inComic: Wolverine: First Class
+inComic: Deadpool
+inComic: Savage Wolverine
+inComic: Marvel Team-Up
+inComic: X-Men Unlimited Infinity Comic
+inComic: New Mutants
+inComic: Incredible Hulk
+inComic: Classic X-Men
+inComic: X-Treme X-Men
+inComic: Uncanny Avengers
+inComic: Nightcrawler
+inComic: X-Men Annual
+inComic: Wolverine Weapon X
+inComic: All-New X-Men
+inComic: Wolverine: Japan's Most Wanted: Infinite Comic
+inComic: Savage Avengers
+inComic: Punisher
+inComic: Captain America
+inComic: Cable
+inComic: Avengers vs. X-Men
+inComic: Wolverine: The Best There Is
+inComic: Ghost Rider
+inComic: Amazing X-Men
+inComic: Weapon X
+inComic: Storm
+inComic: Marvel Super Heroes Secret Wars
+inComic: Black Panther
+inComic: Avengers / Invaders
+inComic: X-23
+inComic: Venom
+inComic: Life of Wolverine Infinity Comic
+inComic: Daredevil
+inComic: Avengers Assemble
+inMovie: X-Men (2000)
+inMovie: X2: X-Men United (2003)
+inMovie: X-Men: The Last Stand (2006)
+inMovie: X-Men Origins: Wolverine (2009)
+inMovie: The Wolverine (2013)
+inMovie: X-Men: Days of Future Past (2014)
+inMovie: Logan (2017)
+inMovie: Deadpool 2 (2018)
+inMovie: Deadpool & Wolverine (2024)
+
+# ciclope, XMen, Equipos, marvel.com
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: ciclope
+cn: Scott Summers
+sn: Summers
+mail: ciclope@xmen.marvel.com
+telephoneNumber: +1-555-1002
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 102
+title:: TMOtZGVy
+species: Mutante
+quote: I want this thing off my lawn
+firstAppearance: 1963070200Z
+inComic: X-Men
+inComic: Uncanny X-Men
+inComic: X-Factor
+inComic: New X-Men
+inComic: Astonishing X-Men
+inComic: All-New X-Men
+inComic: X-Men First Class
+inComic: Cable
+inComic: Wolverine
+inComic: X-Men: Blue
+inComic: X-Force
+inComic: X-Men: Legacy
+inComic: Avengers
+inComic: X-Men Unlimited
+inComic: X-Men: The Hidden Years
+inComic: Champions
+inComic: Amazing Spider-Man
+inComic: Wolverine & the X-Men
+inComic: Professor Xavier and the X-Men
+inComic: Cyclops
+inComic: New Mutants
+inComic: Classic X-Men
+inComic: Avengers vs. X-Men
+inComic: Young X-Men
+inComic: Marvel Super Heroes Secret Wars
+inComic: Marvel Comics Presents
+inComic: X-Men Unlimited Infinity Comic
+inComic: Fantastic Four
+inComic: X-Men: Phoenix - Warsong
+inComic: Wolverine: Origins
+inMovie: X-Men (2000)
+inMovie: X2: X-Men United (2003)
+inMovie: X-Men: The Last Stand (2006)
+inMovie: X-Men Origins: Wolverine (2009)
+inMovie: X-Men: Apocalypse (2016)
+inMovie: Dark Phoenix (2019)
+inMovie: Avengers: Doomsday (2026)
+
+# tormenta, XMen, Equipos, marvel.com
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: tormenta
+cn: Ororo Munroe
+sn: Munroe
+mail: tormenta@xmen.marvel.com
+telephoneNumber: +1-555-1003
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 103
+title: Manipuladora del Clima
+species: Mutante
+quote: Do you know what happens to a toad when it's struck by lightning? The s
+ ame thing that happens to everything else.
+firstAppearance: 1975040100Z
+inComic: Uncanny X-Men
+inComic: X-Men
+inComic: Black Panther
+inComic: X-Treme X-Men
+inComic: Wolverine
+inComic: X-Men: Gold
+inComic: Storm
+inComic: Wolverine & the X-Men
+inComic: X-Men: Red
+inComic: Fantastic Four
+inComic: X-Force
+inComic: New Mutants
+inComic: Extraordinary X-Men
+inComic: Astonishing X-Men
+inComic: Avengers
+inComic: Nightcrawler
+inComic: Marauders
+inComic: Amazing X-Men
+inComic: Cable
+inComic: All-New X-Men
+inComic: X-Men: Legacy
+inComic: X-Men Annual
+inComic: Uncanny X-Force
+inComic: Classic X-Men
+inComic: X-Men Unlimited
+inComic: X-Factor
+inComic: Marvel Super Heroes Secret Wars
+inComic: Immortal X-Men
+inMovie: X-Men (2000)
+inMovie: X2 (2003)
+inMovie: X-Men: The Last Stand (2006)
+inMovie: X-Men: Days of Future Past (2014)
+inMovie: X-Men: Apocalypse (2016)
+inMovie: Dark Phoenix (2019)
+
+# jeangrey, XMen, Equipos, marvel.com
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: jeangrey
+cn: Jean Elaine Grey-Summers
+sn: Grey-Summers
+mail: jeangrey@xmen.marvel.com
+telephoneNumber: +1-555-1004
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 104
+title:: UHPDrXF1aWNhIC8gU2VndW5kYSBhbCBNYW5kbw==
+species: Mutante
+quote: If there's two of them, I quit.
+firstAppearance: 1963070200Z
+inComic: X-Men
+inComic: Uncanny X-Men
+inComic: X-Factor
+inComic: All-New X-Men
+inComic: Wolverine
+inComic: X-Men: Blue
+inComic: New X-Men
+inComic: Cable
+inComic: X-Men First Class
+inComic: X-Men: The Hidden Years
+inComic: X-Force
+inComic: X-Men Unlimited Infinity Comic
+inComic: Professor Xavier and the X-Men
+inComic: Extraordinary X-Men
+inComic: X-Men Unlimited
+inComic: Jean Grey
+inComic: Avengers
+inComic: X-Men: Red
+inComic: Fantastic Four
+inComic: Phoenix
+inMovie: X-Men (2000)
+inMovie: X2: X-Men United (2003)
+inMovie: X-Men: The Last Stand (2006)
+inMovie: The Wolverine (2013)
+inMovie: X-Men: Days of Future Past (2014)
+inMovie: X-Men: Apocalypse (2016)
+inMovie: Dark Phoenix (2019)
+
+# ironman, Vengadores, Equipos, marvel.com
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: ironman
+cn: Anthony Edward "Tony" Stark
+sn: Stark
+mail: ironman@vengadores.marvel.com
+telephoneNumber: +1-555-3000
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 201
+title:: TMOtZGVyIGUgSW5nZW5pZXJv
+species: Humano
+snapped: FALSE
+quote: It would be irresponsible not to drink.
+quote: They say the best weapon is one you never have to fire. I respectfully 
+ disagree. I prefer the weapon you only have to fire once.
+firstAppearance: 1962121000Z
+inComic: Iron Man
+inComic: Avengers
+inComic: Invincible Iron Man
+inComic: Captain America
+inComic: New Avengers
+inComic: Fantastic Four
+inComic: Tales of Suspense
+inComic: Amazing Spider-Man
+inComic: Thor
+inComic: West Coast Avengers
+inComic: Incredible Hulk
+inComic: Captain Marvel
+inComic: Avengers West Coast
+inComic: Black Panther
+inComic: Daredevil
+inComic: Avengers Unlimited Infinity Comic
+inComic: Marvel Comics Presents
+inComic: Force Works
+inComic: Avengers: Electric Rain
+inComic: Hulk
+inComic: Tony Stark: Iron Man
+inComic: Thunderbolts
+inComic: Mighty Avengers
+inComic: Avengers Annual
+inComic: Marvel Team-Up
+inComic: Iron Man Annual
+inComic: Nova
+inComic: Ms. Marvel
+inComic: Eternals
+inComic: Avengers Assemble
+inComic: All-New, All-Different Avengers
+inComic: Uncanny X-Men
+inComic: Unbeatable Squirrel Girl
+inComic: Iron Man: Fatal Frontier Infinite Comic
+inComic: Avengers vs. X-Men
+inComic: X-Men
+inComic: Uncanny Avengers
+inComic: Secret Invasion
+inComic: Original Sin
+inComic: Moon Knight
+inComic: Defenders
+inComic: Avengers / Invaders
+inComic: Wolverine
+inComic: She-Hulk
+inComic: New Warriors
+inComic: Marvel Knights: Spider-Man
+inComic: Iron Man: Legacy
+inComic: Guardians of the Galaxy
+inComic: Young Avengers
+inComic: The Order
+inComic: The Marvels
+inComic: Sentry
+inComic: Deadpool
+inComic: Black Widow
+inComic: Avengers: The Initiative
+inMovie: Iron Man (2008)
+inMovie: The Incredible Hulk (2008)
+inMovie: Iron Man 2 (2010)
+inMovie: The Avengers (2012)
+inMovie: Iron Man 3 (2013)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Captain America: Civil War (2015)
+inMovie: Spider-Man: Homecoming (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Avengers: Endgame (2019)
+
+# capitanamerica, Vengadores, Equipos, marvel.com
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: capitanamerica
+cn: Steven "Steve" Rogers
+sn: Rogers
+mail: capitanamerica@vengadores.marvel.com
+telephoneNumber: +1-555-2002
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 202
+title:: Q2FwaXTDoW4=
+species: Humano
+snapped: FALSE
+quote: I can do this all day
+firstAppearance: 1940122000Z
+inComic: Captain America
+inComic: Avengers
+inComic: Amazing Spider-Man
+inComic: Invaders
+inComic: Iron Man
+inComic: New Avengers
+inComic: Captain America Comics
+inComic: Fantastic Four
+inComic: Tales of Suspense
+inComic: Deadpool
+inComic: Daredevil
+inComic: Black Panther
+inComic: Uncanny Avengers
+inComic: Thunderbolts
+inComic: Captain Marvel
+inComic: Secret Avengers
+inComic: Incredible Hulk
+inComic: Captain America: Sentinel of Liberty
+inComic: Avengers Unlimited Infinity Comic
+inComic: Thor
+inComic: Avengers Assemble
+inComic: Avengers Annual
+inComic: Marvel Team-Up
+inComic: Uncanny X-Men
+inComic: Avengers: Electric Rain
+inComic: All Winners Comics
+inComic: Venom
+inComic: Hulk
+inComic: Young Avengers
+inComic: Marvel Comics Presents
+inComic: Defenders
+inComic: Captain America and the Falcon
+inComic: Avengers: Forever
+inComic: Captain America Annual
+inComic: Avengers West Coast
+inComic: X-Men
+inComic: Wolverine
+inComic: She-Hulk
+inComic: Quasar
+inComic: Mighty Thor
+inComic: Marvel Super Heroes Secret Wars
+inComic: Invincible Iron Man
+inComic: Captain Britain
+inComic: Avengers vs. X-Men
+inComic: Avengers / Invaders
+inComic: U.S.A. Comics
+inComic: Superior Spider-Man
+inComic: Spectacular Spider-Man
+inComic: Marvel Two-In-One
+inComic: Marvel Knights: Spider-Man
+inComic: Marvel Fanfare
+inComic: A + X
+inComic: All-New Invaders
+inMovie: Captain America: The First Avenger (2011)
+inMovie: The Avengers (2012)
+inMovie: Captain America: The Winter Soldier (2014)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Ant-Man (2015)
+inMovie: Captain America: Civil War (2016)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Captain Marvel (2019)
+inMovie: Avengers: Endgame (2019)
+
+# thor, Vengadores, Equipos, marvel.com
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: thor
+cn: Thor Odinson
+sn: Odinson
+mail: thor@vengadores.marvel.com
+telephoneNumber: +1-555-2003
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 203
+title: Dios
+species: Asgardiano
+snapped: FALSE
+quote: You turned me into a frog!
+quote: This is a friend of mine, Tree
+quote: Get help!
+quote: And he was like "byah! It's me!" and he stabbed me.
+firstAppearance: 1950070800Z
+inComic: Thor
+inComic: Avengers
+inComic: Mighty Thor
+inComic: Journey Into Mystery
+inComic: Captain America
+inComic: Fantastic Four
+inComic: Amazing Spider-Man
+inComic: Alligator Loki Infinity Comic
+inComic: Incredible Hulk
+inComic: Thor: God of Thunder
+inComic: Captain Marvel
+inComic: Iron Man
+inComic: Immortal Thor
+inComic: Thor Annual
+inComic: Avengers Assemble
+inComic: Avengers Annual
+inComic: Uncanny Avengers
+inComic: New Avengers
+inComic: Black Panther
+inComic: Avengers Unlimited Infinity Comic
+inComic: Original Sin
+inComic: Thor: Son of Asgard
+inComic: Marvel Super Heroes Secret Wars
+inComic: Deadpool
+inComic: Thunderstrike
+inComic: Thunderbolts
+inComic: Hulk
+inComic: Avengers vs. X-Men
+inComic: Marvel Team-Up
+inComic: Invincible Iron Man
+inComic: Loki
+inMovie: Thor (2011)
+inMovie: The Avengers (2012)
+inMovie: Thor: The Dark World (2013)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Doctor Strange (2016)
+inMovie: Thor: Ragnarok (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Avengers: Endgame (2019)
+inMovie: Thor: Love and Thunder (2022)
+inMovie: Avengers: Doomsday (2026)
+
+# hulk, Vengadores, Equipos, marvel.com
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: hulk
+cn: Robert Bruce Banner
+sn: Banner
+mail: hulk@vengadores.marvel.com
+telephoneNumber: +1-555-2004
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 204
+title:: Q2llbnTDrWZpY28=
+species: Humano
+snapped: FALSE
+quote: Hulk have ten more minutes of fart jokes
+quote: Hulk wants beans!
+firstAppearance: 1962030100Z
+inComic: Incredible Hulk
+inComic: Defenders
+inComic: Avengers
+inComic: Hulk
+inComic: Immortal Hulk
+inComic: Tales to Astonish
+inComic: Fantastic Four
+inComic: Incredible Hulks
+inComic: Iron Man
+inComic: Hulk Comic (UK)
+inComic: Indestructible Hulk
+inComic: Hulk!
+inComic: Avengers: Electric Rain
+inComic: Avengers Assemble
+inComic: Incredible Hulk Annual
+inComic: Amazing Spider-Man
+inComic: Marvel Team-Up
+inComic: Marvel Comics Presents
+inComic: Captain America
+inComic: Marvel Super Heroes Secret Wars
+inComic: Original Sin
+inComic: New Avengers
+inComic: Captain Marvel
+inComic: Silver Surfer
+inComic: Avengers No Road Home
+inMovie: The Incredible Hulk (2008)
+inMovie: The Avengers (2012)
+inMovie: Iron Man 3 (2013)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Thor: Ragnarok (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Captain Marvel (2019)
+inMovie: Avengers: Endgame (2019)
+inMovie: Shang-Chi and the Legend of the Ten Rings (2021)
+
+# blackwidow, Vengadores, Equipos, marvel.com
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: blackwidow
+cn: Natalia Alianovna "Natasha" Romanova
+sn: Romanoff
+mail: blackwidow@vengadores.marvel.com
+telephoneNumber: +1-555-2005
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 205
+title:: RXNww61hIHkgQXNlc2luYQ==
+species: Humana
+snapped: FALSE
+quote: I don't know how you snuck into S.H.I.E.L.D.'s top-secret carrier, bust
+ er... But I know how you're going out.
+firstAppearance: 1964011000Z
+inComic: Avengers
+inComic: Daredevil
+inComic: Black Widow
+inComic: Captain America
+inComic: Secret Avengers
+inComic: Iron Man
+inComic: Marvel Knights
+inComic: Thunderbolts
+inComic: Avengers Assemble
+inComic: Winter Soldier
+inComic: Punisher
+inComic: Champions
+inComic: New Avengers
+inComic: Mighty Avengers
+inComic: Amazing Spider-Man
+inComic: Avengers: Electric Rain
+inComic: Avengers vs. X-Men
+inComic: Tales of Suspense
+inComic: Secret Invasion
+inComic: Marvel Comics Presents
+inComic: Fantastic Four
+inMovie: Iron Man 2 (2010)
+inMovie: The Avengers (2012)
+inMovie: Captain America: The Winter Soldier (2014)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Captain America: Civil War (2016)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Captain Marvel (2019)
+inMovie: Avengers: Endgame (2019)
+inMovie: Black Widow (2021)
+
+# hawkeye, Vengadores, Equipos, marvel.com
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: hawkeye
+cn: Clinton Francis "Clint" Barton
+sn: Barton
+mail: hawkeye@vengadores.marvel.com
+telephoneNumber: +1-555-2006
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 206
+title: Francotirador
+species: Humano
+snapped: FALSE
+quote: Did I do a good job?
+quote: Lucky, stop eating the russian.
+firstAppearance: 1964060900Z
+inComic: Avengers
+inComic: Thunderbolts
+inComic: New Avengers
+inComic: West Coast Avengers
+inComic: Secret Avengers
+inComic: Captain America
+inComic: Hawkeye
+inComic: Avengers West Coast
+inComic: Iron Man
+inComic: Amazing Spider-Man
+inComic: Avengers Assemble
+inComic: Solo Avengers
+inComic: Avengers Academy
+inComic: Black Widow
+inComic: Avengers Spotlight
+inComic: Incredible Hulk
+inComic: Fantastic Four
+inComic: Tales of Suspense
+inComic: Marvel Super Heroes Secret Wars
+inComic: Avengers: Forever
+inComic: Avengers vs. X-Men
+inComic: All-New Hawkeye
+inComic: Avengers No Road Home
+inComic: Avengers Annual
+inMovie: Thor (2011)
+inMovie: The Avengers (2012)
+inMovie: Avengers: Age of Ultron (2015)
+inMovie: Captain America: Civil War (2016)
+inMovie: Avengers: Endgame (2019)
+
+# gamora, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: gamora
+cn: Gamora Zen-Whoberi Ben Titan
+sn: Zen-Whoberi Ben Titan
+mail: gamora@guardianes.marvel.com
+telephoneNumber: +1-555-3001
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 301
+title:: TGEgbXVqZXIgbcOhcyBtb3J0w61mZXJhIGRlIHRvZGEgbGEgZ2FsYXhpYQ==
+species: Zehoberei
+quote: Angela, will you marry me?
+quote: I am going to die surrounded by the biggest idiots in the galaxy.
+firstAppearance: 1975032500Z
+inComic: Guardians of the Galaxy
+inComic: Warlock and the Infinity Watch
+inComic: Nova
+inComic: All-New Guardians of the Galaxy
+inMovie: Guardians of the Galaxy (2014)
+inMovie: Guardians of the Galaxy Vol. 2 (2017)
+inMovie: Avengers: Infinity War (2018)
+
+# rocket, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: rocket
+cn: Rocket Raccoon
+sn: Raccoon
+mail: rocket@guardianes.marvel.com
+telephoneNumber: +1-555-89P13
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 302
+title:: R3VhcmRpw6FuIGRlbCBDdWFkcmFudGUgS2V5c3RvbmU=
+species: Mapache
+snapped: FALSE
+quote: Dude, they were really easy to steal.
+quote: That's the plan? We're gonna hit him with a brick?
+firstAppearance: 1982020900Z
+inComic: Guardians of the Galaxy
+inComic: Rocket Raccoon
+inComic: Rocket Raccoon and Groot
+inComic: Captain Marvel
+inComic: Avengers No Road Home
+inComic: All-New Guardians of the Galaxy
+inMovie: Guardians of the Galaxy (2014)
+inMovie: Guardians of the Galaxy Vol. 2 (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Avengers: Endgame (2019)
+inMovie: Thor: Love and Thunder (2022)
+inMovie: Guardians of the Galaxy Vol. 3 (2023)
+
+# groot, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: groot
+cn: Groot XXCVII
+sn: (none)
+mail: groot@guardianes.marvel.com
+telephoneNumber: +1-555-3003
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 303
+title:: w4FyYm9s
+species: Flora colossus
+snapped: TRUE
+quote: I am Groot
+quote: I love you guys
+firstAppearance: 1960062700Z
+inComic: Guardians of the Galaxy
+inComic: Groot
+inComic: Rocket Raccoon and Groot
+inComic: Rocket Raccoon
+inMovie: Guardians of the Galaxy (2014)
+inMovie: Guardians of the Galaxy Vol. 2 (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Avengers: Endgame (2019)
+inMovie: Thor: Love and Thunder (2022)
+inMovie: Guardians of the Galaxy Vol. 3 (2023)
+
+# drax, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: drax
+cn: Arthur Sampson Douglas
+sn: Douglas
+mail: drax@guardianes.marvel.com
+telephoneNumber: +1-555-3004
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 304
+title: El Destructor
+species: Humano mutante
+snapped: TRUE
+quote: I'll do you one better, why is Gamora?
+quote: I have famously huge turds.
+quote: I have sensitive nipples.
+firstAppearance: 1972103100Z
+inComic: Guardians of the Galaxy
+inComic: Warlock and the Infinity Watch
+inComic: Captain Marvel
+inComic: Silver Surfer
+inComic: Drax
+inMovie: Guardians of the Galaxy (2014)
+inMovie: Guardians of the Galaxy Vol. 2 (2017)
+inMovie: Avengers: Infinity War (2018)
+inMovie: Avengers: Endgame (2019)
+inMovie: Thor: Love and Thunder (2022)
+inMovie: Guardians of the Galaxy Vol. 3 (2023)
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 24
+# numEntries: 23
+```
+
+### Búsqueda desde Nick Fury
+
+| [logs/5-search-nickfury.ldif](logs/5-search-nickfury.ldif) |
+| ---------------------------------------------------------- |
+<!--- Full file -->
+```ldap
+# extended LDIF
+#
+# LDAPv3
+# base <dc=marvel,dc=com> (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# marvel.com
+dn: dc=marvel,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Marvel (Admin de Sistemas Linux)
+dc: marvel
+
+# Mentores, marvel.com
+dn: ou=Mentores,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Mentores
+
+# Equipos, marvel.com
+dn: ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Equipos
+
+# XMen, Equipos, marvel.com
+dn: ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: XMen
+
+# Vengadores, Equipos, marvel.com
+dn: ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: Vengadores
+
+# GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: organizationalUnit
+ou: GuardianesDeLaGalaxia
+
+# profesorx, Mentores, marvel.com
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: profesorx
+cn: Charles Francis Xavier
+sn: Xavier
+mail: profesorx@mentores.marvel.com
+telephoneNumber: +1-555-0001
+employeeNumber: 0001
+species: Mutante
+quote: Class is now in session! Tardiness will be punished!
+
+# nickfury, Mentores, marvel.com
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: nickfury
+cn: Nicholas Joseph Fury
+sn: Fury
+mail: nickfury@mentores.marvel.com
+telephoneNumber: +1-555-1963
+employeeNumber: 0002
+species: Humano
+snapped: TRUE
+quote: I'm here to talk to you about the Avenger Initiative
+quote: I'm about five seconds from complicating that wall with some ugly-ass S
+ krull brains.
+userPassword:: e1NTSEF9QWtBbWNtM3JvNmZKVUdBcE1CbysxVU9IZlpNbkNtc1k=
+
+# starlord, Mentores, marvel.com
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelMentor
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: starlord
+cn: Peter Jason Quill
+sn: Quill
+mail: starlord@mentores.marvel.com
+telephoneNumber: +1-555-1976
+employeeNumber: 0003
+species: Humano-Spartoi
+quote: I'm not from Earth, I'm from Missouri
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: wolverine
+cn: James "Logan" Howlett
+sn: Howlett
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 101
+title: Arma X
+quote: What's a Magneto?
+
+# ciclope, XMen, Equipos, marvel.com
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: ciclope
+cn: Scott Summers
+sn: Summers
+mail: ciclope@xmen.marvel.com
+telephoneNumber: +1-555-1002
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 102
+title:: TMOtZGVy
+quote: I want this thing off my lawn
+
+# tormenta, XMen, Equipos, marvel.com
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: tormenta
+cn: Ororo Munroe
+sn: Munroe
+mail: tormenta@xmen.marvel.com
+telephoneNumber: +1-555-1003
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 103
+title: Manipuladora del Clima
+quote: Do you know what happens to a toad when it's struck by lightning? The s
+ ame thing that happens to everything else.
+
+# jeangrey, XMen, Equipos, marvel.com
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: jeangrey
+cn: Jean Elaine Grey-Summers
+sn: Grey-Summers
+mail: jeangrey@xmen.marvel.com
+telephoneNumber: +1-555-1004
+manager: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+roomNumber: 104
+title:: UHPDrXF1aWNhIC8gU2VndW5kYSBhbCBNYW5kbw==
+quote: If there's two of them, I quit.
+
+# ironman, Vengadores, Equipos, marvel.com
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: ironman
+cn: Anthony Edward "Tony" Stark
+sn: Stark
+mail: ironman@vengadores.marvel.com
+telephoneNumber: +1-555-3000
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 201
+title:: TMOtZGVyIGUgSW5nZW5pZXJv
+species: Humano
+snapped: FALSE
+quote: It would be irresponsible not to drink.
+quote: They say the best weapon is one you never have to fire. I respectfully 
+ disagree. I prefer the weapon you only have to fire once.
+
+# capitanamerica, Vengadores, Equipos, marvel.com
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: capitanamerica
+cn: Steven "Steve" Rogers
+sn: Rogers
+mail: capitanamerica@vengadores.marvel.com
+telephoneNumber: +1-555-2002
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 202
+title:: Q2FwaXTDoW4=
+species: Humano
+snapped: FALSE
+quote: I can do this all day
+
+# thor, Vengadores, Equipos, marvel.com
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: thor
+cn: Thor Odinson
+sn: Odinson
+mail: thor@vengadores.marvel.com
+telephoneNumber: +1-555-2003
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 203
+title: Dios
+species: Asgardiano
+snapped: FALSE
+quote: You turned me into a frog!
+quote: This is a friend of mine, Tree
+quote: Get help!
+quote: And he was like "byah! It's me!" and he stabbed me.
+
+# hulk, Vengadores, Equipos, marvel.com
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: hulk
+cn: Robert Bruce Banner
+sn: Banner
+mail: hulk@vengadores.marvel.com
+telephoneNumber: +1-555-2004
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 204
+title:: Q2llbnTDrWZpY28=
+species: Humano
+snapped: FALSE
+quote: Hulk have ten more minutes of fart jokes
+quote: Hulk wants beans!
+
+# blackwidow, Vengadores, Equipos, marvel.com
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: blackwidow
+cn: Natalia Alianovna "Natasha" Romanova
+sn: Romanoff
+mail: blackwidow@vengadores.marvel.com
+telephoneNumber: +1-555-2005
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 205
+title:: RXNww61hIHkgQXNlc2luYQ==
+species: Humana
+snapped: FALSE
+quote: I don't know how you snuck into S.H.I.E.L.D.'s top-secret carrier, bust
+ er... But I know how you're going out.
+
+# hawkeye, Vengadores, Equipos, marvel.com
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: hawkeye
+cn: Clinton Francis "Clint" Barton
+sn: Barton
+mail: hawkeye@vengadores.marvel.com
+telephoneNumber: +1-555-2006
+manager: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+roomNumber: 206
+title: Francotirador
+species: Humano
+snapped: FALSE
+quote: Did I do a good job?
+quote: Lucky, stop eating the russian.
+
+# gamora, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: gamora
+cn: Gamora Zen-Whoberi Ben Titan
+sn: Zen-Whoberi Ben Titan
+mail: gamora@guardianes.marvel.com
+telephoneNumber: +1-555-3001
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 301
+title:: TGEgbXVqZXIgbcOhcyBtb3J0w61mZXJhIGRlIHRvZGEgbGEgZ2FsYXhpYQ==
+quote: Angela, will you marry me?
+quote: I am going to die surrounded by the biggest idiots in the galaxy.
+
+# rocket, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: rocket
+cn: Rocket Raccoon
+sn: Raccoon
+mail: rocket@guardianes.marvel.com
+telephoneNumber: +1-555-89P13
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 302
+title:: R3VhcmRpw6FuIGRlbCBDdWFkcmFudGUgS2V5c3RvbmU=
+quote: Dude, they were really easy to steal.
+quote: That's the plan? We're gonna hit him with a brick?
+
+# groot, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: groot
+cn: Groot XXCVII
+sn: (none)
+mail: groot@guardianes.marvel.com
+telephoneNumber: +1-555-3003
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 303
+title:: w4FyYm9s
+
+# drax, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: drax
+cn: Arthur Sampson Douglas
+sn: Douglas
+mail: drax@guardianes.marvel.com
+telephoneNumber: +1-555-3004
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 304
+title: El Destructor
+quote: I'll do you one better, why is Gamora?
+quote: I have famously huge turds.
+quote: I have sensitive nipples.
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 24
+# numEntries: 23
+```
+
+### Búsqueda desde Drax
+
+| [logs/5-search-drax.ldif](logs/5-search-drax.ldif) |
+| ---------------------------------------------------------- |
+<!--- Full file -->
+```ldap
+# extended LDIF
+#
+# LDAPv3
+# base <dc=marvel,dc=com> (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# profesorx, Mentores, marvel.com
+dn: uid=profesorx,ou=Mentores,dc=marvel,dc=com
+mail: profesorx@mentores.marvel.com
+quote: Class is now in session! Tardiness will be punished!
+
+# nickfury, Mentores, marvel.com
+dn: uid=nickfury,ou=Mentores,dc=marvel,dc=com
+mail: nickfury@mentores.marvel.com
+quote: I'm here to talk to you about the Avenger Initiative
+quote: I'm about five seconds from complicating that wall with some ugly-ass S
+ krull brains.
+
+# starlord, Mentores, marvel.com
+dn: uid=starlord,ou=Mentores,dc=marvel,dc=com
+mail: starlord@mentores.marvel.com
+snapped: TRUE
+quote: I'm not from Earth, I'm from Missouri
+
+# wolverine, XMen, Equipos, marvel.com
+dn: uid=wolverine,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: wolverine@xmen.marvel.com
+telephoneNumber: +1-555-1001
+quote: What's a Magneto?
+
+# ciclope, XMen, Equipos, marvel.com
+dn: uid=ciclope,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: ciclope@xmen.marvel.com
+telephoneNumber: +1-555-1002
+quote: I want this thing off my lawn
+
+# tormenta, XMen, Equipos, marvel.com
+dn: uid=tormenta,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: tormenta@xmen.marvel.com
+telephoneNumber: +1-555-1003
+quote: Do you know what happens to a toad when it's struck by lightning? The s
+ ame thing that happens to everything else.
+
+# jeangrey, XMen, Equipos, marvel.com
+dn: uid=jeangrey,ou=XMen,ou=Equipos,dc=marvel,dc=com
+mail: jeangrey@xmen.marvel.com
+telephoneNumber: +1-555-1004
+quote: If there's two of them, I quit.
+
+# ironman, Vengadores, Equipos, marvel.com
+dn: uid=ironman,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: ironman@vengadores.marvel.com
+telephoneNumber: +1-555-3000
+quote: It would be irresponsible not to drink.
+quote: They say the best weapon is one you never have to fire. I respectfully 
+ disagree. I prefer the weapon you only have to fire once.
+
+# capitanamerica, Vengadores, Equipos, marvel.com
+dn: uid=capitanamerica,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: capitanamerica@vengadores.marvel.com
+telephoneNumber: +1-555-2002
+quote: I can do this all day
+
+# thor, Vengadores, Equipos, marvel.com
+dn: uid=thor,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: thor@vengadores.marvel.com
+telephoneNumber: +1-555-2003
+quote: You turned me into a frog!
+quote: This is a friend of mine, Tree
+quote: Get help!
+quote: And he was like "byah! It's me!" and he stabbed me.
+
+# hulk, Vengadores, Equipos, marvel.com
+dn: uid=hulk,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: hulk@vengadores.marvel.com
+telephoneNumber: +1-555-2004
+quote: Hulk have ten more minutes of fart jokes
+quote: Hulk wants beans!
+
+# blackwidow, Vengadores, Equipos, marvel.com
+dn: uid=blackwidow,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: blackwidow@vengadores.marvel.com
+telephoneNumber: +1-555-2005
+quote: I don't know how you snuck into S.H.I.E.L.D.'s top-secret carrier, bust
+ er... But I know how you're going out.
+
+# hawkeye, Vengadores, Equipos, marvel.com
+dn: uid=hawkeye,ou=Vengadores,ou=Equipos,dc=marvel,dc=com
+mail: hawkeye@vengadores.marvel.com
+telephoneNumber: +1-555-2006
+quote: Did I do a good job?
+quote: Lucky, stop eating the russian.
+
+# gamora, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=gamora,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+cn: Gamora Zen-Whoberi Ben Titan
+mail: gamora@guardianes.marvel.com
+telephoneNumber: +1-555-3001
+species: Zehoberei
+quote: Angela, will you marry me?
+quote: I am going to die surrounded by the biggest idiots in the galaxy.
+
+# rocket, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=rocket,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+cn: Rocket Raccoon
+mail: rocket@guardianes.marvel.com
+telephoneNumber: +1-555-89P13
+species: Mapache
+snapped: FALSE
+quote: Dude, they were really easy to steal.
+quote: That's the plan? We're gonna hit him with a brick?
+
+# groot, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=groot,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+cn: Groot XXCVII
+mail: groot@guardianes.marvel.com
+telephoneNumber: +1-555-3003
+species: Flora colossus
+snapped: TRUE
+quote: I am Groot
+quote: I love you guys
+
+# drax, GuardianesDeLaGalaxia, Equipos, marvel.com
+dn: uid=drax,ou=GuardianesDeLaGalaxia,ou=Equipos,dc=marvel,dc=com
+objectClass: inetOrgPerson
+objectClass: marvelHero
+objectClass: marvelCharacter
+objectClass: marvelComicCharacter
+objectClass: marvelMovieCharacter
+uid: drax
+cn: Arthur Sampson Douglas
+sn: Douglas
+mail: drax@guardianes.marvel.com
+telephoneNumber: +1-555-3004
+manager: uid=starlord,ou=Mentores,dc=marvel,dc=com
+roomNumber: 304
+title: El Destructor
+species: Humano mutante
+snapped: TRUE
+quote: I'll do you one better, why is Gamora?
+quote: I have famously huge turds.
+quote: I have sensitive nipples.
+userPassword:: e1NTSEF9dVNPZ1BJaHFZVjE4c0pEWE1MdysxREpCRzEyaDkxRGo=
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 18
+# numEntries: 17
+```
 
 [shield-cc-by-sa]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [shield-gitt]:     https://img.shields.io/badge/Degree-Telecommunication_Technologies_Engineering_|_UC3M-eee
