@@ -74,7 +74,7 @@ políticas de acceso.
 Con `make test` se ejecutan los tests disponibles (tests de permisos).
 
 Con `make clean` se eliminan las entradas del árbol. Las entradas de
-configuración de *schema*, requieren operaciones complejas para su completa
+configuración de *schema* requieren operaciones complejas para su completa
 eliminación, por lo que simplemente se vacían.
 
 ## Ejercicio 1: creación del árbol
@@ -493,7 +493,7 @@ todos los tests definidos, dando información sobre el resultado de cada uno.
 #### Integración con `make` <!-- markdownlint-disable-line MD024 -->
 
 Para ejecutar los tests de permisos, se ha definido un *target* en el
-[`Makefile`](Makefile), incluído en el *target* `test`:
+[`Makefile`](Makefile), incluido en el *target* `test`:
 
 ```sh
 make test-permissions
